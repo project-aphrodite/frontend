@@ -2,6 +2,14 @@ import { addDecorator } from '@storybook/vue';
 import vuetify from '@/plugins/vuetify';
 import '@mdi/font/css/materialdesignicons.css';
 import 'vuetify/dist/vuetify.min.css';
+import '@/css/app.css';
+import Vue from 'vue';
+
+import { heightDirective, widthDirective, maxWidthDirective } from '@/directives';
+
+Vue.directive('height', heightDirective);
+Vue.directive('width', widthDirective);
+Vue.directive('max-width', maxWidthDirective);
 
 addDecorator(() => ({
 	vuetify: vuetify,

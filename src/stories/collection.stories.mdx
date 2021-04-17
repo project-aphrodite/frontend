@@ -1,0 +1,23 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import Collection from '@/core/components/Collection.vue';
+
+<Meta title="Components / User Collections" component={Collection} />
+
+# Button
+
+<ArgsTable of={Collection} />
+
+Shows an example collection.
+
+<Canvas>
+  <Story name=" Base Collection">
+    {{
+        components: { Collection },
+        template: `
+          <collection/>
+          `
+    }}
+  </Story>
+</Canvas>

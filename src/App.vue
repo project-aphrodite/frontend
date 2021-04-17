@@ -14,22 +14,16 @@
 		</v-app-bar>
 
 		<v-main>
-			<example-component>Some example card title text</example-component>
+			Test
 		</v-main>
-		<footer-alpha />
 	</v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import ExampleComponent from '@/core/components/ExampleComponent.vue';
-import FooterAlpha from '@/core/templates/footers/FooterAlpha.vue';
 
 export default Vue.extend({
-	components: {
-		ExampleComponent,
-		FooterAlpha
-	},
+	components: {},
 
 	data: () => ({
 		//

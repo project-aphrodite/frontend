@@ -1,0 +1,31 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import NaughtCard from '@/core/components/NaughtCard.vue';
+
+<Meta title="Components / Naught Card" component={NaughtCard} />
+
+# Button
+
+<ArgsTable of={NaughtCard} />
+
+Shows content of an NFT with basic meta data.
+
+<Canvas>
+  <Story name="Naught Card">
+    {{
+        components: { NaughtCard },
+        template: `
+          <naught-card />
+            `
+    }}
+  </Story>
+    <Story name="Naught Card (dense)">
+    {{
+        components: { NaughtCard },
+        template: `
+          <naught-card dense />
+          `
+    }}
+  </Story>
+</Canvas>

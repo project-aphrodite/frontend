@@ -1,0 +1,23 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import BioCard from '@/core/components/BioCard.vue';
+
+<Meta title="Components / Bio Card" component={BioCard} />
+
+# Button
+
+<ArgsTable of={BioCard} />
+
+Shows an example bio card.
+
+<Canvas>
+  <Story name="BioCard">
+    {{
+        components: { BioCard },
+        template: `
+          <bio-card />
+          `
+    }}
+  </Story>
+</Canvas>
