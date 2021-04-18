@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="full-width">
 		<v-tabs v-model="activeTab" class="pa-0 collection-header elevation-3" hide-slider color="white">
 			<v-tab :key="0" class="pa-0">
 				<v-card width="180" height="100%" class=" d-flex justify-center align-center header">
