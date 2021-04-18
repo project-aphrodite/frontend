@@ -62,9 +62,6 @@ export default Vue.extend({
 		currentBreakpoint(): string {
 			return getCurrentBreakpoint(this);
 		}
-	},
-	mounted() {
-		console.log(this.$vuetify.breakpoint);
 	}
 });
 </script>
