@@ -4,21 +4,6 @@
     font-family: 'Exo', sans-serif;
 }
 
-.weight-bold {
-	font-weight: 700 !important;
-}
-
-.weight-semi-bold {
-	font-weight: 600 !important;
-}
-
-.weight-medium {
-	font-weight: 500 !important;
-}
-
-.weight-regular {
-	font-weight: 400 !important;
-}
 
 .full-height {
     height: 100%;
@@ -48,6 +33,12 @@
     color: var(--v-primary-base) !important;
 }
 
+.big-header {
+    font-size: 24px;
+    font-weight: 700 !important;
+    color: var(--v-tertiary-base) !important;
+}
+
 .header {
     font-size: 20px;
     font-weight: 700 !important;
@@ -59,7 +50,22 @@
     font-weight: 700 !important;
 }
 
-.normal-text {
+.sub-text {
     font-weight: 400 !important;
     font-size: 12px;
+}
+.weight-bold {
+	font-weight: 700 !important;
+}
+
+.weight-semi-bold {
+	font-weight: 600 !important;
+}
+
+.weight-medium {
+	font-weight: 500 !important;
+}
+
+.weight-regular {
+	font-weight: 400 !important;
 }

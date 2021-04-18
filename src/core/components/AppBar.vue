@@ -28,7 +28,7 @@
 			<div class="d-flex align-center">
 				<div v-min-width="140" class="font-weight-bold d-flex flex-column align-end tertiary--text mx-5">
 					<div class="weight-bold eth-balance">4.67 ETH</div>
-					<div class="normal-text">0xC80523 . . . 4FBA</div>
+					<div class="sub-text">0xC80523 . . . 4FBA</div>
 				</div>
 
 				<v-badge color="transparent" offset-x="22" offset-y="18" left>

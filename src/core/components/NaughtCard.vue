@@ -1,10 +1,8 @@
 <template>
 	<v-card min-width="250" width="250" :height="dense ? 300 : 400">
-		<v-img height="300" class="naught-card" src="https://www.stockvault.net/data/2010/10/31/115645/thumb16.jpg" style>
+		<v-img height="300" class="naught-card" src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg" style>
 			<template v-slot:placeholder>
-				<div class="d-flex flex-column justify-center align-center full-height">
-					<v-progress-circular indeterminate color="primary"></v-progress-circular>
-				</div>
+				<imager-loader />
 			</template>
 			<div>
 				<div class="d-flex justify-space-between pa-4 white--text">
@@ -56,8 +54,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import ImagerLoader from '@/core/components/loaders/ImageLoader.vue';
 
 export default Vue.extend({
+	components: { ImagerLoader },
 	props: {
 		dense: {
 			type: Boolean,

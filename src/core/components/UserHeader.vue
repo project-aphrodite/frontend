@@ -12,7 +12,7 @@
 				</template>
 			</v-img>
 		</div>
-		<div class="d-flex flex-column align-center justify-space-between" style="width: 75%; position: absolute; top: 230px;">
+		<div class="d-flex flex-column align-center justify-space-between" style="width: 60%; position: absolute; top: 230px;">
 			<div class="d-flex align-end tertiary--text">
 				<div class="font-weight-bold d-flex flex-column align-end stat-container">
 					<div class="stat-value tertiary--text ">232</div>
@@ -21,9 +21,7 @@
 				<v-avatar size="200" class="mx-3">
 					<v-img class="header-profile-picture" src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
 						<template v-slot:placeholder>
-							<div class="d-flex justify-center align-center full-height">
-								<v-progress-circular indeterminate color="primary"></v-progress-circular>
-							</div>
+							<imager-loader />
 						</template>
 					</v-img>
 				</v-avatar>
@@ -36,15 +34,18 @@
 				<v-btn class="primary" depressed width="140">Create</v-btn>
 			</div>
 
-			<div class="normal-text quaternary--text">0xc80595ffad5272c9f02ecd0cd0e650e3b9884fba</div>
+			<div class="sub-text quaternary--text">0xc80595ffad5272c9f02ecd0cd0e650e3b9884fba</div>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import ImagerLoader from '@/core/components/loaders/ImageLoader.vue';
 
-export default Vue.extend({});
+export default Vue.extend({
+	components: { ImagerLoader }
+});
 </script>
 
 <style scoped>
