@@ -1,22 +1,22 @@
 import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
-import UserHeader from '@/core/components/UserHeader.vue';
+import UserCollections from '@/core/components/UserCollections.vue';
 
-<Meta title="Components / UserHeader" component={UserHeader} />
+<Meta title="Components / User Collections" component={UserCollections} />
 
 # Button
 
-<ArgsTable of={UserHeader} />
+<ArgsTable of={UserCollections} />
 
-Shows an example UserHeader.
+Shows an example UserCollections, contains a collection and a catalogue (which is a collection with different data).
 
 <Canvas>
-  <Story name="User Header">
+  <Story name="User Collections">
     {{
-        components: { UserHeader },
+        components: { UserCollections },
         template: `
-          <user-header />
+          <user-collections/>
           `
     }}
   </Story>

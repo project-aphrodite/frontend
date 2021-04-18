@@ -1,22 +1,22 @@
 import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
-import UserCollections from '@/core/components/UserCollections.vue';
+import AppBar from '@/core/components/AppBar.vue';
 
-<Meta title="Components / User Collections" component={UserCollections} />
+<Meta title="Components / App Bar" component={AppBar} />
 
-# Button
+# AButton
 
-<ArgsTable of={UserCollections} />
+<ArgsTable of={AppBar} />
 
-Shows an example UserCollections, contains a collection and a catalogue (which is a collection with different data).
+Shows an example AppBar.
 
 <Canvas>
-  <Story name="User Collections">
+  <Story name="App Bar">
     {{
-        components: { UserCollections },
+        components: { AppBar },
         template: `
-          <user-collections/>
+          <app-bar/>
           `
     }}
   </Story>

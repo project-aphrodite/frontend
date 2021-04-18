@@ -1,22 +1,22 @@
 import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
-import AppBar from '@/core/components/AppBar.vue';
+import UserHeader from '@/core/components/UserHeader.vue';
 
-<Meta title="Components / App Bar" component={AppBar} />
+<Meta title="Components / UserHeader" component={UserHeader} />
 
 # Button
 
-<ArgsTable of={AppBar} />
+<ArgsTable of={UserHeader} />
 
-Shows an example AppBar.
+Shows an example UserHeader.
 
 <Canvas>
-  <Story name="App Bar">
+  <Story name="User Header">
     {{
-        components: { AppBar },
+        components: { UserHeader },
         template: `
-          <app-bar/>
+          <user-header />
           `
     }}
   </Story>

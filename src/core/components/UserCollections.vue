@@ -1,5 +1,5 @@
 <template>
-	<div class="full-width">
+	<div class="user-collections-container">
 		<v-tabs v-model="activeTab" class="pa-0 collection-header elevation-3" hide-slider color="white">
 			<v-tab :key="0" class="pa-0">
 				<v-card width="180" height="100%" class=" d-flex justify-center align-center header">
@@ -38,6 +38,11 @@ export default Vue.extend({
 </script>
 
 <style>
+.xs .user-collections-container,
+.sm .user-collections-container {
+	width: 100%;
+}
+
 .collection-header .v-slide-group__wrapper {
 	position: relative;
 	margin-bottom: -1px;
