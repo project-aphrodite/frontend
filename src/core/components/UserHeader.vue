@@ -5,18 +5,29 @@
 				<div class="d-flex flex-column align-center full-width full-height">
 					<div class="page-title">Roaring Kitty</div>
 				</div>
+				<template v-slot:placeholder>
+					<div v-height="150" class="d-flex flex-column justify-center align-center mt-4">
+						<v-progress-circular indeterminate color="primary"></v-progress-circular>
+					</div>
+				</template>
 			</v-img>
 		</div>
 		<div class="d-flex flex-column align-center justify-space-between" style="width: 75%; position: absolute; top: 230px;">
 			<div class="d-flex align-end tertiary--text">
-				<div class="font-weight-bold d-flex flex-column align-end">
+				<div class="font-weight-bold d-flex flex-column align-end stat-container">
 					<div class="stat-value tertiary--text ">232</div>
 					<div class="stat-text primary--text">NFTs</div>
 				</div>
 				<v-avatar size="200" class="mx-3">
-					<v-img class="header-profile-picture" src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+					<v-img class="header-profile-picture" src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+						<template v-slot:placeholder>
+							<div class="d-flex justify-center align-center full-height">
+								<v-progress-circular indeterminate color="primary"></v-progress-circular>
+							</div>
+						</template>
+					</v-img>
 				</v-avatar>
-				<div class="font-weight-bold d-flex flex-column align-start">
+				<div class="font-weight-bold d-flex flex-column align-start stat-container">
 					<div class="stat-value tertiary--text ">3234</div>
 					<div class="stat-text primary--text">Followers</div>
 				</div>
@@ -56,13 +67,28 @@ export default Vue.extend({
 	clip-path: polygon(0% 0%, 0% 70%, 5% 71.5%, 15% 74.5%, 25% 77%, 30% 77.8%, 40% 78.5%, 50% 78.8%, 60% 78.5%, 70% 77.8%, 75% 77%, 85% 74.5%, 95% 71.5%, 100% 70%, 100% 0%);
 }
 
+.stat-container {
+	width: 100px;
+}
+
 .stat-value {
 	font-size: 38px;
 	height: 45px;
 }
 
-.stat-subtext {
+.xs .stat-value,
+.sm .stat-value {
+	font-size: 20px;
+	height: 27px;
+}
+
+.stat-text {
 	font-size: 16px;
+}
+
+.xs .stat-text,
+.sm .stat-text {
+	font-size: 12px;
 }
 
 .header-image-container {

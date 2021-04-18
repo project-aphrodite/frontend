@@ -13,6 +13,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f https://github.com/project-aphrodite/frontend.git master:master-deploy
+git push -f https://github.com/project-aphrodite/front-end-deploy.git master:master-deploy
 
 cd -
