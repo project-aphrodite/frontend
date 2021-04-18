@@ -1,5 +1,5 @@
 <template>
-	<div v-height="500" class="d-flex flex-column align-center full-width user-header-container" :class="currentBreakpoint">
+	<div v-height="500" class="d-flex flex-column align-center full-width user-header-container">
 		<div class="tertiary header-image-container full-width">
 			<v-img class="header-image white--text" height="400px" src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg">
 				<div class="d-flex flex-column align-center full-width full-height">
@@ -43,14 +43,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { getCurrentBreakpoint } from '../utils/breakPointUtil';
-export default Vue.extend({
-	computed: {
-		currentBreakpoint(): string {
-			return getCurrentBreakpoint(this);
-		}
-	}
-});
+
+export default Vue.extend({});
 </script>
 
 <style scoped>

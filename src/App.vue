@@ -1,5 +1,5 @@
 <template>
-	<v-app>
+	<v-app :class="currentBreakpoint">
 		<app-bar />
 		<v-main>
 			<v-container fluid class="pa-0 pb-4"><content-creator /></v-container>
@@ -12,12 +12,18 @@ import Vue from 'vue';
 import AppBar from '@/core/components/AppBar.vue';
 
 import ContentCreator from './core/pages/ContentCreator.vue';
+import { getCurrentBreakpoint } from './core/utils/breakPointUtil';
 
 export default Vue.extend({
 	components: { AppBar, ContentCreator },
 
 	data: () => ({
 		//
-	})
+	}),
+	computed: {
+		currentBreakpoint(): string {
+			return getCurrentBreakpoint(this);
+		}
+	}
 });
 </script>

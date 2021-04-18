@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-tabs v-model="activeTab" v-width="360" class="pa-0 collection-header elevation-3" hide-slider color="white">
+		<v-tabs v-model="activeTab" class="pa-0 collection-header elevation-3" hide-slider color="white">
 			<v-tab :key="0" class="pa-0">
 				<v-card width="180" height="100%" class=" d-flex justify-center align-center header">
 					Catalogue
@@ -15,7 +15,7 @@
 
 		<v-tabs-items v-model="activeTab" class="collection-content elevation-2" elev>
 			<v-tab-item v-for="i in 2" :key="i">
-				<v-card class="pa-7" max-width="1130">
+				<v-card class="pa-2 pa-md-7" min-width="304px" max-width="1130">
 					<collection />
 				</v-card>
 			</v-tab-item>
@@ -46,6 +46,25 @@ export default Vue.extend({
 </style>
 
 <style scoped>
+.collection-header {
+	width: 360px;
+}
+
+.xs .collection-header,
+.sm .collection-header {
+	width: 240px;
+}
+
+.xs .collection-header .v-card,
+.sm .collection-header .v-card {
+	width: 120px !important;
+}
+
+.xs .header,
+.sm .header {
+	font-size: 15px;
+}
+
 .v-tabs {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;

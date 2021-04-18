@@ -21,16 +21,7 @@
 			</div>
 			<div class="d-flex flex-column align-center justify-center">
 				<div>
-					<v-text-field
-						v-height="40"
-						:class="currentBreakpoint"
-						class="search-text-field"
-						prepend-inner-icon="mdi-magnify"
-						dense
-						label="Search"
-						color="text"
-						outlined
-					></v-text-field>
+					<v-text-field v-height="40" class="search-text-field" prepend-inner-icon="mdi-magnify" dense label="Search" color="text" outlined></v-text-field>
 				</div>
 			</div>
 
@@ -55,22 +46,16 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
 
-export default Vue.extend({
-	computed: {
-		currentBreakpoint(): string {
-			return getCurrentBreakpoint(this);
-		}
-	}
-});
+export default Vue.extend({});
 </script>
 
 <style scoped>
-.search-text-field.xl {
+.xl .search-text-field {
 	min-width: 600px;
 }
-.search-text-field.lg {
+
+.lg .search-text-field {
 	min-width: 400px;
 }
 
