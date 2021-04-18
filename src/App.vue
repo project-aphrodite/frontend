@@ -1,29 +1,20 @@
 <template>
 	<v-app>
-		<v-app-bar app color="grey lighten-3">
-			<div class="d-flex align-center">
-				<v-img
-					alt="Vuetify Logo"
-					class="shrink mr-2"
-					contain
-					src="https://images.squarespace-cdn.com/content/600fff8831539d708a565cc6/1611667752413-J16I28OW25P5CRTIA2OO/dreamcatcher.png?content-type=image%2Fpng"
-					transition="scale-transition"
-					width="40"
-				/>
-			</div>
-		</v-app-bar>
-
+		<app-bar />
 		<v-main>
-			Test
+			<v-container fluid class="pa-0 pb-4"><content-creator /></v-container>
 		</v-main>
 	</v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import AppBar from '@/core/components/AppBar.vue';
+
+import ContentCreator from './core/pages/ContentCreator.vue';
 
 export default Vue.extend({
-	components: {},
+	components: { AppBar, ContentCreator },
 
 	data: () => ({
 		//

@@ -1,0 +1,23 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import AppBar from '@/core/components/AppBar.vue';
+
+<Meta title="Components / App Bar" component={AppBar} />
+
+# Button
+
+<ArgsTable of={AppBar} />
+
+Shows an example AppBar.
+
+<Canvas>
+  <Story name="App Bar">
+    {{
+        components: { AppBar },
+        template: `
+          <app-bar/>
+          `
+    }}
+  </Story>
+</Canvas>

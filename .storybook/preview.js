@@ -5,11 +5,12 @@ import 'vuetify/dist/vuetify.min.css';
 import '@/css/app.css';
 import Vue from 'vue';
 
-import { heightDirective, widthDirective, maxWidthDirective } from '@/directives';
+import { heightDirective, widthDirective, maxWidthDirective, minWidthDirective } from '@/directives';
 
 Vue.directive('height', heightDirective);
 Vue.directive('width', widthDirective);
 Vue.directive('max-width', maxWidthDirective);
+Vue.directive('min-width', minWidthDirective);
 
 addDecorator(() => ({
 	vuetify: vuetify,

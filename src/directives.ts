@@ -15,3 +15,9 @@ export const maxWidthDirective = {
 		el.style.maxWidth = binding.value + 'px';
 	}
 };
+
+export const minWidthDirective = {
+	inserted: (el: any, binding: any): void => {
+		el.style.minWidth = binding.value + 'px';
+	}
+};

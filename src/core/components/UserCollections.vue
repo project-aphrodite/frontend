@@ -15,7 +15,7 @@
 
 		<v-tabs-items v-model="activeTab" class="collection-content elevation-2" elev>
 			<v-tab-item v-for="i in 2" :key="i">
-				<v-card class="pa-7" height="960">
+				<v-card class="pa-7">
 					<collection />
 				</v-card>
 			</v-tab-item>
@@ -49,6 +49,7 @@ export default Vue.extend({
 .v-tabs {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
+	max-width: 360px;
 }
 
 .v-tabs .v-card {

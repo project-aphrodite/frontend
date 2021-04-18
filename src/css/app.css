@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 
 .v-application {
     font-family: 'Exo', sans-serif;
@@ -41,6 +40,10 @@
     border-color:var(--v-input-border-color-active-base);
 }
 
+.v-app-bar .v-text-field--outlined fieldset {
+    border-color: var(--v-primary-base);
+}
+
 .v-select .v-input__icon.v-input__icon--append i {
     color: var(--v-primary-base) !important;
 }
@@ -49,4 +52,14 @@
     font-size: 20px;
     font-weight: 700 !important;
     color: var(--v-tertiary-base) !important;
+}
+
+.page-title {
+    font-size: 54px;
+    font-weight: 700 !important;
+}
+
+.normal-text {
+    font-weight: 400 !important;
+    font-size: 12px;
 }

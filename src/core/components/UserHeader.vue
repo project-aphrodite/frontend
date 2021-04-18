@@ -1,0 +1,97 @@
+<template>
+	<div v-height="500" class="d-flex flex-column align-center full-width user-header-container" :class="currentBreakpoint">
+		<div class="tertiary header-image-container full-width">
+			<v-img class="header-image white--text" height="400px" src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg">
+				<div class="d-flex flex-column align-center full-width full-height">
+					<div class="page-title">Roaring Kitty</div>
+				</div>
+			</v-img>
+		</div>
+		<div class="d-flex flex-column align-center justify-space-between" style="width: 75%; position: absolute; top: 230px;">
+			<div class="d-flex align-end tertiary--text">
+				<div class="font-weight-bold d-flex flex-column align-end">
+					<div class="stat-value tertiary--text ">232</div>
+					<div class="stat-text primary--text">NFTs</div>
+				</div>
+				<v-avatar size="200" class="mx-3">
+					<v-img class="header-profile-picture" src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+				</v-avatar>
+				<div class="font-weight-bold d-flex flex-column align-start">
+					<div class="stat-value tertiary--text ">3234</div>
+					<div class="stat-text primary--text">Followers</div>
+				</div>
+			</div>
+			<div class="ml-auto my-2 my-md-0">
+				<v-btn class="primary" depressed width="140">Create</v-btn>
+			</div>
+
+			<div class="normal-text quaternary--text">0xc80595ffad5272c9f02ecd0cd0e650e3b9884fba</div>
+		</div>
+	</div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue';
+import { getCurrentBreakpoint } from '../utils/breakPointUtil';
+export default Vue.extend({
+	computed: {
+		currentBreakpoint(): string {
+			return getCurrentBreakpoint(this);
+		}
+	}
+});
+</script>
+
+<style scoped>
+.user-header-container {
+	margin-bottom: 10px;
+}
+
+.page-title {
+	top: 30%;
+	position: absolute;
+}
+
+.header-image {
+	clip-path: polygon(0% 0%, 0% 70%, 5% 71.5%, 15% 74.5%, 25% 77%, 30% 77.8%, 40% 78.5%, 50% 78.8%, 60% 78.5%, 70% 77.8%, 75% 77%, 85% 74.5%, 95% 71.5%, 100% 70%, 100% 0%);
+}
+
+.stat-value {
+	font-size: 38px;
+	height: 45px;
+}
+
+.stat-subtext {
+	font-size: 16px;
+}
+
+.header-image-container {
+	padding-bottom: 5px;
+	clip-path: polygon(
+		0% 0%,
+		0% 69.9%,
+		5% 71.7%,
+		15% 74.7%,
+		25% 77.2%,
+		30% 78%,
+		40% 78.9%,
+		50% 79.2%,
+		60% 78.9%,
+		70% 78%,
+		75% 77.2%,
+		85% 74.7%,
+		95% 71.7%,
+		100% 69.9%,
+		100% 0%
+	);
+}
+
+.header-profile-picture {
+	border: 6px var(--v-primary-base) solid;
+}
+</style>
+<style>
+.header-image-container .v-image__image.v-image__image--cover {
+	filter: brightness(95%) !important;
+}
+</style>

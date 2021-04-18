@@ -1,6 +1,9 @@
 <template>
-	<v-card class="pa-5" width="370">
-		<div v-height="35" class="header">Bio</div>
+	<v-card class="pa-5 bio-card" width="370">
+		<div v-height="35" class="d-flex justify-space-between">
+			<div class="header">Bio</div>
+			<v-btn icon height="28" width="28" color="primary"><v-icon>mdi-square-edit-outline</v-icon></v-btn>
+		</div>
 		<div v-width="310" class="bio-description quaternary--text">
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim, morbi mollis dolor convallis. Consequat in sed placerat libero. Purus magna quam orci egestas sit.
 			Nunc, pulvinar vivamus non pretium at quis scelerisque mollis. Hendrerit ipsum et, sapien pellentesque enim sollicitudin. Nisl, vel pellentesque sollicitudin
@@ -29,6 +32,9 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.bio-card {
+	height: fit-content;
+}
 .bio-description {
 	font-size: 12px;
 }
