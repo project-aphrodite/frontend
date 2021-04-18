@@ -1,5 +1,5 @@
 <template>
-	<v-app-bar fixed app color="white" elevation="0" class="d-flex justify-center align-center" :height="$vuetify.breakpoint.mdAndUp ? 80 : 200">
+	<v-app-bar fixed app color="white" elevation="1" class="d-flex justify-center align-center" :height="$vuetify.breakpoint.mdAndUp ? 80 : 200">
 		<div class="d-flex flex-column flex-md-row align-center justify-space-between" style="height: 100%">
 			<div class="d-flex align-center flex-wrap">
 				<v-avatar color="primary" size="56">

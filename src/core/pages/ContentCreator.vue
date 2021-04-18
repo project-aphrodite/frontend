@@ -4,9 +4,9 @@
 
 		<br />
 
-		<div class="d-flex justify-center">
+		<div class="d-flex flex-column flex-md-row justify-center align-center align-md-start">
 			<bio-card class="mx-4" />
-			<user-collections class="mx-4" />
+			<user-collections class="mx-4 my-6 my-md-0" />
 		</div>
 	</div>
 </template>

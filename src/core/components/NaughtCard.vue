@@ -1,5 +1,5 @@
 <template>
-	<v-card width="250" :height="dense ? 300 : 400">
+	<v-card min-width="250" width="250" :height="dense ? 300 : 400">
 		<v-img height="300" class="naught-card" src="https://www.stockvault.net/data/2010/10/31/115645/thumb16.jpg" style>
 			<div>
 				<div class="d-flex justify-space-between pa-4 white--text">

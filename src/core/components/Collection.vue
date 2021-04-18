@@ -12,10 +12,12 @@
 				<v-select v-max-width="150" label="Sort by" dense class="ml-8" :menu-props="{ offsetY: true }" :items="['Name', 'Price']" color="text" outlined></v-select>
 			</v-col>
 		</v-row>
-		<v-row>
-			<v-col v-for="i in 12" :key="i" class="py-4 d-flex justify-center " cols="12" sm="6" md="4" lg="3">
-				<naught-card />
-			</v-col>
+		<v-row class="d-flex flex-md-row flex-column align-center">
+			<!-- <v-col v-for="i in 12" :key="i" class="py-4 d-flex justify-center " cols="12" sm="6" md="4" lg="3"> -->
+			<div v-for="i in 12" :key="i" class="d-flex flex-column align-center">
+				<naught-card class="mx-3 my-4" />
+			</div>
+			<!-- </v-col> -->
 		</v-row>
 	</div>
 </template>

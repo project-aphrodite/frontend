@@ -15,7 +15,7 @@
 
 		<v-tabs-items v-model="activeTab" class="collection-content elevation-2" elev>
 			<v-tab-item v-for="i in 2" :key="i">
-				<v-card class="pa-7">
+				<v-card class="pa-7" max-width="1130">
 					<collection />
 				</v-card>
 			</v-tab-item>
