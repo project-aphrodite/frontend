@@ -8,7 +8,7 @@
 				<div class="d-flex justify-space-between pa-4 white--text">
 					<div class="card-title">
 						<v-icon small color="secondary">mdi-circle</v-icon>
-						<span class="ml-2 owner-name">Owner Name</span>
+						<span class="ml-2 f-12">Owner Name</span>
 					</div>
 					<v-badge content="12" offset-x="16" offset-y="44" color="transparent">
 						<v-btn icon>
@@ -19,10 +19,10 @@
 				<div v-if="dense" class="d-flex flex-column justify-space-between align-center white--text dense-content">
 					<div class="mt-6">
 						<v-icon size="46" color="white">mdi-currency-eth</v-icon>
-						<span class="eth-price weight-bold">33.18</span>
+						<span class="eth-price f-38 weight-700">33.18</span>
 					</div>
-					<div class="description text-center px-12">Description of NFT something something this is very cool my top nft</div>
-					<div class="description flavour-text-container full-width text-center d-flex flex-column justify-center">
+					<div class="f-12 text-center px-12">Description of NFT something something this is very cool my top nft</div>
+					<div class="f-12 flavour-text-container full-width text-center d-flex flex-column justify-center">
 						<div class="pt-2">Most Valuable Sold</div>
 					</div>
 				</div>
@@ -31,21 +31,21 @@
 
 		<v-card-text v-if="!dense" class="pb-1 px-3">
 			<div>
-				<div class="text-center primary--text creator weight-bold">
+				<div class="text-center primary--text f-16 weight-700">
 					Item Name
 				</div>
-				<div class="text-center description tertiary--text weight-medium">
+				<div class="text-center description tertiary--text weight-500">
 					NFT Description
 				</div>
 			</div>
 			<div class="d-flex justify-space-between mt-3">
 				<div>
-					<span class="primary--text count weight-semi-bold">6</span>
-					<span class="count-text quaternary--text"> listings</span>
+					<span class="primary--text f-14 weight-600">6</span>
+					<span class="f-12 quaternary--text"> listings</span>
 				</div>
 				<div>
 					<v-icon color="tertiary">mdi-currency-eth</v-icon>
-					<span class="eth-price weight-bold tertiary--text">0.18</span>
+					<span class="eth-price f-17 weight-700 tertiary--text">0.18</span>
 				</div>
 			</div>
 		</v-card-text>
@@ -78,27 +78,9 @@ export default Vue.extend({
 
 .owner-name {
 	vertical-align: middle;
-	font-size: 12px;
-}
-
-.creator {
-	font-size: 16px;
-}
-
-.description {
-	font-size: 12px;
-}
-
-.count {
-	font-size: 14px;
-}
-
-.count-text {
-	font-size: 12px;
 }
 
 .eth-price {
-	font-size: 17px;
 	vertical-align: bottom;
 }
 
@@ -108,7 +90,6 @@ export default Vue.extend({
 }
 
 .dense-content .eth-price {
-	font-size: 38px;
 	vertical-align: middle;
 }
 </style>

@@ -8,13 +8,13 @@
 
 				<!-- Links -->
 				<div class="link-buttons d-flex mx-6">
-					<v-btn class="tertiary--text font-weight-bold mx-1" height="40" :width="$vuetify.breakpoint.lgAndUp ? 140 : 90" tile depressed color="transparent">
+					<v-btn class="tertiary--text weight-700 mx-1 f-16" height="40" :width="$vuetify.breakpoint.lgAndUp ? 140 : 90" tile depressed color="transparent">
 						Home
 					</v-btn>
-					<v-btn class="tertiary--text font-weight-bold mx-1" height="40" :width="$vuetify.breakpoint.lgAndUp ? 140 : 90" tile depressed color="transparent">
+					<v-btn class="tertiary--text weight-700 mx-1 f-16" height="40" :width="$vuetify.breakpoint.lgAndUp ? 140 : 90" tile depressed color="transparent">
 						Creators
 					</v-btn>
-					<v-btn class="tertiary--text font-weight-bold mx-1" height="40" :width="$vuetify.breakpoint.lgAndUp ? 140 : 90" tile depressed color="transparent">
+					<v-btn class="tertiary--text weight-700 mx-1 f-16" height="40" :width="$vuetify.breakpoint.lgAndUp ? 140 : 90" tile depressed color="transparent">
 						Explore
 					</v-btn>
 				</div>
@@ -26,9 +26,9 @@
 			</div>
 
 			<div class="d-flex align-center">
-				<div v-min-width="140" class="font-weight-bold d-flex flex-column align-end tertiary--text mx-5">
-					<div class="weight-bold eth-balance">4.67 ETH</div>
-					<div class="sub-text">0xC80523 . . . 4FBA</div>
+				<div v-min-width="140" class="d-flex flex-column align-end tertiary--text mx-5">
+					<div class="weight-700 f-16">4.67 ETH</div>
+					<div class="weight-400 f-12">0xC80523 . . . 4FBA</div>
 				</div>
 
 				<v-badge color="transparent" offset-x="22" offset-y="18" left>
@@ -61,11 +61,6 @@ export default Vue.extend({});
 
 .search-text-field {
 	min-width: 150px;
-}
-
-.link-buttons .v-btn,
-.eth-balance {
-	font-size: 16px;
 }
 
 .profile-picture {

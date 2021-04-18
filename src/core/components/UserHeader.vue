@@ -3,7 +3,7 @@
 		<div class="tertiary header-image-container full-width">
 			<v-img class="header-image white--text" height="400px" src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg">
 				<div class="d-flex flex-column align-center full-width full-height">
-					<div class="page-title">Roaring Kitty</div>
+					<div class="page-title f-54 weight-700">Roaring Kitty</div>
 				</div>
 				<template v-slot:placeholder>
 					<div v-height="150" class="d-flex flex-column justify-center align-center mt-4">
@@ -14,7 +14,7 @@
 		</div>
 		<div class="d-flex flex-column align-center justify-space-between" style="width: 60%; position: absolute; top: 230px;">
 			<div class="d-flex align-end tertiary--text">
-				<div class="font-weight-bold d-flex flex-column align-end stat-container">
+				<div class="weight-700 d-flex flex-column align-end stat-container">
 					<div class="stat-value tertiary--text ">232</div>
 					<div class="stat-text primary--text">NFTs</div>
 				</div>
@@ -25,7 +25,7 @@
 						</template>
 					</v-img>
 				</v-avatar>
-				<div class="font-weight-bold d-flex flex-column align-start stat-container">
+				<div class="weight-700 d-flex flex-column align-start stat-container">
 					<div class="stat-value tertiary--text ">3234</div>
 					<div class="stat-text primary--text">Followers</div>
 				</div>
