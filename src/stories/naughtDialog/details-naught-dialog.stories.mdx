@@ -1,0 +1,21 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import DetailsNaughtDialog from '@/core/components/naughtDialog/DetailsNaughtDialog.vue';
+
+<Meta title="Components / Dialog / NaughtDialog" component={DetailsNaughtDialog} />
+
+<ArgsTable of={NaughtDialog} />
+
+Shows an example DetailsNaughtDialog (Overwridden BaseNaughtDialog).
+
+<Canvas>
+  <Story name="Details Naught Dialog">
+    {{
+        components: { DetailsNaughtDialog },
+        template: `
+          <details-naught-dialog/>
+          `
+    }}
+  </Story>
+</Canvas>

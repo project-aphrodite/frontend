@@ -19,7 +19,6 @@ export default new Vuetify({
 				quinary: '#4CA0F0',
 
 				text: '#454F51',
-
 				'input-border-color': '#E6ECF5',
 				'input-border-color-active': '#4CA0F0'
 			}

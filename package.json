@@ -9,6 +9,7 @@
     "storybook:build": "rimraf ./target/storybook && vue-cli-service storybook:build -s ./public -c ./.storybook -o ./target/storybook"
   },
   "dependencies": {
+    "chart.js": "^3.1.1",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vuetify": "^2.4.0"
