@@ -39,3 +39,9 @@
 import Vue from 'vue';
 export default Vue.extend({});
 </script>
+
+<style scoped>
+.profile-picture {
+	border: 2px var(--v-primary-base) solid;
+}
+</style>

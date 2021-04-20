@@ -1,11 +1,11 @@
 <template>
-	<v-card class="expanded-container d-flex" style="width: fit-content;">
+	<v-card class="expanded-container d-flex" min-width="1200" width="1200">
 		<v-img class="expanded-image" max-width="600" height="720" src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg">
 			<template v-slot:placeholder>
 				<imager-loader />
 			</template>
 		</v-img>
-		<v-card flat width="600" class="pt-5">
+		<v-card flat min-width="600" width="600" class="pt-5">
 			<slot />
 		</v-card>
 	</v-card>
