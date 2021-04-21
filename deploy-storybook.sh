@@ -7,7 +7,7 @@ set -e
 npm run storybook:build
 
 # navigate into the build output directory
-cd dist
+cd target/storybook
 
 git init
 git add -A

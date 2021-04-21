@@ -109,6 +109,7 @@
 				</div>
 			</div>
 		</div>
+		<template v-slot:side-slot><naught-dialog-trading-history /></template>
 	</base-naught-dialog>
 </template>
 
@@ -117,11 +118,12 @@ import Vue from 'vue';
 
 import BaseNaughtDialog from './BaseNaughtDialog.vue';
 import NaughtDialogTitle from './NaughtDialogTitle.vue';
+import NaughtDialogTradingHistory from './NaughtDialogTradingHistory.vue';
 
 import { Chart, CategoryScale, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 
 export default Vue.extend({
-	components: { BaseNaughtDialog, NaughtDialogTitle },
+	components: { BaseNaughtDialog, NaughtDialogTitle, NaughtDialogTradingHistory },
 	data() {
 		return {
 			priceHistoryShowing: 0,
@@ -202,9 +204,6 @@ export default Vue.extend({
 <style scoped>
 .profile-picture {
 	border: 1px var(--v-primary-base) solid;
-}
-
-.actions {
 }
 </style>
 
