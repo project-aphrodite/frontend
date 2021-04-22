@@ -98,3 +98,15 @@
 .weight-400 {
 	font-weight: 400 !important;
 }
+
+.v-expansion-panel-content {
+    background-color: rgba(214, 82, 115, 0.04);
+}
+
+.v-dialog.v-dialog--active {
+    /* overflow-y: visible; */
+}
+
+.v-dialog__content.v-dialog__content--active {
+    /* width: fit-content; */
+}

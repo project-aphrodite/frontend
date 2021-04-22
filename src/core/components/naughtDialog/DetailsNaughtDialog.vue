@@ -33,7 +33,7 @@
 					<v-divider />
 					<v-expansion-panel-content class="listings">
 						<div v-height="70" class="px-2 px-lg-6 d-flex justify-space-between align-center f-14 weight-500">
-							<div class="d-flex align-center tertiary--text mr-lg-7 mr-2">
+							<div class="d-flex align-center tertiary--text mr-lg-7 mr-2 flex-wrap flex-sm-nowrap">
 								<v-avatar size="30" class="profile-picture mr-2">
 									<v-img
 										src="https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/19/UP4396-CUSA04449_00-AV00000000000194/image?w=320&h=320&bg_color=000000&opacity=100&_version=00_09_000"
@@ -45,8 +45,8 @@
 							</div>
 							<div class="tertiary--text "><span class="primary--text">1</span> listed</div>
 							<v-spacer />
-							<div class="d-flex align-center">
-								<div class="tertiary--text weight-600 mr-4">
+							<div class="d-flex align-center flex-wrap flex-sm-nowrap ml-2">
+								<div class="d-flex tertiary--text weight-600 mr-4">
 									<v-icon color="tertiary">mdi-currency-eth</v-icon>
 									0.16
 								</div>

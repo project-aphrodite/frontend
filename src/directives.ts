@@ -4,6 +4,12 @@ export const heightDirective = {
 	}
 };
 
+export const minheightDirective = {
+	inserted: (el: any, binding: any): void => {
+		el.style.minHeight = binding.value + 'px';
+	}
+};
+
 export const widthDirective = {
 	inserted: (el: any, binding: any): void => {
 		el.style.width = binding.value + 'px';

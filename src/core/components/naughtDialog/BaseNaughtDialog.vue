@@ -1,18 +1,20 @@
 <template>
 	<!-- min-width="1200" width="1200" -->
-	<v-card elevation="1" tile class="expanded-container d-flex flex-column flex-lg-row">
+	<v-card elevation="1" tile class="expanded-container d-flex flex-column flex-lg-row" max-width="1500">
 		<!-- {{ currentBreakpoint }} -->
 		<v-img class="expanded-image" max-width="600" height="720" src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg">
 			<template v-slot:placeholder>
 				<imager-loader />
 			</template>
 		</v-img>
+		<!-- <div class="d-flex"> -->
 		<v-card elevation="0" class="expanded-content pt-5" min-width="600" width="600">
 			<slot />
 		</v-card>
-		<v-card max-height="720" tile elevation="1" min-width="300" max-width="300" class="expanded-last pt-5 px-2 px-lg-5" style="overflow-y: auto;">
+		<v-card max-height="720" tile elevation="1" min-width="300" class="expanded-last pt-5 pb-5 px-2 px-lg-5" style="overflow-y: auto;">
 			<slot name="side-slot" />
 		</v-card>
+		<!-- </div> -->
 	</v-card>
 </template>
 
@@ -32,13 +34,6 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
-.expanded-container.v-card {
-	width: 1200px;
-	min-width: 1200px;
-}
-</style>
-
 <style lang="scss">
 .xs {
 	.expanded-container.v-card,
@@ -56,12 +51,15 @@ export default Vue.extend({
 	}
 }
 
-.expanded-container.v-card,
 .expanded-container .expanded-image.v-image,
 .expanded-content.v-card {
 	border-radius: 10px !important;
 	border-top-right-radius: 0px !important;
 	border-bottom-right-radius: 0px !important;
+}
+
+.expanded-container.v-card {
+	border-radius: 10px !important;
 }
 
 .xs,
