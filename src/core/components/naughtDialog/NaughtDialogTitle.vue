@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="d-flex justify-space-between align-center full-width px-7">
+		<div class="d-flex justify-space-between align-center full-width px-3 px-lg-7">
 			<div class="f-24 weight-700 tertiary--text">
 				<div class="d-flex flex-column">
 					<div class="mb-1">Plain Jane</div>

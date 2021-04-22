@@ -7,16 +7,10 @@
 					<v-timeline-item color="white" icon-color="grey lighten-2" small> </v-timeline-item>
 					<v-timeline-item color="white" class="pb-0" icon-color="yellow lighten-2" small> </v-timeline-item>
 				</v-timeline>
-				<div class="d-flex flex-column">
-					<!-- <v-card height="50" width="260" >
-						<div>
-							
-						</div>
-					</v-card> -->
-					<!-- {{ openExpansionPanel }} -->
+				<div class="d-flex flex-column" :style="timelineStyle">
 					<v-expansion-panels v-model="openExpansionPanel">
 						<v-expansion-panel v-for="n in entries" :key="n" :class="[n == 1 ? 'mt-8' : 'mt-6']">
-							<v-expansion-panel-header v-height="50" v-width="260" class="pa-2">
+							<v-expansion-panel-header v-height="50" v-min-width="260" class="pa-2">
 								<div class="d-flex justify-start align-center">
 									<v-avatar size="34" class="profile-picture mr-4">
 										<v-img
@@ -65,8 +59,8 @@ export default Vue.extend({
 	},
 	computed: {
 		timelineStyle(): string {
-			const offset = this.openExpansionPanel >= 0 ? 17 : 0;
-			return 'height:' + (offset + 15 + 11 * (this.entries - 1)) + '%;';
+			const offset = this.openExpansionPanel >= 0 ? 120 : 0;
+			return 'height:' + (offset + 116 + 74 * (this.entries - 1)) + 'px;';
 		}
 	}
 });

@@ -5,6 +5,8 @@ import 'vuetify/dist/vuetify.min.css';
 import '@/css/app.css';
 import Vue from 'vue';
 
+
+
 import { heightDirective, widthDirective, maxWidthDirective, minWidthDirective } from '@/directives';
 
 Vue.directive('height', heightDirective);
@@ -14,5 +16,5 @@ Vue.directive('min-width', minWidthDirective);
 
 addDecorator(() => ({
 	vuetify: vuetify,
-	template: '<v-app><v-main><v-container><v-layout column><story/></v-layout></v-container></v-main></v-app>'
+	template: '<v-app><v-main><v-container class="mx-0 pa-0"><v-layout column><story/></v-layout></v-container></v-main></v-app>'
 }));
