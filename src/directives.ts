@@ -27,3 +27,9 @@ export const minWidthDirective = {
 		el.style.minWidth = binding.value + 'px';
 	}
 };
+
+export const pointerDirective = {
+	inserted: (el: any): void => {
+		el.style.cursor = 'pointer';
+	}
+};

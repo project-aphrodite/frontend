@@ -15,9 +15,9 @@
 			<v-divider v-max-width="185" class="primary" />
 		</div>
 		<div class="d-flex flex-column justify-space-between align-center">
-			<naught-card dense class="mt-4" />
+			<naught-card dense class="mt-4" @openDialog="openDialog" />
 
-			<naught-card dense class="mt-4" />
+			<naught-card dense class="mt-4" @openDialog="openDialog" />
 		</div>
 	</v-card>
 </template>
@@ -27,7 +27,12 @@ import Vue from 'vue';
 import NaughtCard from './NaughtCard.vue';
 
 export default Vue.extend({
-	components: { NaughtCard }
+	components: { NaughtCard },
+	methods: {
+		openDialog(): void {
+			this.$emit('openDialog');
+		}
+	}
 });
 </script>
 

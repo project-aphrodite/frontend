@@ -1,6 +1,13 @@
 <template>
 	<v-card min-width="250" width="250" :height="dense ? 300 : 400">
-		<v-img height="300" class="naught-card" src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg" style>
+		<v-img
+			v-pointer
+			v-ripple
+			height="300"
+			class="naught-card"
+			src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg"
+			@click="openDialog"
+		>
 			<template v-slot:placeholder>
 				<imager-loader />
 			</template>
@@ -11,7 +18,7 @@
 						<span class="ml-2 f-12">Owner Name</span>
 					</div>
 					<v-badge content="12" offset-x="16" offset-y="44" color="transparent">
-						<v-btn icon>
+						<v-btn icon @click.prevent="">
 							<v-icon size="28" color="white">mdi-heart-outline</v-icon>
 						</v-btn>
 					</v-badge>
@@ -62,6 +69,11 @@ export default Vue.extend({
 		dense: {
 			type: Boolean,
 			default: false
+		}
+	},
+	methods: {
+		openDialog(): void {
+			this.$emit('openDialog');
 		}
 	}
 });

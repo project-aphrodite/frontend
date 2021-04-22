@@ -5,21 +5,11 @@
 		<br />
 
 		<div class="d-flex flex-column flex-md-row justify-center align-center align-md-start mx-2 mx-md-0">
-			<bio-card class="mx-4" />
-			<user-collections class="mx-4 my-6 my-md-0" @showDialog="setShowDialog" />
-			<v-btn @click="setShowDialog">asd</v-btn>
+			<bio-card class="mx-4" @openDialog="openDialog" />
+			<user-collections class="mx-4 my-6 my-md-0" @openDialog="openDialog" />
 		</div>
 		<v-dialog v-model="showDialog" content-class="naught-dialog" transition="dialog-bottom-transition">
-			<!-- <v-card width="100%"> -->
-			<!-- <div>
-				<div class="d-flex justify-end full-width">
-					<details-naught-dialog />
-				</div>
-			</div> -->
-			<!-- </v-card> -->
-			<!-- <v-card> -->
-			<details-naught-dialog />
-			<!-- </v-card> -->
+			<details-naught-dialog @close="closeDialog" />
 		</v-dialog>
 	</div>
 </template>
@@ -42,8 +32,11 @@ export default Vue.extend({
 		return { showDialog: false };
 	},
 	methods: {
-		setShowDialog(): void {
+		openDialog(): void {
 			this.showDialog = true;
+		},
+		closeDialog(): void {
+			this.showDialog = false;
 		}
 	}
 });

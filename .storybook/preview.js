@@ -7,13 +7,14 @@ import Vue from 'vue';
 
 
 
-import { heightDirective, widthDirective, maxWidthDirective, minWidthDirective, minheightDirective } from '@/directives';
+import { heightDirective, widthDirective, maxWidthDirective, minWidthDirective, minheightDirective, pointerDirective } from '@/directives';
 
 Vue.directive('height', heightDirective);
 Vue.directive('width', widthDirective);
 Vue.directive('max-width', maxWidthDirective);
 Vue.directive('min-width', minWidthDirective);
 Vue.directive('min-height', minheightDirective);
+Vue.directive('pointer', pointerDirective);
 
 addDecorator(() => ({
 	vuetify: vuetify,

@@ -1,5 +1,5 @@
 <template>
-	<base-naught-dialog class="details-naught-dialog">
+	<base-naught-dialog class="details-naught-dialog" @close="emitClose()">
 		<naught-dialog-actions v-if="!bigScreen" />
 		<naught-dialog-title />
 		<div class="px-2 px-lg-7 pt-7 pb-5 d-flex flex-column" style="height: calc(100% - 68px)">
@@ -113,6 +113,9 @@ export default Vue.extend({
 		}
 	},
 	methods: {
+		emitClose(): void {
+			this.$emit('close');
+		},
 		renderPriceHistoryChart(): void {
 			if (this.chart) {
 				return;

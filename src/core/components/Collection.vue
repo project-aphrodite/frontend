@@ -14,7 +14,7 @@
 		</v-row>
 		<v-row class="d-flex flex-md-row flex-column align-center">
 			<div v-for="i in 12" :key="i" class="d-flex flex-column align-center">
-				<naught-card class="mx-3 my-4" />
+				<naught-card class="mx-3 my-4" @openDialog="openDialog" />
 			</div>
 		</v-row>
 	</div>
@@ -25,6 +25,11 @@ import Vue from 'vue';
 import NaughtCard from './NaughtCard.vue';
 
 export default Vue.extend({
-	components: { NaughtCard }
+	components: { NaughtCard },
+	methods: {
+		openDialog(): void {
+			this.$emit('openDialog');
+		}
+	}
 });
 </script>

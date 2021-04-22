@@ -16,7 +16,7 @@
 		<v-tabs-items v-model="activeTab" class="collection-content elevation-2" elev>
 			<v-tab-item v-for="i in 2" :key="i">
 				<v-card class="pa-2 pa-md-7" min-width="304px" max-width="1130">
-					<collection />
+					<collection @openDialog="openDialog" />
 				</v-card>
 			</v-tab-item>
 		</v-tabs-items>
@@ -33,6 +33,11 @@ export default Vue.extend({
 		return {
 			activeTab: 0
 		};
+	},
+	methods: {
+		openDialog(): void {
+			this.$emit('openDialog');
+		}
 	}
 });
 </script>
