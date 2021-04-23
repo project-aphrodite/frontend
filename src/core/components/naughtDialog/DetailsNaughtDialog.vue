@@ -70,7 +70,7 @@
 import Vue from 'vue';
 
 import BaseNaughtDialog from './BaseNaughtDialog.vue';
-import NaughtDialogTitle from './NaughtDialogTitle.vue';
+import NaughtDialogTitle from './components/NaughtDialogTitle.vue';
 
 import CryptoInformation from './components/CryptoInformation.vue';
 import NaughtDialogActions from './components/NaughtDialogActions.vue';

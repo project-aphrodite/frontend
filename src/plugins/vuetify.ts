@@ -20,7 +20,8 @@ export default new Vuetify({
 
 				text: '#454F51',
 				'input-border-color': '#E6ECF5',
-				'input-border-color-active': '#4CA0F0'
+				'input-border-color-active': '#4CA0F0',
+				'file-upload-border': '#E5E8EB'
 			}
 		}
 	}

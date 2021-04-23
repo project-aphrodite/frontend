@@ -1,19 +1,19 @@
 import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
-import DetailsNaughtDialog from '@/core/components/naughtDialog/DetailsNaughtDialog.vue';
+import CreationDialog from '@/core/components/naughtDialog/CreationDialog.vue';
 import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
 
-<Meta title="Components / Dialog " component={DetailsNaughtDialog} />
+<Meta title="Components / Dialog " component={CreationDialog} />
 
-<ArgsTable of={NaughtDialog} />
+<ArgsTable of={CreationDialog} />
 
-Shows an example DetailsNaughtDialog (Overwridden BaseNaughtDialog).
+Shows an example CreationDialog (Overwridden BaseNaughtDialog).
 
 <Canvas>
-  <Story name="Details Naught Dialog">
+  <Story name="Creation Dialog">
     {{
-        components: { DetailsNaughtDialog },
+        components: { CreationDialog },
         computed: {
     		  currentBreakpoint() {
 			      return getCurrentBreakpoint(this);
@@ -21,7 +21,7 @@ Shows an example DetailsNaughtDialog (Overwridden BaseNaughtDialog).
 	      },
         template: `
           <div :class="currentBreakpoint">
-            <details-naught-dialog />
+            <creation-dialog />
           </div>
           `
     }}

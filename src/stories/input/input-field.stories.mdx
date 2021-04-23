@@ -1,0 +1,25 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import InputField from '@/core/components/input/InputField.vue';
+
+<Meta title="Components / Input " component={InputField} />
+
+# AButton
+
+<ArgsTable of={InputField} />
+
+Shows an example InputField.
+
+<Canvas>
+  <Story name="Input Field">
+    {{
+        components: { InputField },
+        template: `
+          <div style="width: 450px;">
+            <input-field/>
+          </div>
+          `
+    }}
+  </Story>
+</Canvas>

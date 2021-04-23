@@ -55,7 +55,8 @@ export default Vue.extend({
 .lg,
 .xl {
 	.naught-dialog {
-		max-width: 1500px;
+		width: fit-content;
+		max-width: fit-content;
 	}
 }
 </style>

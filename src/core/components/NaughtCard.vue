@@ -5,7 +5,7 @@
 			v-ripple
 			height="300"
 			class="naught-card"
-			src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg"
+			src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80"
 			@click="openDialog"
 		>
 			<template v-slot:placeholder>
