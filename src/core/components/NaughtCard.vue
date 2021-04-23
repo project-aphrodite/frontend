@@ -18,8 +18,9 @@
 						<span class="ml-2 f-12">Owner Name</span>
 					</div>
 					<v-badge content="12" offset-x="16" offset-y="44" color="transparent">
-						<v-btn icon @click.prevent="">
-							<v-icon size="28" color="white">mdi-heart-outline</v-icon>
+						<v-btn icon @click.stop.prevent="liked = !liked" @mousedown.stop>
+							<v-icon v-if="liked" size="28" color="white">mdi-heart-outline</v-icon>
+							<v-icon v-else size="28" color="primary">mdi-heart</v-icon>
 						</v-btn>
 					</v-badge>
 				</div>
@@ -70,6 +71,11 @@ export default Vue.extend({
 			type: Boolean,
 			default: false
 		}
+	},
+	data() {
+		return {
+			liked: false
+		};
 	},
 	methods: {
 		openDialog(): void {

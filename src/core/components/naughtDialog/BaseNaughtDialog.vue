@@ -97,6 +97,13 @@ export default Vue.extend({
 	}
 }
 
+.lg,
+.xl {
+	.expanded-last {
+		min-width: 300px !important;
+	}
+}
+
 .expanded-container .expanded-image,
 .expanded-container .expanded-image .v-image {
 	border-radius: 10px !important;
