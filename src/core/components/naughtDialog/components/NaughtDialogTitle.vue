@@ -31,7 +31,7 @@
 				</v-avatar>
 			</div>
 		</div>
-		<v-divider class="mx-1" />
+		<v-divider />
 	</div>
 </template>
 

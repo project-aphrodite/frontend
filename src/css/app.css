@@ -13,7 +13,7 @@
     width: 100%;
 }
 
-.v-sheet.v-card {
+.v-sheet.v-card, .v-menu__content {
     border-radius: 10px;
 }
 

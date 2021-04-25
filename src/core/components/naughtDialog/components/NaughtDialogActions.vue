@@ -1,5 +1,5 @@
 <template>
-	<div class="d-flex justify-space-between px-3 px-lg-7 px-xl-0 mb-6 mb-lg-0 flex-wrap flex-sm-nowrap">
+	<div class="d-flex justify-space-between px-3 px-lg-0 px-xl-0 mb-6 mb-lg-0 flex-wrap flex-sm-nowrap">
 		<div class="d-flex flex-column full-width">
 			<div class="d-flex flex-column align-end">
 				<div class="d-flex mb-1"><v-icon color="tertiary" size="18">mdi-currency-eth</v-icon> 0.18</div>
