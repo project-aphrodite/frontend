@@ -12,7 +12,7 @@
 				</template>
 			</v-img>
 		</div>
-		<div class="d-flex flex-column align-center justify-space-between" style="width: 60%; position: absolute; top: 230px;">
+		<div class="d-flex flex-column align-center justify-space-between px-4" style="width: 100%; max-width: 1560px; position: absolute; top: 230px;">
 			<div class="d-flex align-end tertiary--text">
 				<div class="weight-700 d-flex flex-column align-end stat-container">
 					<div class="stat-value tertiary--text ">232</div>
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 			<div class="ml-auto my-2 my-md-0">
-				<v-btn class="primary" depressed width="140">Create</v-btn>
+				<v-btn class="primary text-capitalize" depressed width="140">Create</v-btn>
 			</div>
 
 			<div class="sub-text quaternary--text">0xc80595ffad5272c9f02ecd0cd0e650e3b9884fba</div>

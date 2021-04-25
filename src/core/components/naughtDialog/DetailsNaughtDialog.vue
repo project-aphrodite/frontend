@@ -58,7 +58,7 @@
 			</v-expansion-panels>
 
 			<div class="d-flex justify-space-between f-12 weight-500 tertiary--text mt-5 mt-lg-auto">
-				<crypto-information class="mr-lg-4" />
+				<v-spacer />
 				<naught-dialog-actions v-if="bigScreen" />
 			</div>
 		</div>
@@ -72,7 +72,6 @@ import Vue from 'vue';
 import BaseNaughtDialog from './BaseNaughtDialog.vue';
 import NaughtDialogTitle from './components/NaughtDialogTitle.vue';
 
-import CryptoInformation from './components/CryptoInformation.vue';
 import NaughtDialogActions from './components/NaughtDialogActions.vue';
 import TradingHistory from './components/TradingHistory.vue';
 
@@ -80,7 +79,7 @@ import { Chart, CategoryScale, LineController, LineElement, PointElement, Linear
 import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
 
 export default Vue.extend({
-	components: { BaseNaughtDialog, NaughtDialogTitle, TradingHistory, CryptoInformation, NaughtDialogActions },
+	components: { BaseNaughtDialog, NaughtDialogTitle, TradingHistory, NaughtDialogActions },
 	data() {
 		return {
 			priceHistoryShowing: 0,
