@@ -19,9 +19,9 @@
 					<div class="stat-text primary--text">NFTs</div>
 				</div>
 				<v-avatar size="200" class="mx-3">
-					<v-img class="header-profile-picture" src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+					<v-img class="header-profile-picture primary" src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
 						<template v-slot:placeholder>
-							<imager-loader />
+							<imager-loader color="white" />
 						</template>
 					</v-img>
 				</v-avatar>

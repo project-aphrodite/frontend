@@ -8,20 +8,56 @@
 
 				<!-- Links -->
 				<div class="link-buttons d-flex mx-6">
-					<v-btn class="tertiary--text weight-700 mx-1 f-16" height="40" :width="$vuetify.breakpoint.lgAndUp ? 140 : 90" tile depressed color="transparent">
+					<v-btn
+						active-class="no"
+						exact-active-class="asd"
+						class="tertiary--text weight-700 mx-1 f-16"
+						height="40"
+						:width="$vuetify.breakpoint.lgAndUp ? 140 : 90"
+						tile
+						depressed
+						color="transparent"
+						@click="$router.push({ name: 'view' })"
+					>
 						Home
 					</v-btn>
-					<v-btn class="tertiary--text weight-700 mx-1 f-16" height="40" :width="$vuetify.breakpoint.lgAndUp ? 140 : 90" tile depressed color="transparent">
+					<v-btn
+						class="tertiary--text weight-700 mx-1 f-16"
+						height="40"
+						:width="$vuetify.breakpoint.lgAndUp ? 140 : 90"
+						tile
+						depressed
+						color="transparent"
+						@click="$router.push({ name: 'search' })"
+					>
 						Creators
 					</v-btn>
-					<v-btn class="tertiary--text weight-700 mx-1 f-16" height="40" :width="$vuetify.breakpoint.lgAndUp ? 140 : 90" tile depressed color="transparent">
+					<v-btn
+						class="tertiary--text weight-700 mx-1 f-16"
+						height="40"
+						:width="$vuetify.breakpoint.lgAndUp ? 140 : 90"
+						tile
+						depressed
+						color="transparent"
+						@click="$router.push({ name: 'search' })"
+					>
 						Explore
 					</v-btn>
 				</div>
 			</div>
 			<div class="d-flex flex-column align-center justify-center">
 				<div>
-					<v-text-field v-height="40" class="search-text-field" prepend-inner-icon="mdi-magnify" dense label="Search" color="text" outlined></v-text-field>
+					<v-text-field
+						v-model="searchTerm"
+						v-height="40"
+						class="search-text-field"
+						prepend-inner-icon="mdi-magnify"
+						dense
+						placeholder="Search"
+						color="text"
+						outlined
+						@keydown.enter="submit"
+					></v-text-field>
 				</div>
 			</div>
 
@@ -47,7 +83,16 @@
 <script lang="ts">
 import Vue from 'vue';
 
-export default Vue.extend({});
+export default Vue.extend({
+	data() {
+		return { searchTerm: '' };
+	},
+	methods: {
+		submit(): void {
+			this.$router.push({ name: 'search', query: { searchTerm: this.searchTerm } });
+		}
+	}
+});
 </script>
 
 <style scoped>
@@ -73,5 +118,10 @@ export default Vue.extend({});
 	background: white;
 	border-radius: 10px;
 	/* padding-left: 1px; */
+}
+
+.theme--light.v-btn--active:hover::before,
+.theme--light.v-btn--active::before {
+	opacity: 0;
 }
 </style>

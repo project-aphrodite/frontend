@@ -1,7 +1,7 @@
 <template>
 	<base-naught-dialog class="details-naught-dialog" @close="emitClose()">
 		<naught-dialog-actions v-if="!bigScreen" />
-		<naught-dialog-title />
+		<naught-dialog-title class=" pt-5" />
 		<div class="px-2 px-lg-7 pt-7 pb-5 d-flex flex-column" style="height: calc(100% - 68px)">
 			<div class="f-12 weight-500 quaternary--text mb-3">
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim, morbi mollis dolor convallis. Consequat in sed placerat libero. Purus magna quam orci egestas
