@@ -62,11 +62,10 @@
 					<div class="f-14 weight-700">Price</div>
 					<div class="f-30 weight-400 d-flex align-center py-3">
 						<v-btn icon color="white" height="24" width="24" class="primary elevation-3" @click="decrementPrice"><v-icon>mdi-minus</v-icon></v-btn>
-						<div v-max-width="105" class="mx-2">
+						<div v-max-width="155" class="mx-2">
 							<v-text-field
-								ref="text-field"
 								v-model="sellPrice"
-								class="price-text-field"
+								class="price-text-field f-32 tertiary--text"
 								hide-details
 								dense
 								placeholder="0.00"
@@ -259,6 +258,10 @@ export default Vue.extend({
 
 .details-naught-dialog .listings .v-expansion-panel-content__wrap {
 	padding: 0;
+}
+
+.details-naught-dialog .price-text-field i {
+	font-size: 32px !important;
 }
 
 .details-naught-dialog .price-text-field.v-text-field.v-text-field--solo:not(.v-text-field--solo-flat) > .v-input__control > .v-input__slot {

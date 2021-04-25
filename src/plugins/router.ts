@@ -1,17 +1,21 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import ContentCreator from '@/pages/contentCreator/ContentCreator.vue';
+import User from '@/pages/user/User.vue';
 import Search from '@/pages/search/Search.vue';
 import NotFound from '@/pages/notFound/NotFound.vue';
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+	scrollBehavior(): { x: number; y: number } {
+		return { x: 0, y: 0 };
+	},
 	routes: [
 		{
 			path: '/view/:id?',
 			name: 'view',
-			component: ContentCreator
+			component: User,
+			props: (route): any => ({ id: route.params.id })
 		},
 		{
 			path: '/search',
