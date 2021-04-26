@@ -2,22 +2,21 @@
 	<v-app-bar fixed app color="white" elevation="1" class="d-flex justify-center align-center" :height="$vuetify.breakpoint.mdAndUp ? 80 : 200">
 		<div class="d-flex flex-column flex-md-row align-center justify-space-between" style="height: 100%">
 			<div class="d-flex align-center flex-wrap">
-				<v-avatar color="primary" size="56">
-					<v-icon color="white" size="40">mdi-gender-male-female-variant</v-icon>
-				</v-avatar>
+				<!-- <v-avatar color="primary" size="56"> -->
+				<!-- <v-icon color="white" size="40">mdi-gender-male-female-variant</v-icon> -->
+				<!-- </v-avatar> -->
 
+				<v-img src="@/assets/full-logo.png" height="54" width="111" />
 				<!-- Links -->
 				<div class="link-buttons d-flex mx-6">
 					<v-btn
-						active-class="no"
-						exact-active-class="asd"
 						class="tertiary--text weight-700 mx-1 f-16"
 						height="40"
 						:width="$vuetify.breakpoint.lgAndUp ? 140 : 90"
 						tile
 						depressed
 						color="transparent"
-						@click="$router.push({ name: 'view' })"
+						@click="$router.push({ name: 'home' })"
 					>
 						Home
 					</v-btn>
@@ -54,7 +53,6 @@
 						prepend-inner-icon="mdi-magnify"
 						dense
 						placeholder="Search"
-						color="text"
 						outlined
 						@keydown.enter="submit"
 					></v-text-field>
@@ -113,7 +111,6 @@ export default Vue.extend({
 	width: 13px;
 	background: white;
 	border-radius: 10px;
-	/* padding-left: 1px; */
 }
 
 .theme--light.v-btn--active:hover::before,

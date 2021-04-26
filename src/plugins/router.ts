@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import User from '@/pages/user/User.vue';
 import Search from '@/pages/search/Search.vue';
 import NotFound from '@/pages/notFound/NotFound.vue';
+import Home from '@/pages/home/Home.vue';
 
 Vue.use(VueRouter);
 
@@ -11,6 +12,11 @@ const router = new VueRouter({
 		return { x: 0, y: 0 };
 	},
 	routes: [
+		{
+			path: '/',
+			name: 'home',
+			component: Home
+		},
 		{
 			path: '/view/:id?',
 			name: 'view',
