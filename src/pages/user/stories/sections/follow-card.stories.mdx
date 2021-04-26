@@ -1,0 +1,23 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import FollowCard from '@/pages/user/components/following/FollowCard.vue';
+
+<Meta title="User / Components/ Sections" component={FollowCard} />
+
+# Button
+
+<ArgsTable of={FollowCard} />
+
+Shows an example FollowCard.
+
+<Canvas>
+  <Story name="Follow Card">
+    {{
+        components: { FollowCard },
+        template: `
+          <follow-card />
+          `
+    }}
+  </Story>
+</Canvas>

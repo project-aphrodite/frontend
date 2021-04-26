@@ -68,9 +68,7 @@
 				</div>
 
 				<v-badge color="transparent" offset-x="22" offset-y="18" left>
-					<v-avatar color="primary" size="56" class="profile-picture d-flex align-center">
-						<v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
-					</v-avatar>
+					<small-profile-picture />
 					<template v-slot:badge>
 						<v-icon class="status" x-small color="secondary">mdi-circle</v-icon>
 					</template>
@@ -82,8 +80,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import SmallProfilePicture from '@/core/components/SmallProfilePicture.vue';
 
 export default Vue.extend({
+	components: { SmallProfilePicture },
 	data() {
 		return { searchTerm: '' };
 	},
@@ -106,10 +106,6 @@ export default Vue.extend({
 
 .search-text-field {
 	min-width: 150px;
-}
-
-.profile-picture {
-	border: 3px var(--v-primary-base) solid;
 }
 
 .status {

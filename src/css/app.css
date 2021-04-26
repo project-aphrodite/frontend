@@ -79,8 +79,6 @@
     font-size: 32px !important;
 }
 
-
-
 .f-38 {
     font-size: 38px !important;
 }
@@ -112,4 +110,8 @@
 
 .v-expansion-panel-content {
     background-color: rgba(214, 82, 115, 0.04);
+}
+
+.cpt-1 {
+    padding-top: 1px;
 }

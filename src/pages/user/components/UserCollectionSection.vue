@@ -1,19 +1,19 @@
 <template>
 	<div class="user-collections-container">
-		<v-tabs v-model="activeTab" class="pa-0 collection-header elevation-3" hide-slider color="white">
+		<v-tabs v-model="activeTab" class="pa-0 collection-header elevation-2" hide-slider color="white">
 			<v-tab :key="0" class="pa-0">
-				<v-card width="180" height="100%" class=" d-flex justify-center align-center f-20 weight-700">
+				<v-card width="180" height="100%" class="elevation-0 d-flex justify-center align-center f-20 weight-700 ">
 					Catalogue
 				</v-card>
 			</v-tab>
 			<v-tab :key="1" class="pa-0">
-				<v-card width="180" height="100%" class="d-flex justify-center align-center f-20 weight-700">
+				<v-card width="180" height="100%" class="elevation-0 d-flex justify-center align-center f-20 weight-700">
 					Collected
 				</v-card>
 			</v-tab>
 		</v-tabs>
 
-		<v-tabs-items v-model="activeTab" class="collection-content elevation-2" elev>
+		<v-tabs-items v-model="activeTab" class="collection-content elevation-2">
 			<v-tab-item v-for="i in 2" :key="i">
 				<v-card class="pa-2 pa-md-7" min-width="304px" max-width="1130">
 					<collection @openDialog="openDialog" />
@@ -62,12 +62,12 @@ export default Vue.extend({
 
 .xs .collection-header,
 .sm .collection-header {
-	width: 240px;
+	width: 300px;
 }
 
 .xs .collection-header .v-card,
 .sm .collection-header .v-card {
-	width: 120px !important;
+	width: 150px !important;
 }
 
 .xs .collection-header,

@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import NaughtCard from './NaughtCard.vue';
+import NaughtCard from '@/core/components/NaughtCard.vue';
 
 export default Vue.extend({
 	components: { NaughtCard },

@@ -1,0 +1,23 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import UserCollectionSection from '@/pages/user/components/UserCollectionSection.vue';
+
+<Meta title="User / Components/ Sections" component={UserCollectionSection} />
+
+# Button
+
+<ArgsTable of={UserCollectionSection} />
+
+Shows an example UserCollectionSection, contains a collection and a catalogue (which is a collection with different data).
+
+<Canvas>
+  <Story name="User Collection Section">
+    {{
+        components: { UserCollectionSection },
+        template: `
+          <user-collection-section/>
+          `
+    }}
+  </Story>
+</Canvas>
