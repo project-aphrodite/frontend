@@ -4,7 +4,7 @@
 
 		<v-main>
 			<div v-intersect="onIntersect"></div>
-			<v-container fluid class="pa-0 pb-4">
+			<v-container fluid class="pa-0">
 				<router-view />
 			</v-container>
 		</v-main>

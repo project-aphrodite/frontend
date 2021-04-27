@@ -6,7 +6,7 @@
 				<!-- <v-icon color="white" size="40">mdi-gender-male-female-variant</v-icon> -->
 				<!-- </v-avatar> -->
 
-				<v-img src="@/assets/full-logo.png" height="54" width="111" />
+				<v-img src="@/assets/full-logo.svg" height="54" width="111" />
 				<!-- Links -->
 				<div class="link-buttons d-flex mx-6">
 					<v-btn
