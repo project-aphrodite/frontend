@@ -69,9 +69,6 @@
 				</v-tabs-items>
 			</template>
 		</div>
-		<v-dialog v-model="showDialog" content-class="naught-dialog" transition="scale-transition">
-			<details-naught-dialog @close="closeDialog" />
-		</v-dialog>
 	</div>
 </template>
 
@@ -79,7 +76,6 @@
 import Vue from 'vue';
 import UserHeader from '@/pages/user/components/UserHeader.vue';
 import BioCard from '@/pages/user/components/BioCard.vue';
-import DetailsNaughtDialog from '@/core/components/naughtDialog/DetailsNaughtDialog.vue';
 
 import UserCollectionSection from '@/pages/user/components/UserCollectionSection.vue';
 import FollowingSection from '@/pages/user/components/following/FollowingSection.vue';
@@ -89,7 +85,6 @@ export default Vue.extend({
 		UserHeader,
 		BioCard,
 		UserCollectionSection,
-		DetailsNaughtDialog,
 		FollowingSection
 	},
 	props: {
@@ -99,7 +94,7 @@ export default Vue.extend({
 		}
 	},
 	data() {
-		return { showDialog: false, activeTab: 0 };
+		return { activeTab: 0 };
 	},
 	computed: {
 		owned(): boolean {
@@ -108,33 +103,13 @@ export default Vue.extend({
 	},
 	methods: {
 		openDialog(): void {
-			this.showDialog = true;
-		},
-		closeDialog(): void {
-			this.showDialog = false;
+			this.$emit('openDialog');
 		}
 	}
 });
 </script>
 
 <style lang="scss">
-.naught-dialog {
-	min-height: 721px;
-}
-
-.naught-dialog {
-	max-width: 620px;
-	top: -3vh;
-}
-
-.lg,
-.xl {
-	.naught-dialog {
-		width: fit-content;
-		max-width: fit-content;
-	}
-}
-
 .user-content > .v-window {
 	padding-top: 4px;
 	margin-top: -4px;

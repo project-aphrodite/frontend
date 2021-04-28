@@ -2,11 +2,10 @@
 	<v-app-bar fixed app color="white" elevation="1" class="d-flex justify-center align-center" :height="$vuetify.breakpoint.mdAndUp ? 80 : 200">
 		<div class="d-flex flex-column flex-md-row align-center justify-space-between" style="height: 100%">
 			<div class="d-flex align-center flex-wrap">
-				<!-- <v-avatar color="primary" size="56"> -->
-				<!-- <v-icon color="white" size="40">mdi-gender-male-female-variant</v-icon> -->
-				<!-- </v-avatar> -->
+				<v-btn text @click="$router.push({ name: 'home' })">
+					<v-img src="@/assets/full-logo.svg" height="54" width="111" />
+				</v-btn>
 
-				<v-img src="@/assets/full-logo.svg" height="54" width="111" />
 				<!-- Links -->
 				<div class="link-buttons d-flex mx-6">
 					<v-btn
