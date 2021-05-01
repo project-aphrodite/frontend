@@ -1,5 +1,5 @@
 <template>
-	<div class="pb-4">
+	<div>
 		<user-header />
 
 		<br />

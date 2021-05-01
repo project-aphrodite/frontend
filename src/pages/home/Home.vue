@@ -1,5 +1,5 @@
 <template>
-	<div class="home-background" style="height:200vh">
+	<div class="home-background" style="height:100%;">
 		<div class="primary">
 			<div class="intro-section-container tertiary">
 				<div class="home-background intro-section pb-4 d-flex flex-column flex-lg-row align-center justify-center justify-lg-space-between flex-wrap home-page">
@@ -55,7 +55,7 @@
 		</div>
 		<div>
 			<div class="d-flex justify-center home-background">
-				<div class="d-flex flex-column justify-center align-center pb-10 " style="width:fit-content">
+				<div class="d-flex flex-column justify-center align-center " style="width:fit-content">
 					<div class="d-flex flex-column pt-12 follows-container">
 						<div class="px-2 d-flex justify-space-between align-end mb-5">
 							<div class="f-38 weight-700 tertiary--text">Featured</div>
@@ -63,7 +63,7 @@
 						</div>
 						<div>
 							<div ref="followsList" class="d-flex align-center follows mx-0 pb-2">
-								<follow-card v-for="i in 5" :key="i" class="mx-2" />
+								<follow-card v-for="i in 5" :key="i" class="mx-1 mx-sm-2" />
 							</div>
 							<div class="d-flex full-width justify-space-between follows-scroll-container">
 								<v-btn height="60" width="60" icon class="primary white--text elevation-4 left-scroll-btn" @click="followsLeft">
@@ -82,7 +82,7 @@
 						</div>
 						<div>
 							<div ref="topDesiresList" class="mx-0 pb-2 d-flex align-center top-desires">
-								<naught-card v-for="i in 12" :key="i" class="mx-2" @openDialog="openDialog"></naught-card>
+								<naught-card v-for="i in 12" :key="i" class="mx-1 md-sm-2" @openDialog="openDialog"></naught-card>
 							</div>
 							<div class="d-flex full-width justify-space-between desire-scroll-container">
 								<v-btn height="60" width="60" icon class="primary white--text elevation-4 left-scroll-btn" @click="desiresLeft">
@@ -189,7 +189,13 @@ export default Vue.extend({
 	max-width: 1523px;
 }
 
-.xs,
+.xs {
+	.follows-container,
+	.top-desires-container {
+		max-width: 365px;
+	}
+}
+
 .sm {
 	.follows-container,
 	.top-desires-container {

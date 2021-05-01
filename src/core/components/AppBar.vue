@@ -58,7 +58,7 @@
 				</div>
 			</div>
 
-			<div class="d-flex align-center">
+			<div v-if="logged" class="d-flex align-center">
 				<div v-min-width="140" class="d-flex flex-column align-end tertiary--text mx-5">
 					<div class="weight-700 f-16">4.67 ETH</div>
 					<div class="weight-400 f-12">0xC80523 . . . 4FBA</div>
@@ -71,6 +71,10 @@
 					</template>
 				</v-badge>
 			</div>
+			<div v-else class="d-flex align-center ml-5 mb-2 mb-md-0">
+				<v-btn class="text-none" color="primary" @click="onboard">Become a Creator</v-btn>
+				<v-btn class="ml-5 text-none" color="secondary" outlined>Connect Wallet</v-btn>
+			</div>
 		</div>
 	</v-app-bar>
 </template>
@@ -82,11 +86,14 @@ import SmallProfilePicture from '@/core/components/SmallProfilePicture.vue';
 export default Vue.extend({
 	components: { SmallProfilePicture },
 	data() {
-		return { searchTerm: '' };
+		return { searchTerm: '', logged: false };
 	},
 	methods: {
 		submit(): void {
 			this.$router.push({ name: 'search', query: { searchTerm: this.searchTerm } });
+		},
+		onboard(): void {
+			this.$emit('onboard');
 		}
 	}
 });
@@ -94,7 +101,7 @@ export default Vue.extend({
 
 <style scoped>
 .xl .search-text-field {
-	min-width: 600px;
+	min-width: 450px;
 }
 
 .lg .search-text-field {

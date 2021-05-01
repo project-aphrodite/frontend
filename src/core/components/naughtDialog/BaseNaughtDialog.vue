@@ -9,7 +9,7 @@
 				src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80"
 			>
 				<template v-slot:placeholder>
-					<imager-loader />
+					<image-loader />
 				</template>
 			</v-img>
 			<div class="d-lg-none d-flex justify-end" style="position: absolute; top: 0; right: 0px;">
@@ -28,11 +28,11 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import ImagerLoader from '@/core/components/loaders/ImageLoader.vue';
+import ImageLoader from '@/core/components/loaders/ImageLoader.vue';
 import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
 
 export default Vue.extend({
-	components: { ImagerLoader },
+	components: { ImageLoader },
 	props: {
 		imageUrl: {
 			type: String,

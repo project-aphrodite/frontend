@@ -1,5 +1,4 @@
 <template>
-	<!-- <div class="d-flex flex-column justify-center align-center align-md-start mx-2 mx-md-0 red"> -->
 	<v-container v-max-width="1580" class="d-flex flex-column justify-center" style="padding-top:80px;">
 		<div class="d-flex justify-center justify-md-start mb-7">
 			<div v-if="searchTerm" class="d-flex flex-column">
@@ -12,8 +11,6 @@
 				Content Creators
 			</div>
 		</div>
-		<!-- <v-card>test</v-card> -->
-		<!-- <div v-max-width="1130" class="orange"> -->
 
 		<div class="d-flex flex-md-row flex-column align-center flex-wrap">
 			<div v-for="i in entries" :key="i" class="d-flex flex-column align-center">
@@ -21,8 +18,6 @@
 			</div>
 		</div>
 	</v-container>
-	<!-- </div> -->
-	<!-- </div> -->
 </template>
 
 <script lang="ts">
@@ -38,7 +33,7 @@ export default Vue.extend({
 		}
 	},
 	data() {
-		return { entries: 7 };
+		return { entries: 8 };
 	}
 });
 </script>

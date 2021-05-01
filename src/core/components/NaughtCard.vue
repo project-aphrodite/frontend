@@ -9,7 +9,7 @@
 			@click="openDialog"
 		>
 			<template v-slot:placeholder>
-				<imager-loader />
+				<image-loader />
 			</template>
 			<div>
 				<div class="d-flex justify-space-between pa-4 white--text">
@@ -62,10 +62,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import ImagerLoader from '@/core/components/loaders/ImageLoader.vue';
+import ImageLoader from '@/core/components/loaders/ImageLoader.vue';
 
 export default Vue.extend({
-	components: { ImagerLoader },
+	components: { ImageLoader },
 	props: {
 		dense: {
 			type: Boolean,

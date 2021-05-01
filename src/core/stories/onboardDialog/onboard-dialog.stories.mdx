@@ -1,0 +1,31 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import OnboardDialog from '@/core/components/onboardDialog/OnboardDialog.vue';
+import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
+
+<Meta title="Components " component={OnboardDialog} />
+
+# AButton
+
+<ArgsTable of={OnboardDialog} />
+
+Shows an example OnboardDialog.
+
+<Canvas>
+  <Story name="Onboard Dialog">
+    {{
+        components: { OnboardDialog },
+         computed: {
+    		  currentBreakpoint() {
+			      return getCurrentBreakpoint(this);
+		      }
+	      },
+        template: `
+        <div :class="currentBreakpoint">
+          <onboard-dialog class="ma-5"/>
+          </div>
+          `
+    }}
+  </Story>
+</Canvas>

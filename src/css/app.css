@@ -21,8 +21,8 @@
     border-color:var(--v-input-border-color-base);
 }
 
-.v-text-field--outlined.v-input--is-focused fieldset{
-    border-color:var(--v-input-border-color-active-base);
+.v-text-field--outlined.v-input--is-focused fieldset {
+    border-color:var(--v-primary-base);
 }
 
 .v-app-bar .v-text-field--outlined fieldset, .home-page .v-text-field--outlined fieldset {
@@ -56,6 +56,11 @@
 .f-17 {
     font-size: 17px !important;
 }
+
+.f-18 {
+    font-size: 18px !important;
+}
+
 
 .f-20 {
     font-size: 20px !important;
