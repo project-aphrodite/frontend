@@ -1,19 +1,21 @@
 <template>
 	<v-card elevation="1" class="onboard-container d-flex flex-column flex-column-reverse flex-lg-row" min-height="720" max-width="1000" style="width: fit-content;">
-		<div v-width="500" v-min-height="720" class="d-flex flex-column align-center justify-space-between py-7 px-12">
+		<div v-width="500" v-min-height="720" class="d-flex flex-column align-center justify-space-between py-7 px-0 px-md-12" style="max-width: 84vw;">
 			<onboard-progress-indicator :value="activeSlide" :slides="slides.length" />
+
 			<v-spacer></v-spacer>
-			<div class="full-height d-flex flex-column justify-start" style="padding-top: 100px;">
+			<div class="full-height d-flex flex-column justify-start" style="padding-top: 61px;">
 				<connect v-if="activeSlide == 0" @next="next" />
-				<setup v-else-if="activeSlide == 1" @next="next" />
+				<setup v-else-if="activeSlide == 1" @back="back" @next="next" />
 				<thank-you v-else />
 			</div>
 			<v-spacer></v-spacer>
 		</div>
 
-		<v-img width="500" max-width="500" height="720" class="onboard-image primary" :src="image">
-			<div class="image-gradient full-height d-flex flex-column justify-center align-center text-center white--text f-38 weight-700">
-				{{ imageText }}
+		<v-img width="500" height="720" class="onboard-image primary" style="max-width: 84vw;" :src="image">
+			<div class="full-height d-flex flex-column justify-center align-center text-center white--text f-38 weight-700">
+				<!-- eslint-disable-next-line vue/no-v-html -->
+				<div v-html="imageText"></div>
 			</div>
 			<template v-slot:placeholder>
 				<image-loader />
@@ -53,17 +55,16 @@ export default Vue.extend({
 			activeSlide: 0,
 			slides: [
 				{
-					img: 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80',
-					text: 'The number one NFT site for content creators'
+					img: require('@/assets/dialog/connect.svg'),
+					text: 'Connect your wallet <br /> and explore the NFT <br /> world'
 				},
 				{
-					img:
-						'https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=49ed3252c0b2ffb49cf8b508892e452d',
-					text: 'Something something please verify'
+					img: require('@/assets/dialog/setup.svg'),
+					text: 'We only need a <br /> bit more info <br /> for a personalised <br /> experience!'
 				},
 				{
-					img: 'https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg',
-					text: 'Zeep zorp for the fans'
+					img: require('@/assets/dialog/thankYou.svg'),
+					text: 'Almost there! <br /> We’re glad to have <br /> you onboard.'
 				}
 			]
 		};
@@ -80,6 +81,9 @@ export default Vue.extend({
 		emitClose(): void {
 			this.activeSlide = 0;
 			this.$emit('close');
+		},
+		back(): void {
+			this.activeSlide--;
 		},
 		next(): void {
 			this.activeSlide++;
@@ -103,10 +107,8 @@ export default Vue.extend({
 		border-top-right-radius: 10px !important;
 	}
 }
-</style>
 
-<style scoped>
-.onboard-image .image-gradient {
-	background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+.onboard-image .v-image__image {
+	background-size: auto !important;
 }
 </style>

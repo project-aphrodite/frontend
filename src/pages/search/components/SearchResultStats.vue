@@ -9,15 +9,23 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import Creator from '@/core/models/creator';
+
 export default Vue.extend({
-	data() {
-		return {
-			stats: [
-				{ key: 'NFTs', value: '232' },
-				{ key: 'Followers', value: '3234' },
-				{ key: 'Collected', value: '18' }
-			]
-		};
+	props: {
+		creator: {
+			type: Creator,
+			required: true
+		}
+	},
+	computed: {
+		stats(): Array<{ key: string; value: number }> {
+			return [
+				{ key: 'NFTs', value: 0 },
+				{ key: 'Followers', value: this.creator.followerCount },
+				{ key: 'Collected', value: 0 }
+			];
+		}
 	}
 });
 </script>

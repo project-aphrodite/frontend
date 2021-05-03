@@ -1,8 +1,8 @@
 <template>
 	<div v-height="306" class="d-flex flex-column align-center full-width user-header-container">
 		<div class="header-image-container full-width">
-			<v-img class="header-image white--text primary tertiary" height="177" src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg">
-				<div class="full-width d-flex justify-end pa-2">
+			<v-img class="header-image white--text primary tertiary" height="177" :src="creator.bannerUrl">
+				<div v-if="creator.verified" class="full-width d-flex justify-end pa-2">
 					<v-icon color="white">mdi-shield-check</v-icon>
 				</div>
 				<template v-slot:placeholder>
@@ -15,7 +15,7 @@
 		<div class="d-flex flex-column align-center justify-space-between" style="width: 60%; position: absolute; top: 106px;">
 			<div class="d-flex align-end tertiary--text">
 				<v-avatar size="200" class="mx-3">
-					<v-img class="header-profile-picture primary" src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+					<v-img class="header-profile-picture primary" :src="creator.profileUrl" alt="John">
 						<template v-slot:placeholder>
 							<imager-loader color="white" />
 						</template>
@@ -28,11 +28,20 @@
 
 <script lang="ts">
 import Vue from 'vue';
+
+import Creator from '@/core/models/creator';
+
 import ImagerLoader from '@/core/components/loaders/ImageLoader.vue';
 
 export default Vue.extend({
 	components: {
 		ImagerLoader
+	},
+	props: {
+		creator: {
+			type: Creator,
+			required: true
+		}
 	}
 });
 </script>

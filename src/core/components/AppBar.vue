@@ -1,17 +1,27 @@
 <template>
-	<v-app-bar fixed app color="white" elevation="1" class="d-flex justify-center align-center" :height="$vuetify.breakpoint.mdAndUp ? 80 : 200">
-		<div class="d-flex flex-column flex-md-row align-center justify-space-between" style="height: 100%">
-			<div class="d-flex align-center flex-wrap">
-				<v-btn text @click="$router.push({ name: 'home' })">
-					<v-img src="@/assets/full-logo.svg" height="54" width="111" />
-				</v-btn>
-
+	<v-app-bar
+		fixed
+		app
+		color="white"
+		elevation="1"
+		class="d-flex justify-center align-center"
+		:class="{ 'small-app-bar': $vuetify.breakpoint.smAndDown }"
+		:height="$vuetify.breakpoint.mdAndUp ? 80 : showLinks ? 290 : 170"
+	>
+		<div class="d-flex flex-column flex-md-row align-center justify-space-between full-width" style="height: 100%">
+			<div class="d-flex flex-column flex-md-row align-center full-width">
+				<div class="d-flex align-center justify-space-between full-width">
+					<v-btn text class="px-0" @click="$router.push({ name: 'home' })">
+						<v-img src="@/assets/full-logo.svg" height="54" width="111" />
+					</v-btn>
+					<v-btn height="40" width="40" class="d-md-none" icon @click="showLinks = !showLinks"><v-icon>mdi-menu</v-icon></v-btn>
+				</div>
 				<!-- Links -->
-				<div class="link-buttons d-flex mx-6">
+				<div v-if="$vuetify.breakpoint.mdAndUp || showLinks" class="link-buttons d-flex flex-column align-center flex-md-row mx-6 full-width">
 					<v-btn
 						class="tertiary--text weight-700 mx-1 f-16"
 						height="40"
-						:width="$vuetify.breakpoint.lgAndUp ? 140 : 90"
+						:width="$vuetify.breakpoint.mdAndUp ? 140 : '100%'"
 						tile
 						depressed
 						color="transparent"
@@ -22,7 +32,7 @@
 					<v-btn
 						class="tertiary--text weight-700 mx-1 f-16"
 						height="40"
-						:width="$vuetify.breakpoint.lgAndUp ? 140 : 90"
+						:width="$vuetify.breakpoint.mdAndUp ? 140 : '100%'"
 						tile
 						depressed
 						color="transparent"
@@ -33,7 +43,7 @@
 					<v-btn
 						class="tertiary--text weight-700 mx-1 f-16"
 						height="40"
-						:width="$vuetify.breakpoint.lgAndUp ? 140 : 90"
+						:width="$vuetify.breakpoint.mdAndUp ? 140 : '100%'"
 						tile
 						depressed
 						color="transparent"
@@ -43,19 +53,17 @@
 					</v-btn>
 				</div>
 			</div>
-			<div class="d-flex flex-column align-center justify-center">
-				<div>
-					<v-text-field
-						v-model="searchTerm"
-						v-height="40"
-						class="search-text-field"
-						prepend-inner-icon="mdi-magnify"
-						dense
-						placeholder="Search"
-						outlined
-						@keydown.enter="submit"
-					></v-text-field>
-				</div>
+			<div class="d-flex flex-column align-center justify-center full-width">
+				<v-text-field
+					v-model="searchTerm"
+					v-height="40"
+					class="search-text-field"
+					prepend-inner-icon="mdi-magnify"
+					dense
+					placeholder="Search"
+					outlined
+					@keydown.enter="submit"
+				></v-text-field>
 			</div>
 
 			<div v-if="logged" class="d-flex align-center">
@@ -71,9 +79,10 @@
 					</template>
 				</v-badge>
 			</div>
-			<div v-else class="d-flex align-center ml-5 mb-2 mb-md-0">
-				<v-btn class="text-none" color="primary" @click="onboard">Become a Creator</v-btn>
-				<v-btn class="ml-5 text-none" color="secondary" outlined>Connect Wallet</v-btn>
+			<div v-else class="d-flex justify-space-between align-center ml-0 ml-md-5 mb-2 mb-md-0 full-width">
+				<v-btn :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="primary" @click="onboard">Become a Creator</v-btn>
+				<v-spacer />
+				<v-btn :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="ml-5 text-none" color="secondary" outlined>Connect Wallet</v-btn>
 			</div>
 		</div>
 	</v-app-bar>
@@ -86,7 +95,7 @@ import SmallProfilePicture from '@/core/components/SmallProfilePicture.vue';
 export default Vue.extend({
 	components: { SmallProfilePicture },
 	data() {
-		return { searchTerm: '', logged: false };
+		return { searchTerm: '', logged: false, showLinks: false };
 	},
 	methods: {
 		submit(): void {
@@ -109,7 +118,7 @@ export default Vue.extend({
 }
 
 .search-text-field {
-	min-width: 150px;
+	min-width: 100%;
 }
 
 .status {
@@ -122,5 +131,11 @@ export default Vue.extend({
 .theme--light.v-btn--active:hover::before,
 .theme--light.v-btn--active::before {
 	opacity: 0;
+}
+</style>
+
+<style>
+.small-app-bar .v-toolbar__content {
+	width: 100%;
 }
 </style>

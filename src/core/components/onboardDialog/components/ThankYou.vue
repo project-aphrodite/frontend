@@ -1,5 +1,5 @@
 <template>
-	<div v-min-height="370" class="d-flex flex-column justify-space-between align-center">
+	<div v-min-height="370" v-max-width="400" class="d-flex flex-column justify-space-between align-center px-6 px-sm-0" style="width:100%;">
 		<div class="d-flex flex-column align-center">
 			<div class="tertiary--text f-38 weight-500">Thank you!</div>
 			<div class="primary--text f-24 weight-600">Roaring Kitty</div>
@@ -8,7 +8,7 @@
 			Your verification is in progress. You will receive an email and notification as soon as you are verified.
 		</div>
 		<v-spacer />
-		<v-btn v-width="400" height="55" depressed color="primary" class="text-capitalize f-18 weight-700">Okay!</v-btn>
+		<v-btn width="100%" max-width="400" height="55" depressed color="primary" class="text-capitalize f-18 weight-700">Okay!</v-btn>
 	</div>
 </template>
 

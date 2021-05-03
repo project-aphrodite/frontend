@@ -25,23 +25,23 @@
 				</div>
 				<div>
 					<div class="d-flex justify-end mb-5">
-						<v-btn icon class="elevation-3 ml-4">
-							<v-icon>mdi-facebook</v-icon>
+						<v-btn icon class="elevation-3">
+							<v-icon size="25">mdi-facebook</v-icon>
 						</v-btn>
 						<v-btn icon class="elevation-3 ml-4">
-							<v-icon>mdi-twitter</v-icon>
+							<v-icon size="25">mdi-twitter</v-icon>
 						</v-btn>
 						<v-btn icon class="elevation-3 ml-4">
-							<v-icon>mdi-instagram</v-icon>
+							<v-icon size="25">mdi-instagram</v-icon>
 						</v-btn>
 						<v-btn icon class="elevation-3 ml-4">
-							<v-icon>mdi-discord</v-icon>
+							<v-icon size="25">mdi-discord</v-icon>
 						</v-btn>
 						<v-btn icon class="elevation-3 ml-4">
-							<v-icon>mdi-youtube</v-icon>
+							<v-icon size="25">mdi-youtube</v-icon>
 						</v-btn>
 						<v-btn icon class="elevation-3 ml-4">
-							<v-icon>mdi-telegram</v-icon>
+							<v-icon size="25">mdi-telegram</v-icon>
 						</v-btn>
 					</div>
 					<div class="d-flex justify-space-between tertiary--text f-16 weight-500">
