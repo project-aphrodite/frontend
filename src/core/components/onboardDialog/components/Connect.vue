@@ -58,29 +58,28 @@
 <script lang="ts">
 import HttpRequest from '@/core/models/http/httpRequest';
 import { doPost } from '@/core/services/httpService';
+import CoreStore from '@/core/store/store';
 
 import Vue from 'vue';
 export default Vue.extend({
 	data() {
 		return {
-			wallet: '',
 			connectingMetaMask: false,
-			connectingWalletConnect: false
+			connectingWalletConnect: false,
+			store: CoreStore
 		};
 	},
 	computed: {
 		valid(): boolean {
-			return !!this.wallet;
+			console.log(!!this.walletId);
+			return !!this.walletId;
+		},
+		walletId(): string {
+			return this.store.walletId;
 		}
 	},
 	methods: {
 		connect(): void {
-			// GetRequest();
-
-			// {
-			//     "address": "kjdhgkdjfgkdfgdfgdfgdfg",
-			//     "network": 1
-			// }
 			const requestBody = new Map<string, string>();
 			requestBody.set(
 				'address',
@@ -95,13 +94,9 @@ export default Vue.extend({
 			doPost(request).then((r: any): void => {
 				console.log(r);
 				this.connectingMetaMask = false;
-				this.wallet = r.data.wallets[0].address;
-				const userId = r.data.id;
-				//user name
+				this.store.userId = r.data.id;
+				this.store.walletId = r.data.wallets[0].address;
 			});
-			// .then(r => {
-			// this.creators = r.data.data.map(e => new Creator(e));
-			// });
 		},
 		next(): void {
 			this.$emit('next');

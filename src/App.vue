@@ -17,7 +17,7 @@
 			<details-naught-dialog @close="closeDialog" />
 		</v-dialog>
 		<v-dialog v-model="showOnboardDialog" persistent content-class="onboard-dialog" transition="scale-transition">
-			<onboard-dialog @close="closeOnboardDialog" />
+			<onboard-dialog v-if="showOnboardDialog" @close="closeOnboardDialog" />
 		</v-dialog>
 	</v-app>
 </template>

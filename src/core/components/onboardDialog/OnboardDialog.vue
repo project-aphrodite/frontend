@@ -4,9 +4,10 @@
 			<onboard-progress-indicator :value="activeSlide" :slides="slides.length" />
 
 			<v-spacer></v-spacer>
-			<div class="full-height d-flex flex-column justify-start" style="padding-top: 61px;">
+			<div class="full-height d-flex flex-column" :class="[activeSlide == 1 ? 'justify-start setup-wrapper' : 'justify-center']">
 				<connect v-if="activeSlide == 0" @next="next" />
-				<setup v-else-if="activeSlide == 1" @back="back" @next="next" />
+				<setup v-else-if="activeSlide == 1" :creator-form="creatorForm" @back="back" @next="next" />
+				<verify v-else-if="activeSlide == 2" :creator-form="creatorForm" @back="back" @next="next" />
 				<thank-you v-else />
 			</div>
 			<v-spacer></v-spacer>
@@ -15,7 +16,7 @@
 		<v-img width="500" height="720" class="onboard-image primary" style="max-width: 84vw;" :src="image">
 			<div class="full-height d-flex flex-column justify-center align-center text-center white--text f-38 weight-700">
 				<!-- eslint-disable-next-line vue/no-v-html -->
-				<div v-html="imageText"></div>
+				<div v-if="imageText" v-html="imageText"></div>
 			</div>
 			<template v-slot:placeholder>
 				<image-loader />
@@ -34,7 +35,11 @@ import ImageLoader from '@/core/components/loaders/ImageLoader.vue';
 
 import Connect from './components/Connect.vue';
 import Setup from './components/Setup.vue';
+import Verify from './components/Verify.vue';
 import ThankYou from './components/ThankYou.vue';
+
+import CreatorForm from './models/creatorForm';
+import store from '@/core/store/store';
 
 export default Vue.extend({
 	components: {
@@ -42,6 +47,7 @@ export default Vue.extend({
 		OnboardProgressIndicator,
 		Connect,
 		Setup,
+		Verify,
 		ThankYou
 	},
 	props: {
@@ -52,7 +58,9 @@ export default Vue.extend({
 	},
 	data() {
 		return {
-			activeSlide: 0,
+			creatorForm: new CreatorForm(),
+			store: store,
+			activeSlide: 2,
 			slides: [
 				{
 					img: require('@/assets/dialog/connect.svg'),
@@ -61,6 +69,10 @@ export default Vue.extend({
 				{
 					img: require('@/assets/dialog/setup.svg'),
 					text: 'We only need a <br /> bit more info <br /> for a personalised <br /> experience!'
+				},
+				{
+					img: require('@/assets/dialog/verify.svg'),
+					text: ''
 				},
 				{
 					img: require('@/assets/dialog/thankYou.svg'),
@@ -76,6 +88,12 @@ export default Vue.extend({
 		imageText(): string {
 			return this.slides[this.activeSlide].text;
 		}
+	},
+	mounted() {
+		if (this.store.walletId) {
+			// this.next();
+		}
+		this.creatorForm = new CreatorForm();
 	},
 	methods: {
 		emitClose(): void {
@@ -97,6 +115,10 @@ export default Vue.extend({
 	border-radius: 0px !important;
 	border-top-right-radius: 10px !important;
 	border-bottom-right-radius: 10px !important;
+}
+
+.onboard-container .setup-wrapper {
+	padding-top: 61px;
 }
 
 .xs,
