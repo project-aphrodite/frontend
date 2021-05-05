@@ -3,25 +3,37 @@
 		<div class="full-width tertiary--text f-38 weight-500 mb-12">Verify <span class="quaternary--text f-18 weight-600">Your Identity</span></div>
 		<div class="full-width">
 			<v-form ref="verifyRef" v-model="valid" class="verify-form">
-				<div ref="dropArea" v-height="50" class="mb-5 red">
-					<!-- <v-card class="elevation-3 mb-1">
-						<div class="d-flex justify-space-between align-center pl-5 pr-2 file-input-content">
-							<div class="d-flex align-center">
-								<v-icon color="secondary" class="pr-2">mdi-progress-upload</v-icon>
-								<div class="f-18 weight-600 tertiary--text">Photo of your ID</div>
+				<!-- <div v-height="80" class="mb-5 d-flex flex-column">
+					<div ref="dropArea">
+						<v-card class="elevation-3 mb-1 " height="60">
+							<div class="upload-input d-flex justify-space-between align-center pl-5 pr-2 file-input-content">
+								<div class="d-flex align-center">
+									<v-icon size="25" color="secondary" class="pr-2">mdi-progress-upload</v-icon>
+									<div class="f-18 weight-600 tertiary--text" style="padding-top: 2px;">
+										<template v-if="idImage">{{ idImage.name }}</template>
+										<template v-else>Photo of your ID </template>
+									</div>
+								</div>
+								<div class="quaternary--text f-12 weight-500">Drop here or <span class="quinary--text"> Browse</span></div>
 							</div>
-							<div class="quaternary--text f-12 weight-500">Drop here or <span class="quinary--text"> Browse</span></div>
-						</div>
+							<div ref="dropAreaActive" class="drag-box-container" style="pointer-events: none;">
+								<v-card class="elevation-3 pa-2 mb-1 d-flex flex-column justify-center" height="60">
+									<div v-height="60" class="drag-box d-flex justify-center align-center quaternary--text f-18 weight-600">
+										Drop here
+									</div>
+								</v-card>
+							</div>
 
-						<v-file-input hide-details class="file-input"></v-file-input>
-					</v-card>
+							<v-file-input v-model="idImage" hide-details accept="image/png, image/jpeg" class="file-input"></v-file-input>
+						</v-card>
+					</div>
 					<div></div>
 					<div class="quaternary--text f-12">
 						Upload a picture of your ID document (i.e. Passport)
-					</div> -->
-				</div>
+					</div>
+				</div> -->
 
-				<div class="mb-5">
+				<!-- <div class="mb-5">
 					<v-card class="elevation-3 mb-1">
 						<div class="d-flex justify-space-between align-center pl-5 pr-2 file-input-content">
 							<div class="d-flex align-center">
@@ -37,7 +49,7 @@
 					<div class="quaternary--text f-12">
 						Upload a picture holding your ID (i.e. a selfie with your face visible)
 					</div>
-				</div>
+				</div> -->
 			</v-form>
 		</div>
 		<div class="full-width d-flex justify-space-between">
@@ -74,19 +86,34 @@ export default Vue.extend({
 					const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 					return pattern.test(value) || 'E-mail invalid';
 				}
-			}
+			},
+			idImage: undefined as any
 		};
+	},
+	watch: {
+		idImage(): void {
+			console.log(this.idImage);
+		}
 	},
 	mounted() {
 		if (this.hasVerifyFields()) {
 			(this.$refs as any).verifyRef.validate();
 		}
-		// const dropArea = document.getElementById('drop-area') as HTMLElement;
-		// dropArea.addEventListener('drop', this.handleDrop, false);
+
 		const dropArea = (this.$refs as any).dropArea;
+
 		['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
 			dropArea.addEventListener(eventName, this.preventDefaults, false);
 		});
+
+		['dragenter', 'dragover'].forEach(eventName => {
+			dropArea.addEventListener(eventName, () => dropArea.classList.add('show-drag'), false);
+		});
+
+		['dragleave', 'drop'].forEach(eventName => {
+			dropArea.addEventListener(eventName, () => dropArea.classList.remove('show-drag'), false);
+		});
+
 		dropArea.addEventListener('drop', this.handleDrop, false);
 	},
 	methods: {
@@ -107,13 +134,10 @@ export default Vue.extend({
 			console.log(e);
 			const dt = e.dataTransfer;
 			if (dt) {
-				const files = dt.files;
-				console.log(files);
+				this.idImage = dt.files[0];
 			} else {
 				new Error('No files found');
 			}
-
-			//   handleFiles(files)
 		}
 	}
 });
@@ -131,6 +155,7 @@ export default Vue.extend({
 	height: 60px;
 	position: absolute;
 	cursor: pointer;
+	opacity: 0;
 }
 
 .verify-form .v-file-input {
@@ -165,5 +190,25 @@ export default Vue.extend({
 	z-index: 5;
 	width: 100%;
 	height: 100%;
+}
+
+.verify-form .drag-box-container {
+	display: none;
+}
+
+.verify-form .show-drag .drag-box-container {
+	display: unset;
+	border-radius: 10px;
+	z-index: 101;
+	opacity: 1;
+	height: 100%;
+	position: absolute;
+	max-width: 100%;
+	width: 100%;
+}
+
+.verify-form .drag-box {
+	background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='lightgrey' stroke-width='1' stroke-dasharray='25%2c 10' stroke-dashoffset='10' stroke-linecap='square'/%3e%3c/svg%3e");
+	border-radius: 10px;
 }
 </style>

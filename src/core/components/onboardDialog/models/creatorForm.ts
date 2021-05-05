@@ -4,8 +4,8 @@ export default class CreatorForm {
 	email: string;
 	username: string;
 	explicit: boolean;
-	creatorVerificationId: string;
-	creatorVerificationPhoto: string;
+	creatorVerificationId?: File;
+	creatorVerificationPhoto?: File;
 
 	constructor() {
 		this.name = '';
@@ -13,8 +13,6 @@ export default class CreatorForm {
 		this.email = '';
 		this.username = '';
 		this.explicit = false;
-		this.creatorVerificationId = '';
-		this.creatorVerificationPhoto = '';
 	}
 
 	setMock(): void {
