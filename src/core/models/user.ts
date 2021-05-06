@@ -13,6 +13,7 @@ export default class User {
 	updatedAt: Date;
 
 	constructor(response: any) {
+		console.log(response);
 		this.id = response.id;
 
 		this.username = response.username;
@@ -20,8 +21,11 @@ export default class User {
 		this.followerCount = response.followerCount;
 		this.followingCount = response.followingCount;
 
-		this.profileUrl = response.files.find((f: any): any => f.type == 0).path;
-		this.bannerUrl = response.files.find((f: any): any => f.type == 1).path;
+		const profileFind = response.files.find((f: any): any => f.type == 0);
+		const bannerUrl = response.files.find((f: any): any => f.type == 1);
+
+		this.profileUrl = profileFind ? (profileFind as any).path : '';
+		this.bannerUrl = bannerUrl ? (bannerUrl as any).path : '';
 
 		this.createdAt = new Date(response.created_at);
 		this.updatedAt = new Date(response.updated_at);

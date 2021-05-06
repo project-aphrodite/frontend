@@ -58,7 +58,7 @@
 <script lang="ts">
 import HttpRequest from '@/core/models/http/httpRequest';
 import { doPost } from '@/core/services/httpService';
-import CoreStore from '@/core/store/store';
+import store from '@/core/store/store';
 
 import Vue from 'vue';
 export default Vue.extend({
@@ -66,12 +66,11 @@ export default Vue.extend({
 		return {
 			connectingMetaMask: false,
 			connectingWalletConnect: false,
-			store: CoreStore
+			store: store
 		};
 	},
 	computed: {
 		valid(): boolean {
-			console.log(!!this.walletId);
 			return !!this.walletId;
 		},
 		walletId(): string {
@@ -96,6 +95,8 @@ export default Vue.extend({
 				this.connectingMetaMask = false;
 				this.store.userId = r.data.id;
 				this.store.walletId = r.data.wallets[0].address;
+				console.log(this.store.userId);
+				this.store.authToken = r.data.token;
 			});
 		},
 		next(): void {

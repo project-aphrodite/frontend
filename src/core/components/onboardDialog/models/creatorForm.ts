@@ -21,4 +21,17 @@ export default class CreatorForm {
 		this.email = 'meepo@gmail.com';
 		this.username = 'Meepo';
 	}
+
+	toRequestBody(): Map<string, string> {
+		const requestBody = new Map<string, any>();
+		requestBody.set('name', this.name);
+		requestBody.set('surname', this.surname);
+		requestBody.set('email', this.email);
+		requestBody.set('username', this.username);
+		requestBody.set('explicit', Number(this.explicit));
+		requestBody.set('creator_verification_id', this.creatorVerificationId);
+		requestBody.set('creator_verification_photo', this.creatorVerificationPhoto);
+
+		return requestBody;
+	}
 }

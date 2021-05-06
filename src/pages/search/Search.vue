@@ -52,6 +52,7 @@ export default Vue.extend({
 				const request = new HttpRequest('/search/' + searchTerm);
 				this.loading = true;
 				doGet(request).then(r => {
+					console.log(r.data);
 					this.loading = false;
 					this.creators = r.data.data.map(e => new Creator(e));
 					this.nextPageUrl = r.data.next_page_url;

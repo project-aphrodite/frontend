@@ -63,7 +63,6 @@ export default Vue.extend({
 		};
 	},
 	mounted() {
-		console.log('ASD');
 		if (this.hasSetupFields()) {
 			(this.$refs as any).setupRef.validate();
 		}
@@ -84,7 +83,7 @@ export default Vue.extend({
 <style>
 .setup-form .v-text-field__details {
 	position: absolute !important;
-	right: 0px !important;
+	right: 4px !important;
 	top: 8px !important;
 }
 
