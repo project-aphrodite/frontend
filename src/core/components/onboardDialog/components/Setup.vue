@@ -30,10 +30,10 @@
 			</v-form>
 		</div>
 		<div class="full-width d-flex justify-space-between">
-			<v-btn v-width="190" max-width="100%" height="55" outlined depressed color="primary" class="text-capitalize f-18 weight-700" @click="back">
+			<v-btn v-width="190" max-width="47%" height="55" outlined depressed color="primary" class="text-capitalize f-18 weight-700" @click="back">
 				Back
 			</v-btn>
-			<v-btn v-width="190" :disabled="!valid" max-width="100%" height="55" depressed color="primary" class="text-capitalize f-18 weight-700" @click="next">Next</v-btn>
+			<v-btn v-width="190" :disabled="!valid" max-width="47%" height="55" depressed color="primary" class="text-capitalize f-18 weight-700" @click="next">Next</v-btn>
 		</div>
 		<div class="quaternary--text f-12 weight-600 text-center px-5 mt-5">By confirming, you agree to our <a>Terms of Service</a> and our <a>Privacy Policy</a></div>
 	</div>

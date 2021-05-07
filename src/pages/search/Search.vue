@@ -15,10 +15,10 @@
 		</div>
 
 		<div v-min-height="300" class="d-flex flex-md-row flex-column align-center flex-wrap">
-			<div v-for="creator in creators" :key="creator.id" class="d-flex flex-column align-center">
-				<search-result :creator="creator" class="mr-6 mt-6" />
+			<div v-for="user in users" :key="user.id" class="d-flex flex-column align-center">
+				<search-result :user="user" class="mr-6 mt-6" />
 			</div>
-			<div v-if="!loading && !loadingMore && creators.length > 0 && !!nextPageUrl" v-intersect="requestMore" class="transparent--text">load more text</div>
+			<div v-if="!loading && !loadingMore && users.length > 0 && !!nextPageUrl" v-intersect="requestMore" class="transparent--text">load more text</div>
 			<template v-if="loadingMore || loading">
 				<search-result v-for="i in 8" :key="i + 'search-result-skeleton'" loading class="mr-6 mt-6" />
 			</template>
@@ -31,8 +31,9 @@ import Vue from 'vue';
 import SearchResult from './components/SearchResult.vue';
 
 import HttpRequest from '@/core/models/http/httpRequest';
-import Creator from '@/core/models/creator';
 import { doGet } from '@/core/services/httpService';
+import User from '@/core/models/user';
+import { toUser } from '@/core/translators/userTranslator';
 
 export default Vue.extend({
 	components: { SearchResult },
@@ -43,7 +44,7 @@ export default Vue.extend({
 		}
 	},
 	data() {
-		return { loading: false, loadingMore: false, creators: [] as Array<Creator>, nextPageUrl: '', total: 0 };
+		return { loading: false, loadingMore: false, users: [] as Array<User>, nextPageUrl: '', total: 0 };
 	},
 	watch: {
 		searchTerm: {
@@ -52,9 +53,8 @@ export default Vue.extend({
 				const request = new HttpRequest('/search/' + searchTerm);
 				this.loading = true;
 				doGet(request).then(r => {
-					console.log(r.data);
 					this.loading = false;
-					this.creators = r.data.data.map(e => new Creator(e));
+					this.users = r.data.data.map((response: any) => toUser(response));
 					this.nextPageUrl = r.data.next_page_url;
 					this.total = r.data.total;
 				});
@@ -70,7 +70,7 @@ export default Vue.extend({
 
 				doGet(request).then(r => {
 					this.loadingMore = false;
-					this.creators.push(...r.data.data.map(e => new Creator(e)));
+					this.users.push(...r.data.data.map((response: any) => toUser(response)));
 					this.nextPageUrl = r.data.next_page_url;
 				});
 			}

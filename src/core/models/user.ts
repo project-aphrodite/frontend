@@ -1,3 +1,15 @@
+import Creator from './creator';
+
+class Wallet {
+	address: string;
+	network: number;
+
+	constructor(address: string, network: number) {
+		this.address = address;
+		this.network = network;
+	}
+}
+
 export default class User {
 	id: number;
 
@@ -12,22 +24,26 @@ export default class User {
 	createdAt: Date;
 	updatedAt: Date;
 
-	constructor(response: any) {
-		console.log(response);
-		this.id = response.id;
+	creator?: Creator;
 
-		this.username = response.username;
+	wallet: Wallet;
 
-		this.followerCount = response.followerCount;
-		this.followingCount = response.followingCount;
+	constructor(data: any) {
+		this.id = data.id;
+		this.username = data.username;
 
-		const profileFind = response.files.find((f: any): any => f.type == 0);
-		const bannerUrl = response.files.find((f: any): any => f.type == 1);
+		this.followerCount = data.followerCount;
+		this.followingCount = data.followingCount;
+
+		const profileFind = data.files.find((f: any): any => f.type == 0);
+		const bannerUrl = data.files.find((f: any): any => f.type == 1);
 
 		this.profileUrl = profileFind ? (profileFind as any).path : '';
 		this.bannerUrl = bannerUrl ? (bannerUrl as any).path : '';
 
-		this.createdAt = new Date(response.created_at);
-		this.updatedAt = new Date(response.updated_at);
+		this.createdAt = new Date(data.created_at);
+		this.updatedAt = new Date(data.updated_at);
+
+		this.wallet = new Wallet(data.wallets[0].address, data.wallets[0].network);
 	}
 }

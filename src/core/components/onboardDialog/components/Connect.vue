@@ -3,11 +3,11 @@
 		<div class="full-width tertiary--text f-38 weight-500 mb-12">Connect <span class="quaternary--text f-18 weight-600">Your Wallet</span></div>
 		<div class="full-width d-flex flex-column">
 			<v-card
+				light
 				height="60"
 				max-width="100%"
-				:class="connectingMetaMask || connectingWalletConnect ? 'no-pointer' : ''"
-				class=" py-2 px-7 d-flex justify-space-between align-center elevation-3 tertiary--text text-capitalize f-18 weight-700 mb-5"
-				color="white"
+				:class="{ 'no-pointer': connectingMetaMask || connectingWalletConnect, selected: connectedMetaMask }"
+				class="py-2 px-7 d-flex justify-space-between align-center elevation-3 tertiary--text text-capitalize f-18 weight-700 mb-5"
 				@click="connect"
 			>
 				<template v-if="connectingMetaMask">
@@ -28,10 +28,10 @@
 			<v-card
 				height="60"
 				max-width="100%"
+				disabled
 				:class="connectingMetaMask || connectingWalletConnect ? 'no-pointer' : ''"
 				class=" py-5 px-7 d-flex justify-space-between align-center elevation-3 tertiary--text text-capitalize f-18 weight-700 mb-5"
 				color="white"
-				@click.stop=""
 			>
 				<template v-if="connectingWalletConnect">
 					<div class="d-flex align-center">
@@ -47,7 +47,7 @@
 			</v-card>
 		</div>
 		<div class="full-width text-right">
-			<v-btn v-width="200" :disabled="!valid" max-width="100%" height="55" depressed color="primary" class="text-capitalize f-18 weight-700" @click="next">Next</v-btn>
+			<v-btn v-width="190" :disabled="!valid" max-width="47%" height="55" depressed color="primary" class="text-capitalize f-18 weight-700" @click="next">Next</v-btn>
 		</div>
 		<div class="quaternary--text f-12 weight-600 text-center px-5 mt-5">
 			By connecting your wallet, you agree to our <a>Terms of Service</a> and our <a>Privacy Policy</a>
@@ -58,23 +58,28 @@
 <script lang="ts">
 import HttpRequest from '@/core/models/http/httpRequest';
 import { doPost } from '@/core/services/httpService';
-import store from '@/core/store/store';
+import { toUser } from '@/core/translators/userTranslator';
 
 import Vue from 'vue';
 export default Vue.extend({
 	data() {
 		return {
 			connectingMetaMask: false,
-			connectingWalletConnect: false,
-			store: store
+			connectingWalletConnect: false
 		};
 	},
 	computed: {
 		valid(): boolean {
-			return !!this.walletId;
+			return !!this.walletAddress;
 		},
-		walletId(): string {
-			return this.store.walletId;
+		walletAddress(): string {
+			return this.$store.getters['getWalletAddress'];
+		},
+		walletNetwork(): number {
+			return this.$store.getters['getWalletNetwork'];
+		},
+		connectedMetaMask(): boolean {
+			return this.walletNetwork == 1;
 		}
 	},
 	methods: {
@@ -90,13 +95,15 @@ export default Vue.extend({
 			requestBody.set('network', '1');
 			this.connectingMetaMask = true;
 			const request = new HttpRequest('/login', requestBody);
-			doPost(request).then((r: any): void => {
-				console.log(r);
+			doPost(request).then((r): void => {
 				this.connectingMetaMask = false;
-				this.store.userId = r.data.id;
-				this.store.walletId = r.data.wallets[0].address;
-				console.log(this.store.userId);
-				this.store.authToken = r.data.token;
+
+				if (r.success) {
+					this.$store.commit('setAuthToken', r.data.token);
+					this.$store.commit('setUser', toUser(r.data));
+				} else {
+					this.$emit('showError', Object.values(r.data).join(' <br/>'));
+				}
 			});
 		},
 		next(): void {
@@ -109,5 +116,9 @@ export default Vue.extend({
 <style>
 .connect .no-pointer {
 	pointer-events: none;
+}
+
+.connect .selected.v-card {
+	border: 2px var(--v-primary-base) solid;
 }
 </style>

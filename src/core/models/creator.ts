@@ -1,6 +1,4 @@
-import User from './user';
-
-export default class Creator extends User {
+export default class Creator {
 	creatorId: number;
 
 	bio: string;
@@ -12,17 +10,16 @@ export default class Creator extends User {
 	createdAt: Date;
 	updatedAt: Date;
 
-	constructor(response: any) {
-		super(response);
-		this.creatorId = response.creator.id;
+	constructor(data: any) {
+		this.creatorId = data.id;
 
-		this.bio = response.creator.bio;
-		this.verified = response.creator.status == 2;
+		this.bio = data.bio;
+		this.verified = data.status == 2;
 
-		this.name = response.creator.name;
-		this.surname = response.creator.surname;
+		this.name = data.name;
+		this.surname = data.surname;
 
-		this.createdAt = new Date(response.creator.created_at);
-		this.updatedAt = new Date(response.creator.updated_at);
+		this.createdAt = new Date(data.created_at);
+		this.updatedAt = new Date(data.updated_at);
 	}
 }

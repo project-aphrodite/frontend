@@ -63,7 +63,7 @@
 						</div>
 						<div>
 							<div ref="followsList" class="d-flex align-center follows mx-0 pb-2">
-								<search-result v-for="creator in creators" :key="creator.id" :creator="creator" class="mx-1 mx-sm-2" />
+								<search-result v-for="user in users" :key="user.id" :user="user" class="mx-1 mx-sm-2" />
 							</div>
 							<div class="d-flex full-width justify-space-between follows-scroll-container">
 								<v-btn height="60" width="60" icon class="primary white--text elevation-4 left-scroll-btn" @click="followsLeft">
@@ -105,14 +105,15 @@ import Vue from 'vue';
 import NaughtCard from '@/core/components/NaughtCard.vue';
 import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
 import SearchResult from '@/pages/search/components/SearchResult.vue';
-import Creator from '@/core/models/creator';
 import { doGet } from '@/core/services/httpService';
 import HttpRequest from '@/core/models/http/httpRequest';
+import { toUser } from '@/core/translators/userTranslator';
+import User from '@/core/models/user';
 
 export default Vue.extend({
 	components: { NaughtCard, SearchResult },
 	data() {
-		return { desiresScroll: 0, creators: [] as Array<Creator> };
+		return { desiresScroll: 0, users: [] as Array<User> };
 	},
 	computed: {
 		bigScreen(): boolean {
@@ -131,7 +132,7 @@ export default Vue.extend({
 
 		const request = new HttpRequest("/search/''");
 		doGet(request).then(r => {
-			this.creators = r.data.data.map(e => new Creator(e));
+			this.users = r.data.data.map((response: any) => toUser(response));
 		});
 	},
 	methods: {

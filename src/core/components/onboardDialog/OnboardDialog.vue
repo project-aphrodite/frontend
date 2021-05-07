@@ -5,10 +5,10 @@
 
 			<v-spacer></v-spacer>
 			<div class="full-height d-flex flex-column" :class="[activeSlide == 1 ? 'justify-start setup-wrapper' : 'justify-center']">
-				<connect v-if="activeSlide == 0" @next="next" />
-				<setup v-else-if="activeSlide == 1" :creator-form="creatorForm" @back="back" @next="next" />
-				<verify v-else-if="activeSlide == 2" :creator-form="creatorForm" @back="back" @next="next" />
-				<thank-you v-else />
+				<connect v-if="activeSlide == 0" @next="next" @showError="showError" />
+				<setup v-else-if="activeSlide == 1" :creator-form="creatorForm" @back="back" @next="next" @showError="showError" />
+				<verify v-else-if="activeSlide == 2" :creator-form="creatorForm" @back="back" @next="next" @showError="showError" />
+				<thank-you v-else @close="close" />
 			</div>
 			<v-spacer></v-spacer>
 		</div>
@@ -23,8 +23,19 @@
 			</template>
 		</v-img>
 		<div class="d-flex justify-end" style="position: absolute; top: 0; right: 0px;">
-			<v-btn class="ma-2" icon min-height="64" min-width="64" :color="btnColor" @click="emitClose"><v-icon size="64">mdi-close-circle-outline</v-icon></v-btn>
+			<v-btn class="ma-2" icon min-height="64" min-width="64" :color="btnColor" @click="close"><v-icon size="64">mdi-close-circle-outline</v-icon></v-btn>
 		</div>
+		<v-snackbar v-model="showSnackbarError" timeout="5000" outlined color="error" multi-line>
+			<!-- eslint-disable-next-line vue/no-v-html -->
+			<div v-html="snackbarErrorMessage"></div>
+			<template v-slot:action="{ attrs }">
+				<v-btn color="error" text v-bind="attrs" icon @click="showSnackbarError = false">
+					<v-icon>
+						mdi-close-circle
+					</v-icon>
+				</v-btn>
+			</template>
+		</v-snackbar>
 	</v-card>
 </template>
 
@@ -39,7 +50,6 @@ import Verify from './components/Verify.vue';
 import ThankYou from './components/ThankYou.vue';
 
 import CreatorForm from './models/creatorForm';
-import store from '@/core/store/store';
 
 export default Vue.extend({
 	components: {
@@ -59,8 +69,7 @@ export default Vue.extend({
 	data() {
 		return {
 			creatorForm: new CreatorForm(),
-			store: store,
-			activeSlide: 2,
+			activeSlide: 0,
 			slides: [
 				{
 					img: require('@/assets/dialog/connect.svg'),
@@ -78,7 +87,9 @@ export default Vue.extend({
 					img: require('@/assets/dialog/thankYou.svg'),
 					text: 'Almost there! <br /> We’re glad to have <br /> you onboard.'
 				}
-			]
+			],
+			showSnackbarError: false,
+			snackbarErrorMessage: ''
 		};
 	},
 	computed: {
@@ -87,16 +98,19 @@ export default Vue.extend({
 		},
 		imageText(): string {
 			return this.slides[this.activeSlide].text;
+		},
+		walletAddress(): string {
+			return this.$store.getters['getWalletAddress'];
 		}
 	},
 	mounted() {
-		if (this.store.walletId) {
-			// this.next();
+		if (this.walletAddress) {
+			this.next();
 		}
 		this.creatorForm = new CreatorForm();
 	},
 	methods: {
-		emitClose(): void {
+		close(): void {
 			this.activeSlide = 0;
 			this.$emit('close');
 		},
@@ -105,6 +119,13 @@ export default Vue.extend({
 		},
 		next(): void {
 			this.activeSlide++;
+		},
+		showError(message: string, toSlide?: number): void {
+			this.showSnackbarError = true;
+			this.snackbarErrorMessage = message;
+			if (toSlide) {
+				this.activeSlide = toSlide;
+			}
 		}
 	}
 });

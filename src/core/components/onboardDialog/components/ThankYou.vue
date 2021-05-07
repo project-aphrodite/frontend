@@ -8,11 +8,17 @@
 			Your verification is in progress. You will receive an email and notification as soon as you are verified.
 		</div>
 		<v-spacer />
-		<v-btn width="100%" max-width="400" height="55" depressed color="primary" class="text-capitalize f-18 weight-700">Okay!</v-btn>
+		<v-btn width="100%" max-width="400" height="55" depressed color="primary" class="text-capitalize f-18 weight-700" @click="close">Okay!</v-btn>
 	</div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-export default Vue.extend({});
+export default Vue.extend({
+	methods: {
+		close(): void {
+			this.$emit('close');
+		}
+	}
+});
 </script>

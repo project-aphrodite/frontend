@@ -66,23 +66,24 @@
 				></v-text-field>
 			</div>
 
-			<div v-if="logged" class="d-flex align-center">
-				<div v-min-width="140" class="d-flex flex-column align-end tertiary--text mx-5">
-					<div class="weight-700 f-16">4.67 ETH</div>
-					<div class="weight-400 f-12">0xC80523 . . . 4FBA</div>
-				</div>
-
-				<v-badge color="transparent" offset-x="22" offset-y="18" left>
-					<small-profile-picture />
-					<template v-slot:badge>
-						<v-icon class="status" x-small color="secondary">mdi-circle</v-icon>
-					</template>
-				</v-badge>
-			</div>
-			<div v-else class="d-flex justify-space-between align-center ml-0 ml-md-5 mb-2 mb-md-0 full-width">
+			<div class="d-flex justify-space-between align-center ml-0 ml-md-5 mb-2 mb-md-0 full-width">
 				<v-btn :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="primary" @click="onboard">Become a Creator</v-btn>
 				<v-spacer />
-				<v-btn :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="ml-5 text-none" color="secondary" outlined>Connect Wallet</v-btn>
+				<v-btn v-if="!user" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="ml-5 text-none" color="secondary" outlined>Connect Wallet</v-btn>
+
+				<div v-else class="d-flex align-center">
+					<div v-min-width="100" class="d-flex flex-column align-end tertiary--text mr-4 ml-1">
+						<div class="weight-700 f-16">0.00 ETH</div>
+						<div class="weight-400 f-12">{{ walletAddress }}</div>
+					</div>
+
+					<v-badge color="transparent" offset-x="22" offset-y="18" left>
+						<small-profile-picture />
+						<template v-slot:badge>
+							<v-icon class="status" x-small color="secondary">mdi-circle</v-icon>
+						</template>
+					</v-badge>
+				</div>
 			</div>
 		</div>
 	</v-app-bar>
@@ -91,11 +92,23 @@
 <script lang="ts">
 import Vue from 'vue';
 import SmallProfilePicture from '@/core/components/SmallProfilePicture.vue';
+import User from '../models/user';
 
 export default Vue.extend({
 	components: { SmallProfilePicture },
 	data() {
 		return { searchTerm: '', logged: false, showLinks: false };
+	},
+	computed: {
+		user(): User | undefined {
+			return this.$store.getters['getUser'];
+		},
+		walletAddress(): string {
+			return this.$store.getters['getWalletAddress'];
+		},
+		authToken(): string {
+			return this.$store.getters['getAuthToken'];
+		}
 	},
 	methods: {
 		submit(): void {

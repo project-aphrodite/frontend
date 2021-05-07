@@ -12,10 +12,20 @@
 			</v-form>
 		</div>
 		<div class="full-width d-flex justify-space-between">
-			<v-btn v-width="190" max-width="100%" height="55" outlined depressed color="primary" class="text-capitalize f-18 weight-700" @click="back">
+			<v-btn v-width="190" max-width="47%" height="55" outlined depressed color="primary" class="text-capitalize f-18 weight-700" @click="back">
 				Back
 			</v-btn>
-			<v-btn v-width="190" :disabled="!valid" max-width="100%" height="55" depressed color="primary" class="text-capitalize f-18 weight-700" @click="submit">
+			<v-btn
+				v-width="190"
+				:loading="loading"
+				:disabled="!valid"
+				max-width="47%"
+				height="55"
+				depressed
+				color="primary"
+				class="text-capitalize f-18 weight-700"
+				@click="submit"
+			>
 				Complete
 			</v-btn>
 		</div>
@@ -31,7 +41,8 @@ import { doPost } from '@/core/services/httpService';
 import Vue from 'vue';
 import CreatorForm from '../models/creatorForm';
 import FileUpload from './verify/FileUpload.vue';
-import store from '@/core/store/store';
+import User from '@/core/models/user';
+import { toUser } from '@/core/translators/userTranslator';
 
 export default Vue.extend({
 	components: {
@@ -54,13 +65,18 @@ export default Vue.extend({
 					return pattern.test(value) || 'E-mail invalid';
 				}
 			},
-			store: store
+			loading: false
 		};
 	},
-	watch: {
-		'creatorForm.creatorVerificationId'(): void {
-			console.log('Creator verification ID');
-			console.log(this.creatorForm.creatorVerificationId);
+	computed: {
+		user(): User | undefined {
+			return this.$store.getters['getUser'];
+		},
+		walletAddress(): string {
+			return this.$store.getters['getWalletAddress'];
+		},
+		authToken(): string {
+			return this.$store.getters['getAuthToken'];
 		}
 	},
 	mounted() {
@@ -79,14 +95,29 @@ export default Vue.extend({
 			return !!this.creatorForm.creatorVerificationId || !!this.creatorForm.creatorVerificationPhoto;
 		},
 		submit(): void {
-			const request = new HttpRequest('/user/' + this.store.userId + '/creator', this.creatorForm.toRequestBody());
-			doPost(request, this.store, true).then((r: any): void => {
-				console.log(r);
-				// this.store.userId = r.data.id;
-				// this.store.walletId = r.data.wallets[0].address;
-			});
+			if (!this.user) {
+				this.$emit('showError', 'Wallet not connected');
+			}
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			const request = new HttpRequest('/user/' + this.user!.id + '/creator', this.creatorForm.toRequestBody());
+			this.loading = true;
+			doPost(request, this.walletAddress, this.authToken, true).then((r: any): void => {
+				this.loading = false;
 
-			// do login again
+				if (r.success) {
+					this.$store.commit('setUser', toUser(r.data));
+					this.next();
+				} else {
+					const formError = (Object.keys(r.data) as Array<string>).some(k => ['name', 'surname', 'email', 'username', 'explicit'].includes(k));
+
+					const errorMessage = Object.values(r.data).join(' <br/>');
+					if (formError) {
+						this.$emit('showError', errorMessage, 1);
+					} else {
+						this.$emit('showError', errorMessage);
+					}
+				}
+			});
 		}
 	}
 });

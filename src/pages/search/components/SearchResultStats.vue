@@ -9,12 +9,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Creator from '@/core/models/creator';
+import User from '@/core/models/user';
 
 export default Vue.extend({
 	props: {
-		creator: {
-			type: Creator,
+		user: {
+			type: User,
 			required: true
 		}
 	},
@@ -22,7 +22,7 @@ export default Vue.extend({
 		stats(): Array<{ key: string; value: number }> {
 			return [
 				{ key: 'NFTs', value: 0 },
-				{ key: 'Followers', value: this.creator.followerCount },
+				{ key: 'Followers', value: this.user.followerCount },
 				{ key: 'Collected', value: 0 }
 			];
 		}
