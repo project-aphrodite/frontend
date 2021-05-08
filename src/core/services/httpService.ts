@@ -1,5 +1,6 @@
 import axios from 'axios';
 import HttpRequest from '@/core/models/http/httpRequest';
+import PostResponse from '../models/http/postResponse';
 
 export const BASE_URL = 'https://project-aphrodite.herokuapp.com/api';
 
@@ -7,7 +8,7 @@ export function doGet(request: HttpRequest): Promise<{ success: boolean; code: n
 	return new Promise(resolve => axios.get(BASE_URL + request.generateQueryUrl()).then(response => resolve(response.data)));
 }
 
-export function doPost(request: HttpRequest, walletAddress = '', authToken = '', fileUpload = false): Promise<{ success: boolean; code: number; data: any }> {
+export function doPost(request: HttpRequest, walletAddress = '', authToken = '', fileUpload = false): Promise<PostResponse> {
 	const config = {
 		auth: {
 			username: walletAddress,

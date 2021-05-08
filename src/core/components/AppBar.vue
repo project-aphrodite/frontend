@@ -67,7 +67,9 @@
 			</div>
 
 			<div class="d-flex justify-space-between align-center ml-0 ml-md-5 mb-2 mb-md-0 full-width">
-				<v-btn :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="primary" @click="onboard">Become a Creator</v-btn>
+				<v-btn v-if="!user || !user.creator" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="primary" @click="onboard"
+					>Become a Creator</v-btn
+				>
 				<v-spacer />
 				<v-btn v-if="!user" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="ml-5 text-none" color="secondary" outlined>Connect Wallet</v-btn>
 

@@ -56,8 +56,7 @@
 </template>
 
 <script lang="ts">
-import HttpRequest from '@/core/models/http/httpRequest';
-import { doPost } from '@/core/services/httpService';
+import { login } from '@/core/services/userService';
 import { toUser } from '@/core/translators/userTranslator';
 
 import Vue from 'vue';
@@ -84,27 +83,26 @@ export default Vue.extend({
 	},
 	methods: {
 		connect(): void {
-			const requestBody = new Map<string, string>();
-			requestBody.set(
-				'address',
-				Math.random()
-					.toString(36)
-					.replace(/[^a-z]+/g, '')
-					.substr(0, 10)
-			);
-			requestBody.set('network', '1');
+			const walletAddress = Math.random()
+				.toString(36)
+				.replace(/[^a-z]+/g, '')
+				.substr(0, 10);
+			const walletNetwork = '1';
 			this.connectingMetaMask = true;
-			const request = new HttpRequest('/login', requestBody);
-			doPost(request).then((r): void => {
-				this.connectingMetaMask = false;
 
-				if (r.success) {
+			login(
+				walletAddress,
+				walletNetwork,
+				r => {
+					this.connectingMetaMask = false;
 					this.$store.commit('setAuthToken', r.data.token);
 					this.$store.commit('setUser', toUser(r.data));
-				} else {
+				},
+				r => {
+					this.connectingMetaMask = false;
 					this.$emit('showError', Object.values(r.data).join(' <br/>'));
 				}
-			});
+			);
 		},
 		next(): void {
 			this.$emit('next');

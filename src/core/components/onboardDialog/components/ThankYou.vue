@@ -2,7 +2,7 @@
 	<div v-min-height="370" v-max-width="400" class="d-flex flex-column justify-space-between align-center px-6 px-sm-0" style="width:100%;">
 		<div class="d-flex flex-column align-center">
 			<div class="tertiary--text f-38 weight-500">Thank you!</div>
-			<div class="primary--text f-24 weight-600">Roaring Kitty</div>
+			<div class="primary--text f-24 weight-600">{{ username }}</div>
 		</div>
 		<div class="quaternary--text f-12 weight-600 text-center px-5 mt-12">
 			Your verification is in progress. You will receive an email and notification as soon as you are verified.
@@ -13,8 +13,19 @@
 </template>
 
 <script lang="ts">
+import User from '@/core/models/user';
 import Vue from 'vue';
 export default Vue.extend({
+	computed: {
+		username(): string {
+			const user = this.$store.getters['getUser'] as User | undefined;
+			if (user) {
+				return user.username;
+			}
+
+			return '';
+		}
+	},
 	methods: {
 		close(): void {
 			this.$emit('close');

@@ -19,6 +19,8 @@ import Vuex from 'vuex';
 import Vue from 'vue';
 
 Vue.use(Vuex);
+export const WALLET_ADDRESS_STORAGE_STRING = 'walletAddress';
+export const WALLET_NETWORK_STORAGE_STRING = 'walletNetwork';
 
 const store = new Vuex.Store({
 	state: {
@@ -28,6 +30,8 @@ const store = new Vuex.Store({
 	mutations: {
 		setUser(state, user: User): void {
 			state.user = user;
+			localStorage.setItem(WALLET_ADDRESS_STORAGE_STRING, user.wallet.address);
+			localStorage.setItem(WALLET_NETWORK_STORAGE_STRING, String(user.wallet.network));
 		},
 		setAuthToken(state, authToken: string): void {
 			state.authToken = authToken;

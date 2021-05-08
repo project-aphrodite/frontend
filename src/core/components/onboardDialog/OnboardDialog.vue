@@ -4,6 +4,7 @@
 			<onboard-progress-indicator :value="activeSlide" :slides="slides.length" />
 
 			<v-spacer></v-spacer>
+
 			<div class="full-height d-flex flex-column" :class="[activeSlide == 1 ? 'justify-start setup-wrapper' : 'justify-center']">
 				<connect v-if="activeSlide == 0" @next="next" @showError="showError" />
 				<setup v-else-if="activeSlide == 1" :creator-form="creatorForm" @back="back" @next="next" @showError="showError" />
@@ -13,7 +14,7 @@
 			<v-spacer></v-spacer>
 		</div>
 
-		<v-img width="500" height="720" class="onboard-image primary" style="max-width: 84vw;" :src="image">
+		<v-img width="500" height="720" class="onboard-image primary d-none d-md-flex" style="max-width: 84vw;" :src="image">
 			<div class="full-height d-flex flex-column justify-center align-center text-center white--text f-38 weight-700">
 				<!-- eslint-disable-next-line vue/no-v-html -->
 				<div v-if="imageText" v-html="imageText"></div>
@@ -23,8 +24,11 @@
 			</template>
 		</v-img>
 		<div class="d-flex justify-end" style="position: absolute; top: 0; right: 0px;">
-			<v-btn class="ma-2" icon min-height="64" min-width="64" :color="btnColor" @click="close"><v-icon size="64">mdi-close-circle-outline</v-icon></v-btn>
+			<v-btn class="ma-2" :class="[$vuetify.breakpoint.smAndDown ? 'tertiary--text' : 'white--text']" icon min-height="64" min-width="64" @click="close"
+				><v-icon size="64">mdi-close-circle-outline</v-icon></v-btn
+			>
 		</div>
+
 		<v-snackbar v-model="showSnackbarError" timeout="5000" outlined color="error" multi-line>
 			<!-- eslint-disable-next-line vue/no-v-html -->
 			<div v-html="snackbarErrorMessage"></div>
@@ -59,12 +63,6 @@ export default Vue.extend({
 		Setup,
 		Verify,
 		ThankYou
-	},
-	props: {
-		btnColor: {
-			type: String,
-			default: 'white'
-		}
 	},
 	data() {
 		return {
@@ -140,6 +138,14 @@ export default Vue.extend({
 
 .onboard-container .setup-wrapper {
 	padding-top: 61px;
+}
+
+.xs,
+.sm {
+	.onboard-container .setup-wrapper {
+		padding-top: 0px;
+		margin-top: -95px;
+	}
 }
 
 .xs,

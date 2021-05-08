@@ -7,7 +7,7 @@
 						<v-icon size="25" color="secondary" class="pr-2">mdi-progress-upload</v-icon>
 						<div class="f-18 weight-600 tertiary--text" style="padding-top: 2px;">
 							<template v-if="internalFile && valid">
-								<div v-width="200" class="text-truncate">
+								<div class="filename-text text-truncate">
 									{{ internalFile.name }}
 								</div>
 							</template>
@@ -115,7 +115,19 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style lang="scss">
+.filename-text {
+	width: 130px;
+}
+
+.md,
+.lg,
+.xl {
+	.filename-text {
+		width: 200px;
+	}
+}
+
 .error-state.v-card {
 	border: 2px var(--v-error-base) solid;
 }

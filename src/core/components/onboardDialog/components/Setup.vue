@@ -1,8 +1,8 @@
 <template>
-	<div v-height="420" v-max-width="400" class="d-flex flex-column align-center px-6 px-sm-0" style="max-width:100%;">
+	<div v-height="420" v-max-width="400" class="d-flex flex-column align-center px-6 px-sm-0">
 		<div class="full-width tertiary--text f-38 weight-500 mb-12">Setup <span class="quaternary--text f-18 weight-600">Your Account</span></div>
 		<div class="full-width">
-			<v-form ref="setupRef" v-model="valid" class="setup-form">
+			<v-form ref="setupRef" v-model="valid" class="setup-form d-flex flex-column">
 				<v-text-field v-model="creatorForm.name" :rules="[rules.required, rules.length]" label="Name" placeholder="Name" outlined class="mb-5">
 					<template v-slot:message="{ message }">
 						<div class="text-right">{{ message }}</div>
@@ -30,10 +30,19 @@
 			</v-form>
 		</div>
 		<div class="full-width d-flex justify-space-between">
-			<v-btn v-width="190" max-width="47%" height="55" outlined depressed color="primary" class="text-capitalize f-18 weight-700" @click="back">
+			<v-btn :width="$vuetify.breakpoint.smAndDown ? '47%' : 190" height="55" outlined depressed color="primary" class="text-capitalize f-18 weight-700" @click="back">
 				Back
 			</v-btn>
-			<v-btn v-width="190" :disabled="!valid" max-width="47%" height="55" depressed color="primary" class="text-capitalize f-18 weight-700" @click="next">Next</v-btn>
+			<v-btn
+				:width="$vuetify.breakpoint.smAndDown ? '47%' : 190"
+				:disabled="!valid"
+				height="55"
+				depressed
+				color="primary"
+				class="text-capitalize f-18 weight-700"
+				@click="next"
+				>Next</v-btn
+			>
 		</div>
 		<div class="quaternary--text f-12 weight-600 text-center px-5 mt-5">By confirming, you agree to our <a>Terms of Service</a> and our <a>Privacy Policy</a></div>
 	</div>

@@ -1,5 +1,19 @@
-export function followUser(): Promise<any> {
-	return new Promise(() => {
-		//
+import HttpRequest from '../models/http/httpRequest';
+import PostResponse from '../models/http/postResponse';
+import { doPost } from './httpService';
+
+export function login(address: string, network: string, onSuccess: (response: PostResponse) => void, onFail: (response: PostResponse) => void): void {
+	const requestBody = new Map<string, string>();
+	requestBody.set('address', address);
+	requestBody.set('network', network);
+
+	const request = new HttpRequest('/login', requestBody);
+
+	doPost(request).then((r): void => {
+		if (r.success) {
+			onSuccess(r);
+		} else {
+			onFail(r);
+		}
 	});
 }

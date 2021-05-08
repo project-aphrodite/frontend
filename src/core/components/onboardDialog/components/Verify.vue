@@ -12,14 +12,13 @@
 			</v-form>
 		</div>
 		<div class="full-width d-flex justify-space-between">
-			<v-btn v-width="190" max-width="47%" height="55" outlined depressed color="primary" class="text-capitalize f-18 weight-700" @click="back">
+			<v-btn :width="$vuetify.breakpoint.smAndDown ? '47%' : 190" height="55" outlined depressed color="primary" class="text-capitalize f-18 weight-700" @click="back">
 				Back
 			</v-btn>
 			<v-btn
-				v-width="190"
+				:width="$vuetify.breakpoint.smAndDown ? '47%' : 190"
 				:loading="loading"
 				:disabled="!valid"
-				max-width="47%"
 				height="55"
 				depressed
 				color="primary"

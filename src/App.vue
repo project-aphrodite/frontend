@@ -32,6 +32,9 @@ import OnboardDialog from '@/core/components/onboardDialog/OnboardDialog.vue';
 import BaseFooter from '@/core/components/footer/BaseFooter.vue';
 
 import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
+import { WALLET_ADDRESS_STORAGE_STRING, WALLET_NETWORK_STORAGE_STRING } from './core/store/store';
+import { login } from './core/services/userService';
+import { toUser } from './core/translators/userTranslator';
 
 export default Vue.extend({
 	components: { AppBar, DetailsNaughtDialog, BaseFooter, OnboardDialog },
@@ -44,6 +47,23 @@ export default Vue.extend({
 	computed: {
 		currentBreakpoint(): string {
 			return getCurrentBreakpoint(this);
+		}
+	},
+	mounted() {
+		const walletAddress = localStorage.getItem(WALLET_ADDRESS_STORAGE_STRING);
+		const walletNetwork = localStorage.getItem(WALLET_NETWORK_STORAGE_STRING);
+		if (walletAddress && walletNetwork) {
+			login(
+				walletAddress,
+				walletNetwork,
+				r => {
+					this.$store.commit('setAuthToken', r.data.token);
+					this.$store.commit('setUser', toUser(r.data));
+				},
+				() => {
+					// do nothing on error
+				}
+			);
 		}
 	},
 	methods: {
@@ -85,8 +105,9 @@ export default Vue.extend({
 }
 
 .onboard-dialog {
-	max-width: 520px;
+	max-width: fit-content;
 	min-height: 721px;
+	border-radius: 10px;
 }
 
 .lg,
