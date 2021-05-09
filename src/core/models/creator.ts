@@ -1,5 +1,5 @@
 export default class Creator {
-	creatorId: number;
+	creatorId: string;
 
 	bio: string;
 	verified: boolean;

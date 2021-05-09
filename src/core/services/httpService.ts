@@ -5,7 +5,12 @@ import PostResponse from '../models/http/postResponse';
 export const BASE_URL = 'https://project-aphrodite.herokuapp.com/api';
 
 export function doGet(request: HttpRequest): Promise<{ success: boolean; code: number; data: { data: any; next_page_url: string; total: number } }> {
-	return new Promise(resolve => axios.get(BASE_URL + request.generateQueryUrl()).then(response => resolve(response.data)));
+	return new Promise(resolve =>
+		axios
+			.get(BASE_URL + request.generateQueryUrl())
+			.then(response => resolve(response.data))
+			.catch(() => resolve({ success: false } as any))
+	);
 }
 
 export function doPost(request: HttpRequest, walletAddress = '', authToken = '', fileUpload = false): Promise<PostResponse> {

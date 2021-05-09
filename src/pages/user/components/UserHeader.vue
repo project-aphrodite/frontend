@@ -1,9 +1,9 @@
 <template>
-	<div v-height="500" class="d-flex flex-column align-center full-width user-header-container">
+	<div v-if="user" v-height="500" class="d-flex flex-column align-center full-width user-header-container">
 		<div class="tertiary header-image-container full-width">
-			<v-img class="header-image white--text" height="400px" src="https://wallpapershome.com/images/wallpapers/kitten-2560x1440-cat-cute-4k-18289.jpg">
+			<v-img class="header-image white--text" height="400px" :src="user.bannerUrl">
 				<div class="d-flex flex-column align-center full-width full-height">
-					<div class="page-title f-54 weight-700">Roaring Kitty</div>
+					<div class="page-title f-54 weight-700">{{ displayName }}</div>
 				</div>
 				<template v-slot:placeholder>
 					<div v-height="150" class="d-flex flex-column justify-center align-center mt-4">
@@ -15,26 +15,24 @@
 		<div class="d-flex flex-column align-center justify-space-between px-4" style="width: 100%; max-width: 1560px; position: absolute; top: 230px;">
 			<div class="d-flex align-end tertiary--text">
 				<div class="weight-700 d-flex flex-column align-end stat-container">
-					<div class="stat-value tertiary--text ">232</div>
+					<div class="stat-value tertiary--text ">0</div>
 					<div class="stat-text primary--text">NFTs</div>
 				</div>
 				<v-avatar size="200" class="mx-3">
-					<v-img class="header-profile-picture primary" src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+					<v-img class="header-profile-picture primary" :src="user.profileUrl" alt="John">
 						<template v-slot:placeholder>
 							<imager-loader color="white" />
 						</template>
 					</v-img>
 				</v-avatar>
 				<div class="weight-700 d-flex flex-column align-start stat-container">
-					<div class="stat-value tertiary--text ">3234</div>
+					<div class="stat-value tertiary--text ">{{ user.followerCount }}</div>
 					<div class="stat-text primary--text">Followers</div>
 				</div>
 			</div>
 			<div class="ml-auto my-2 my-md-0">
 				<v-btn class="primary text-capitalize" depressed width="140">Create</v-btn>
 			</div>
-
-			<div class="sub-text quaternary--text">0xc80595ffad5272c9f02ecd0cd0e650e3b9884fba</div>
 		</div>
 	</div>
 </template>
@@ -42,9 +40,24 @@
 <script lang="ts">
 import Vue from 'vue';
 import ImagerLoader from '@/core/components/loaders/ImageLoader.vue';
+import User, { EMPTY_USER } from '@/core/models/user';
 
 export default Vue.extend({
-	components: { ImagerLoader }
+	components: { ImagerLoader },
+	props: {
+		user: {
+			type: User,
+			default: (): User => EMPTY_USER as User
+		}
+	},
+	computed: {
+		displayName(): string {
+			if (this.user.creator) {
+				return this.user.creator.name + ' ' + this.user.creator.surname;
+			}
+			return this.user.username;
+		}
+	}
 });
 </script>
 

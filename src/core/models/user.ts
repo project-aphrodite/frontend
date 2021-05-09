@@ -11,7 +11,7 @@ class Wallet {
 }
 
 export default class User {
-	id: number;
+	id: string;
 
 	username: string;
 
@@ -47,3 +47,19 @@ export default class User {
 		this.wallet = new Wallet(data.wallets[0].address, data.wallets[0].network);
 	}
 }
+
+export const EMPTY_USER = new User({
+	id: '',
+	username: '',
+	followerCount: 0,
+	followingCount: 0,
+	files: [
+		{ type: 0, path: '' },
+		{ type: 1, path: '' }
+	],
+	// eslint-disable-next-line @typescript-eslint/camelcase
+	created_at: '',
+	// eslint-disable-next-line @typescript-eslint/camelcase
+	updated_at: '',
+	wallets: [{ address: '', network: '' }]
+});
