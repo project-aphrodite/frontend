@@ -41,7 +41,6 @@
 					>
 						Creators
 					</v-btn>
-					{{ currentBreakpoint }}
 				</div>
 			</div>
 			<div class="d-flex flex-column align-center justify-center full-width">

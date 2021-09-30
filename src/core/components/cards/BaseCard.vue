@@ -44,11 +44,6 @@ export default Vue.extend({
 		isSmall(): boolean {
 			return this.$vuetify.breakpoint.smAndDown;
 		}
-	},
-	methods: {
-		test(): void {
-			console.log('test');
-		}
 	}
 });
 </script>

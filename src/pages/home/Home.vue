@@ -9,16 +9,8 @@
 						<v-text-field v-width="340" prepend-inner-icon="mdi-magnify" dense placeholder="Search Creators" outlined></v-text-field>
 					</div>
 				</div>
-				<div v-if="bigScreen" v-min-height="755" class="d-flex align-center align-lg-start justify-start width-55">
-					<v-avatar color="" size="200" class="profile-picture border-primary d-flex align-center">
-						<v-img src="https://i.pravatar.cc/300" alt="John" />
-					</v-avatar>
-					<v-avatar color="" size="200" class="profile-picture border-primary d-flex align-center">
-						<v-img src="https://i.pravatar.cc/300" alt="John" />
-					</v-avatar>
-					<v-avatar color="" size="200" class="profile-picture border-primary d-flex align-center">
-						<v-img src="https://i.pravatar.cc/300" alt="John" />
-					</v-avatar>
+				<div v-if="bigScreen" v-min-height="755" class="d-flex align-center align-lg-start justify-start width-55 pt-12 pr-12">
+					<v-img src="@/assets/home/profile_banner.svg"></v-img>
 				</div>
 			</div>
 		</div>
