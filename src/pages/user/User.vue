@@ -4,75 +4,29 @@
 			User does not exit
 		</div>
 		<div v-else>
-			<user-header :user="viewUser" />
+			<user-header />
 
 			<br />
 
-			<div class="d-flex flex-column flex-md-row justify-center align-center align-md-start mx-2 mx-md-0 user-content">
+			<div class="d-flex flex-column">
 				<template v-if="!isAuth">
-					<div>
-						<bio-card class="mx-4" :user="viewUser" @openDialog="openDialog" />
-					</div>
+					<v-container>
+						<v-row justify="center">
+							<v-col cols="12" lg="3" class="d-flex flex-column align-center">
+								<bio-card :user="viewUser" class="mb-0 mb-md-5" />
+								<media-card class="d-none d-lg-block" />
+							</v-col>
+							<v-col cols="12" lg="6" class="px-0 d-flex flex-column feed-wrapper">
+								<create-post v-if="true" class="mb-5"></create-post>
+								<feed />
+							</v-col>
+							<v-col cols="12" lg="3" class="d-flex flex-column align-center">
+								<top-subscribers-card class="mb-5 d-none d-lg-block" />
+								<top-contributors-card class="d-none d-lg-block" />
+							</v-col>
+						</v-row>
+					</v-container>
 				</template>
-				<template v-else>
-					<v-card class="pa-5 mx-4 mb-4" width="370">
-						<v-tabs v-model="activeTab" class="asd" vertical hide-slider>
-							<v-tab
-								:key="0"
-								v-height="40"
-								class="d-flex justify-start f-20 weight-700 text-capitalize"
-								:class="[activeTab == 0 ? 'primary--text' : 'tertiary--text']"
-							>
-								My Collection
-							</v-tab>
-							<v-tab
-								:key="1"
-								v-height="40"
-								class="d-flex justify-start f-20 weight-700 text-capitalize"
-								:class="[activeTab == 1 ? 'primary--text' : 'tertiary--text']"
-							>
-								Following
-							</v-tab>
-							<v-tab
-								:key="2"
-								v-height="40"
-								disabled
-								class="d-flex justify-start f-20 weight-700 text-capitalize"
-								:class="[activeTab == 2 ? 'primary--text' : 'tertiary--text']"
-							>
-								Trades
-							</v-tab>
-							<v-tab
-								:key="3"
-								v-height="40"
-								disabled
-								class="d-flex justify-start f-20 weight-700 text-capitalize"
-								:class="[activeTab == 3 ? 'primary--text' : 'tertiary--text']"
-							>
-								Account Information
-							</v-tab>
-							<v-tab
-								:key="4"
-								v-height="40"
-								disabled
-								class="d-flex justify-start f-20 weight-700 text-capitalize"
-								:class="[activeTab == 4 ? 'primary--text' : 'tertiary--text']"
-							>
-								Settings
-							</v-tab>
-						</v-tabs>
-					</v-card>
-				</template>
-				<v-tabs-items v-model="activeTab">
-					<div class="mb-1 mx-4">
-						<v-tab-item :key="0" style="min-height:90vh;">
-							<user-collection-section class="my-6 my-md-0" @openDialog="openDialog" />
-						</v-tab-item>
-						<v-tab-item :key="1" style="min-height:90vh;">
-							<following-section />
-						</v-tab-item>
-					</div>
-				</v-tabs-items>
 			</div>
 		</div>
 	</div>
@@ -81,20 +35,25 @@
 <script lang="ts">
 import Vue from 'vue';
 import UserHeader from '@/pages/user/components/UserHeader.vue';
-import BioCard from '@/pages/user/components/BioCard.vue';
 
-import UserCollectionSection from '@/pages/user/components/UserCollectionSection.vue';
-import FollowingSection from '@/pages/user/components/following/FollowingSection.vue';
-import { retrieveUser } from '@/core/services/userService';
 import User from '@/core/models/user';
-import { toUser } from '@/core/translators/userTranslator';
+
+import BioCard from '@/pages/user/components/BioCard.vue';
+import Feed from './components/Feed.vue';
+import MediaCard from './components/MediaCard.vue';
+import TopSubscribersCard from './components/TopSubscribersCard.vue';
+import TopContributorsCard from './components/TopContributorsCard.vue';
+import CreatePost from './components/createPost/CreatePost.vue';
 
 export default Vue.extend({
 	components: {
 		UserHeader,
 		BioCard,
-		UserCollectionSection,
-		FollowingSection
+		CreatePost,
+		Feed,
+		MediaCard,
+		TopSubscribersCard,
+		TopContributorsCard
 	},
 	props: {
 		id: {
@@ -107,61 +66,20 @@ export default Vue.extend({
 	},
 	computed: {
 		isAuth(): boolean {
-			if (!this.id) {
-				return true;
-			} else {
-				if (!this.authUser) {
-					return false;
-				} else {
-					return this.authUser.id == this.id;
-				}
-			}
+			return false;
 		},
-		authUser(): User | undefined {
-			return this.$store.getters['getUser'];
-		},
-		userId(): string {
-			return this.id ? this.id : this.authUser ? this.authUser.id : '';
-		}
-	},
-	watch: {
-		userId: {
-			handler(): void {
-				// if id = logged user id || id = 0 => 1
-				this.errorState = false;
-
-				if (this.userId) {
-					this.retrieveAndSetUser();
-				} else {
-					this.errorState = true;
-				}
-				// else => 2
-			},
-			immediate: true
-		}
-	},
-	methods: {
-		retrieveAndSetUser(): void {
-			retrieveUser(
-				this.userId,
-				r => {
-					this.viewUser = toUser(r.data);
-				},
-				() => {
-					this.errorState = true;
-				}
-			);
-		},
-		openDialog(): void {
-			this.$emit('openDialog');
+		isSmall(): boolean {
+			return this.$vuetify.breakpoint.mdAndDown;
 		}
 	}
 });
 </script>
 
-<style lang="scss">
-.user-content > .v-window {
-	padding-top: 4px;
-	margin-top: -4px;
+<style scoped lang="scss">
+.lg,
+.xl {
+	.feed-wrapper {
+		max-width: min(50%, 700px);
+	}
 }
 </style>

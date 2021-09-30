@@ -1,0 +1,23 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import TopSubscribersCard from '@/pages/user/components/TopSubscribersCard.vue';
+
+<Meta title="User / Components / Cards" component={TopSubscribersCard} />
+
+# Media Card
+
+<ArgsTable of={TopSubscribersCard} />
+
+Shows an example top subscribers card.
+
+<Canvas>
+  <Story name="TopSubscribersCard">
+    {{
+        components: { TopSubscribersCard },
+        template: `
+          <top-subscribers-card />
+          `
+    }}
+  </Story>
+</Canvas>

@@ -1,9 +1,13 @@
 <template>
 	<div v-if="user" v-height="500" class="d-flex flex-column align-center full-width user-header-container">
 		<div class="tertiary header-image-container full-width">
-			<v-img class="header-image white--text" height="400px" :src="user.bannerUrl">
+			<v-img
+				class="header-image white--text"
+				height="400px"
+				src="https://static.vecteezy.com/system/resources/previews/002/299/625/original/abstract-colorful-shapes-wallpaper-background-minimal-geometric-banner-vector.jpg"
+			>
 				<div class="d-flex flex-column align-center full-width full-height">
-					<div class="page-title f-54 weight-700">{{ displayName }}</div>
+					<div class="page-title weight-700 text-center" :class="{ 'f-38': isSmall, 'f-54': !isSmall }">{{ displayName }}</div>
 				</div>
 				<template v-slot:placeholder>
 					<div v-height="150" class="d-flex flex-column justify-center align-center mt-4">
@@ -16,10 +20,14 @@
 			<div class="d-flex align-end tertiary--text">
 				<div class="weight-700 d-flex flex-column align-end stat-container">
 					<div class="stat-value tertiary--text ">0</div>
-					<div class="stat-text primary--text">NFTs</div>
+					<div class="stat-text primary--text">Subscribers</div>
 				</div>
 				<v-avatar size="200" class="mx-3">
-					<v-img class="header-profile-picture primary" :src="user.profileUrl" alt="John">
+					<v-img
+						class="header-profile-picture primary"
+						src="https://scontent-cpt1-1.xx.fbcdn.net/v/t1.6435-1/p200x200/40541205_10217034470244772_6784445055043108864_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeEJYrvtm1iWtbIyKEn5nvAWjIqcetJSCEeMipx60lIIRy2LKTANO8VUODMtQr63bYY&_nc_ohc=V6nLQry2TBMAX9qNu7I&_nc_ht=scontent-cpt1-1.xx&oh=c8a0a5cedbc9ca691c5e8e1be00c045c&oe=61734970"
+						alt="John"
+					>
 						<template v-slot:placeholder>
 							<imager-loader color="white" />
 						</template>
@@ -30,8 +38,12 @@
 					<div class="stat-text primary--text">Followers</div>
 				</div>
 			</div>
-			<div class="ml-auto my-2 my-md-0">
-				<v-btn class="primary text-capitalize" depressed width="140">Create</v-btn>
+			<div class="ml-auto my-2 my-md-0 px-md-1">
+				<v-btn v-if="isAuth" class="primary text-capitalize" depressed width="140">Create</v-btn>
+				<div v-else>
+					<follow-btn v-model="followed" class="mr-5" />
+					<subscribe-btn v-model="subscribed" />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -41,33 +53,50 @@
 import Vue from 'vue';
 import ImagerLoader from '@/core/components/loaders/ImageLoader.vue';
 import User, { EMPTY_USER } from '@/core/models/user';
+import FollowBtn from '@/core/components/buttons/FollowBtn.vue';
+import SubscribeBtn from '@/core/components/buttons/SubscribeBtn.vue';
 
 export default Vue.extend({
-	components: { ImagerLoader },
+	components: { ImagerLoader, FollowBtn, SubscribeBtn },
 	props: {
 		user: {
 			type: User,
 			default: (): User => EMPTY_USER as User
+		},
+		isAuth: {
+			type: Boolean,
+			default: false
 		}
+	},
+	data() {
+		return {
+			followed: false,
+			subscribed: false
+		};
 	},
 	computed: {
 		displayName(): string {
 			if (this.user.creator) {
-				return this.user.creator.name + ' ' + this.user.creator.surname;
+				// return this.user.creator.name + ' ' + this.user.creator.surname;
+				return 'Christiaan Landman';
 			}
-			return this.user.username;
+			return 'Christiaan Landman';
+		},
+
+		isSmall(): boolean {
+			return this.$vuetify.breakpoint.smAndDown;
 		}
 	}
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .user-header-container {
 	margin-bottom: 10px;
 }
 
 .page-title {
-	top: 30%;
+	top: 10vh;
 	position: absolute;
 }
 

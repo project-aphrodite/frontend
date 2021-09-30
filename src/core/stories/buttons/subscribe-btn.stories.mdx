@@ -1,0 +1,26 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import SubscribeBtn from '@/core/components/buttons/SubscribeBtn.vue';
+
+<Meta title="Components / Buttons" component={SubscribeBtn} />
+
+# Subscribe Button
+
+<ArgsTable of={SubscribeBtn} />
+
+<Canvas>
+  <Story name="Subscribe Button">
+    {{
+        components: { SubscribeBtn },
+       data() {
+          return {
+			      subscribed: false,
+          }
+        },
+        template: `
+          <subscribe-btn v-model="subscribed" />
+            `
+    }}
+  </Story>
+</Canvas>

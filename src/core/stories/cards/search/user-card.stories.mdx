@@ -1,19 +1,19 @@
 import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
-import SearchResult from '@/pages/search/components/SearchResult.vue';
+import UserCard from '@/core/components/cards/search/UserCard.vue';
 import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
 
-<Meta title="Search Results/ Components " component={SearchResult} />
+<Meta title="Components " component={UserCard} />
 
-<ArgsTable of={SearchResult} />
+<ArgsTable of={UserCard} />
 
-Shows an example SearchResult.
+Shows an example UserCard.
 
 <Canvas>
-  <Story name="SearchResult">
+  <Story name="UserCard">
     {{
-        components: { SearchResult },
+        components: { UserCard },
         computed: {
     		  currentBreakpoint() {
 			      return getCurrentBreakpoint(this);
@@ -21,7 +21,7 @@ Shows an example SearchResult.
 	      },
         template: `
           <div :class="currentBreakpoint">
-            <search-result />
+            <user-card />
           </div>
           `
     }}

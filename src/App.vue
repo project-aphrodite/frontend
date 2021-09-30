@@ -1,16 +1,17 @@
 <template>
 	<v-app :class="currentBreakpoint">
 		<app-bar @onboard="openOnboardDialog" />
+
 		<v-main>
-			<div v-intersect="onIntersect"></div>
+			<div v-intersect="onIntersect" style="position: absolute; top: 30vh;"></div>
 			<v-container fluid class="pa-0 ">
-				<router-view style="padding-bottom: 200px;" @openDialog="openDialog" />
+				<router-view style="" @openDialog="openDialog" />
 
 				<base-footer />
 			</v-container>
 		</v-main>
 
-		<v-btn v-if="!isIntersecting" height="60" width="60" icon class="primary white--text elevation-4 scroll-btn" @click="scrollToTop">
+		<v-btn v-if="!isIntersecting && false" height="60" width="60" icon class="primary white--text elevation-4 scroll-btn" @click="scrollToTop">
 			<v-icon size="38">mdi-arrow-up</v-icon>
 		</v-btn>
 		<v-dialog v-model="showDialog" content-class="naught-dialog" transition="scale-transition">

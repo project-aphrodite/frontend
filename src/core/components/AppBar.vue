@@ -1,12 +1,13 @@
 <template>
 	<v-app-bar
-		fixed
+		hide-on-scroll
+		scroll-threshold="100"
 		app
 		color="white"
 		elevation="1"
 		class="d-flex justify-center align-center"
 		:class="{ 'small-app-bar': $vuetify.breakpoint.smAndDown }"
-		:height="$vuetify.breakpoint.mdAndUp ? 80 : showLinks ? 290 : 170"
+		:height="$vuetify.breakpoint.mdAndUp ? 80 : showLinks ? 230 : 170"
 	>
 		<div class="d-flex flex-column flex-md-row align-center justify-space-between full-width" style="height: 100%">
 			<div class="d-flex flex-column flex-md-row align-center full-width">
@@ -40,17 +41,7 @@
 					>
 						Creators
 					</v-btn>
-					<v-btn
-						class="tertiary--text weight-700 mx-1 f-16"
-						height="40"
-						:width="$vuetify.breakpoint.mdAndUp ? 140 : '100%'"
-						tile
-						depressed
-						color="transparent"
-						@click="$router.push({ name: 'search' })"
-					>
-						Explore
-					</v-btn>
+					{{ currentBreakpoint }}
 				</div>
 			</div>
 			<div class="d-flex flex-column align-center justify-center full-width">
@@ -67,11 +58,11 @@
 			</div>
 
 			<div class="d-flex justify-space-between align-center ml-0 ml-md-5 mb-2 mb-md-0 full-width">
-				<v-btn v-if="!user || !user.creator" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="primary" @click="onboard"
-					>Become a Creator</v-btn
-				>
+				<v-btn v-if="!user || !user.creator" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="secondary" text @click="onboard">
+					Sign in
+				</v-btn>
 				<v-spacer />
-				<v-btn v-if="!user" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="ml-5 text-none" color="secondary" outlined>Connect Wallet</v-btn>
+				<v-btn v-if="!user" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" depressed class="ml-5 text-none" color="secondary">Register</v-btn>
 
 				<div v-else class="d-flex align-center">
 					<div v-min-width="100" class="d-flex flex-column align-end tertiary--text mr-4 ml-1">
@@ -95,6 +86,7 @@
 import Vue from 'vue';
 import SmallProfilePicture from '@/core/components/SmallProfilePicture.vue';
 import User from '../models/user';
+import { getCurrentBreakpoint } from '../utils/breakPointUtil';
 
 export default Vue.extend({
 	components: { SmallProfilePicture },
@@ -110,6 +102,9 @@ export default Vue.extend({
 		},
 		authToken(): string {
 			return this.$store.getters['getAuthToken'];
+		},
+		currentBreakpoint(): string {
+			return getCurrentBreakpoint(this);
 		}
 	},
 	methods: {

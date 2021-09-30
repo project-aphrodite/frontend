@@ -1,0 +1,26 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import FollowBtn from '@/core/components/buttons/FollowBtn.vue';
+
+<Meta title="Components / Buttons" component={FollowBtn} />
+
+# Follow Button
+
+<ArgsTable of={FollowBtn} />
+
+<Canvas>
+  <Story name="Follow Button">
+    {{
+        components: { FollowBtn },
+        data() {
+          return {
+			      followed: false,
+          }
+        },
+        template: `
+          <follow-btn v-model="followed" />
+            `
+    }}
+  </Story>
+</Canvas>

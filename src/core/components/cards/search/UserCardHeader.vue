@@ -1,7 +1,7 @@
 <template>
 	<div v-height="306" class="d-flex flex-column align-center full-width user-header-container">
 		<div class="header-image-container full-width">
-			<v-img class="header-image white--text primary tertiary" height="177" :src="user.bannerUrl">
+			<v-img class="header-image white--text primary tertiary" height="177" src="https://www.wallpapertip.com/wmimgs/36-369230_2048-x-1152-blue-banner.jpg">
 				<div v-if="user.creator && user.creator.verified" class="full-width d-flex justify-end pa-2">
 					<v-icon color="white">mdi-shield-check</v-icon>
 				</div>
@@ -15,7 +15,7 @@
 		<div class="d-flex flex-column align-center justify-space-between" style="width: 60%; position: absolute; top: 106px;">
 			<div class="d-flex align-end tertiary--text">
 				<v-avatar size="200" class="mx-3">
-					<v-img class="header-profile-picture primary" :src="user.profileUrl" alt="John">
+					<v-img class="header-profile-picture primary" src="http://i.ytimg.com/vi/kJkvPORDEjQ/hqdefault.jpg" alt="John">
 						<template v-slot:placeholder>
 							<imager-loader color="white" />
 						</template>

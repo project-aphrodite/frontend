@@ -69,13 +69,13 @@ export default Vue.extend({
 	},
 	computed: {
 		user(): User | undefined {
-			return this.$store.getters['getUser'];
+			return undefined; //this.$store.getters['getUser'];
 		},
 		walletAddress(): string {
-			return this.$store.getters['getWalletAddress'];
+			return ''; //this.$store.getters['getWalletAddress'];
 		},
 		authToken(): string {
-			return this.$store.getters['getAuthToken'];
+			return ''; //this.$store.getters['getAuthToken'];
 		}
 	},
 	mounted() {

@@ -1,0 +1,23 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import MediaCard from '@/pages/user/components/MediaCard.vue';
+
+<Meta title="User / Components / Cards" component={MediaCard} />
+
+# Media Card
+
+<ArgsTable of={MediaCard} />
+
+Shows an example media card.
+
+<Canvas>
+  <Story name="MediaCard">
+    {{
+        components: { MediaCard },
+        template: `
+          <media-card />
+          `
+    }}
+  </Story>
+</Canvas>

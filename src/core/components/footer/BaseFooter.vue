@@ -47,7 +47,7 @@
 					<div class="d-flex justify-space-between tertiary--text f-16 weight-500">
 						<div>© Desiary 2021, All rights reserved.</div>
 
-						<div class="d-flex justify-space-between width-35">
+						<div class="d-flex flex-column flex-md-row justify-space-between width-35">
 							<div>GDPR</div>
 							<div>Terms</div>
 							<div>Privacy</div>

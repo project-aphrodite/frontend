@@ -67,7 +67,7 @@ export default Vue.extend({
 	data() {
 		return {
 			creatorForm: new CreatorForm(),
-			activeSlide: 0,
+			activeSlide: 3,
 			slides: [
 				{
 					img: require('@/assets/dialog/connect.svg'),
@@ -98,7 +98,7 @@ export default Vue.extend({
 			return this.slides[this.activeSlide].text;
 		},
 		walletAddress(): string {
-			return this.$store.getters['getWalletAddress'];
+			return 'test'; //this.$store.getters['getWalletAddress'];
 		}
 	},
 	mounted() {

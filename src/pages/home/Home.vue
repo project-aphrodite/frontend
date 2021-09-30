@@ -1,99 +1,96 @@
 <template>
 	<div class="home-background" style="height:100%;">
-		<div class="primary">
-			<div class="intro-section-container tertiary">
-				<div class="home-background intro-section pb-4 d-flex flex-column flex-lg-row align-center justify-center justify-lg-space-between flex-wrap home-page">
-					<div class="width-45 d-flex flex-column align-center justify-center mt-10 mt-lg-0">
-						<div class="d-flex flex-column align-start">
-							<div class="f-54 weight-700 tertiary--text">General Title</div>
-							<div class="f-20 weight-600 quaternary--text mb-7">Some generic description of the site</div>
-							<v-text-field v-width="340" prepend-inner-icon="mdi-magnify" dense placeholder="Search Creators" outlined></v-text-field>
-						</div>
+		<div class="tertiary">
+			<div class="home-background pb-4 d-flex flex-column flex-lg-row align-center justify-center justify-lg-space-between flex-wrap home-page">
+				<div class="width-45 d-flex flex-column align-center justify-center mt-10 mt-lg-0">
+					<div class="d-flex flex-column align-start">
+						<div class="f-54 weight-700 tertiary--text">Personalised Content</div>
+						<div class="f-20 weight-600 quaternary--text mb-7">By your favourite Creators</div>
+						<v-text-field v-width="340" prepend-inner-icon="mdi-magnify" dense placeholder="Search Creators" outlined></v-text-field>
 					</div>
-					<div v-if="bigScreen" v-min-height="755" class="d-flex align-center align-lg-start justify-start width-55">
-						<naught-card class="mr-lg-7 mt-4" :style="bigScreen ? 'margin-top: 22% !important' : ''" @openDialog="openDialog" />
-						<naught-card class="mr-lg-7 mt-4" :style="bigScreen ? 'margin-top: 7% !important' : ''" @openDialog="openDialog" />
-						<naught-card class="mt-4" :style="bigScreen ? 'margin-top: 17% !important' : ''" @openDialog="openDialog" />
-					</div>
+				</div>
+				<div v-if="bigScreen" v-min-height="755" class="d-flex align-center align-lg-start justify-start width-55">
+					<v-avatar color="" size="200" class="profile-picture border-primary d-flex align-center">
+						<v-img src="https://i.pravatar.cc/300" alt="John" />
+					</v-avatar>
+					<v-avatar color="" size="200" class="profile-picture border-primary d-flex align-center">
+						<v-img src="https://i.pravatar.cc/300" alt="John" />
+					</v-avatar>
+					<v-avatar color="" size="200" class="profile-picture border-primary d-flex align-center">
+						<v-img src="https://i.pravatar.cc/300" alt="John" />
+					</v-avatar>
 				</div>
 			</div>
 		</div>
-		<div class="home-background">
-			<div class="content-section-container tertiary">
-				<div class="content-section primary d-flex flex-column flex-lg-row align-center align-lg-start justify-center full-height" style="padding-top: 2%;">
-					<div class="d-flex flex-column content-description">
-						<div v-width="320" v-height="130" class="white--text">
-							<div class="f-32 weight-700 mb-1">Explore</div>
-							<div class="f-24 weight-400">Search for your favourite content creators</div>
-						</div>
-						<div v-width="320" v-height="130" class="white--text align-self-end text-right">
-							<div class="f-32 weight-700 mb-1">Collect</div>
-							<div class="f-24 weight-400">Buy NFTs and expand your collection</div>
-						</div>
-						<div v-width="320" v-height="130" class="white--text">
-							<div class="f-32 weight-700 mb-1">Trade</div>
-							<div class="f-24 weight-400">Resell and trade your collection</div>
-						</div>
+		<img src="@/assets/wave_small_cut_2.png" style="transform: scaleY(-1);" class="full-width" />
+		<div class="tertiary">
+			<div class=" home-background d-flex flex-column align-center justify-center full-height" style="padding-top: 2%;">
+				<div class="d-flex flex-column pt-12 follows-container">
+					<div class="px-2 d-flex justify-space-between align-end mb-5">
+						<div class="f-38 weight-700 tertiary--text">Featured</div>
+						<v-btn text class="f-24 weight-700 tertiary--text d-flex align-center text-none px-0" @click.stop="">See all</v-btn>
 					</div>
-					<v-spacer style="min-width:10%; width:10%; max-width:10%;"></v-spacer>
-					<div class="d-flex flex-column content-description mx-3">
-						<div v-width="320" v-height="130" class="white--text">
-							<div class="f-32 weight-700 mb-1">Create</div>
-							<div class="f-24 weight-400">Create content for your fans</div>
+					<div>
+						<div ref="featuredList" class="d-flex align-center follows mx-0 pb-2">
+							<user-card v-for="i in 5" :key="i" class="mx-1 mx-sm-2" />
 						</div>
-						<div v-width="320" v-height="130" class="white--text align-self-end text-right">
-							<div class="f-32 weight-700 mb-1">Sell</div>
-							<div class="f-24 weight-400">Put your NFTs on the market</div>
-						</div>
-						<div v-width="320" v-height="130" class="white--text">
-							<div class="f-32 weight-700 mb-1">Earn</div>
-							<div class="f-24 weight-400">Earn crypto or cash for every NFT traded</div>
+						<div class="d-flex full-width justify-space-between follows-scroll-container">
+							<v-btn height="60" width="60" icon class="primary white--text elevation-4 left-scroll-btn" @click="featuredLeft">
+								<v-icon size="38">mdi-arrow-left</v-icon>
+							</v-btn>
+							<v-btn height="60" width="60" icon class="primary white--text elevation-4 right-scroll-btn" @click="featuredRight">
+								<v-icon size="38">mdi-arrow-right</v-icon>
+							</v-btn>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div>
-			<div class="d-flex justify-center home-background">
-				<div class="d-flex flex-column justify-center align-center " style="width:fit-content">
-					<div class="d-flex flex-column pt-12 follows-container">
-						<div class="px-2 d-flex justify-space-between align-end mb-5">
-							<div class="f-38 weight-700 tertiary--text">Featured</div>
-							<v-btn text class="f-24 weight-700 tertiary--text d-flex align-center text-none px-0" @click.stop="">See all</v-btn>
+
+				<div class="d-flex flex-column pt-12 follows-container">
+					<div class="px-2 d-flex justify-space-between align-end mb-5">
+						<div class="f-38 weight-700 tertiary--text">Top New</div>
+						<v-btn text class="f-24 weight-700 tertiary--text d-flex align-center text-none px-0" @click.stop="">See all</v-btn>
+					</div>
+					<div>
+						<div ref="newList" class="d-flex align-center follows mx-0 pb-2">
+							<user-card v-for="i in 5" :key="i" class="mx-1 mx-sm-2" />
 						</div>
-						<div>
-							<div ref="followsList" class="d-flex align-center follows mx-0 pb-2">
-								<search-result v-for="user in users" :key="user.id" :user="user" class="mx-1 mx-sm-2" />
-							</div>
-							<div class="d-flex full-width justify-space-between follows-scroll-container">
-								<v-btn height="60" width="60" icon class="primary white--text elevation-4 left-scroll-btn" @click="followsLeft">
-									<v-icon size="38">mdi-arrow-left</v-icon>
-								</v-btn>
-								<v-btn height="60" width="60" icon class="primary white--text elevation-4 right-scroll-btn" @click="followsRight">
-									<v-icon size="38">mdi-arrow-right</v-icon>
-								</v-btn>
-							</div>
+						<div class="d-flex full-width justify-space-between follows-scroll-container">
+							<v-btn height="60" width="60" icon class="primary white--text elevation-4 left-scroll-btn" @click="newLeft">
+								<v-icon size="38">mdi-arrow-left</v-icon>
+							</v-btn>
+							<v-btn height="60" width="60" icon class="primary white--text elevation-4 right-scroll-btn" @click="newRight">
+								<v-icon size="38">mdi-arrow-right</v-icon>
+							</v-btn>
 						</div>
 					</div>
-					<div class="d-flex flex-column pt-12 mt-10 full-width top-desires-container">
-						<div class="px-2 d-flex justify-space-between align-end mb-5">
-							<div class="f-38 weight-700 tertiary--text">Top Desires</div>
-							<v-btn text class="f-24 weight-700 tertiary--text d-flex align-center text-none px-0" @click.stop="">See all</v-btn>
-						</div>
-						<div>
-							<div ref="topDesiresList" class="mx-0 pb-2 d-flex align-center top-desires">
-								<naught-card v-for="i in 12" :key="i" class="mx-1 md-sm-2" @openDialog="openDialog"></naught-card>
+				</div>
+				<img src="@/assets/wave_small.png" class="full-width" />
+				<div class="full-width d-flex mt-n1">
+					<v-row no-gutters>
+						<v-col cols="6" class="primary d-flex flex-column justify-center">
+							<div class="tertiary">
+								<v-img src="@/assets/test2.png" class="mt-n4" />
 							</div>
-							<div class="d-flex full-width justify-space-between desire-scroll-container">
-								<v-btn height="60" width="60" icon class="primary white--text elevation-4 left-scroll-btn" @click="desiresLeft">
-									<v-icon size="38">mdi-arrow-left</v-icon>
-								</v-btn>
-								<v-btn height="60" width="60" icon class="primary white--text elevation-4 right-scroll-btn" @click="desiresRight">
-									<v-icon size="38">mdi-arrow-right</v-icon>
-								</v-btn>
+							<v-img src="@/assets/home/home_stance.png" class="ml-12">
+								<div class=" full-width d-flex justify-center pt-8">
+									<div class="f-75 lh-75 weight-700 font-italic white--text width-70 text-left">START YOUR DESIARY!</div>
+								</div>
+							</v-img>
+						</v-col>
+						<v-col cols="6" class="tertiary">
+							<div class="pt-12">
+								<home-stat-card title="2542" subtitle="Creator" icon="$vuetify.icons.home" class="stat-card left-20" />
+								<home-stat-card title="21322" subtitle="Posts" icon="$vuetify.icons.camera" class="stat-card mt-n2 left-50" />
+								<home-stat-card title="4233" subtitle="Monthly Subscribers" icon="$vuetify.icons.plus" class="stat-card mt-n2 left-25" />
+								<home-stat-card title="$2342" subtitle="Average Income" icon="$vuetify.icons.home" class="stat-card mt-n2 left-55" />
+								<home-stat-card title="234" subtitle="Average Subscribers" icon="$vuetify.icons.camera" class="stat-card mt-n2 left-15" />
+								<home-stat-card title="5%" subtitle="Subscription Fee" icon="$vuetify.icons.plus" class="stat-card mt-n2 left-45" />
 							</div>
-						</div>
-					</div>
+							<div class="d-flex justify-center pt-12 pb-12">
+								<v-btn width="350" elevation="5" height="52" color="primary" class="f-24 weight-700">Become a Creator</v-btn>
+							</div>
+						</v-col>
+					</v-row>
 				</div>
 			</div>
 		</div>
@@ -102,16 +99,15 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import NaughtCard from '@/core/components/NaughtCard.vue';
 import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
-import SearchResult from '@/pages/search/components/SearchResult.vue';
-import { doGet } from '@/core/services/httpService';
-import HttpRequest from '@/core/models/http/httpRequest';
-import { toUser } from '@/core/translators/userTranslator';
+import UserCard from '@/core/components/cards/search/UserCard.vue';
+// import { doGet } from '@/core/services/httpService';
+// import HttpRequest from '@/core/models/http/httpRequest';
 import User from '@/core/models/user';
+import HomeStatCard from './HomeStatCard.vue';
 
 export default Vue.extend({
-	components: { NaughtCard, SearchResult },
+	components: { UserCard, HomeStatCard },
 	data() {
 		return { desiresScroll: 0, users: [] as Array<User> };
 	},
@@ -120,47 +116,45 @@ export default Vue.extend({
 			const breakpoint = getCurrentBreakpoint(this);
 			return ['lg', 'xl'].includes(breakpoint);
 		},
-		followsListElement(): HTMLElement {
-			return this.$refs.followsList as HTMLElement;
+		featuredListElement(): HTMLElement {
+			return this.$refs.featuredList as HTMLElement;
 		},
-		desiresListElement(): HTMLElement {
-			return this.$refs.topDesiresList as HTMLElement;
+		newListElement(): HTMLElement {
+			return this.$refs.newList as HTMLElement;
 		}
 	},
 	mounted() {
-		this.desiresListElement.scrollLeft = 0;
-
-		const request = new HttpRequest("/search/''");
-		doGet(request).then(r => {
-			this.users = r.data.data.map((response: any) => toUser(response));
-		});
+		// const request = new HttpRequest("/search/''");
+		// doGet(request).then(r => {
+		// 	// this.users = r.data.data.map((response: any) => toUser(response));
+		// });
 	},
 	methods: {
-		followsLeft(): void {
-			this.followsListElement.scrollTo({
+		featuredLeft(): void {
+			this.featuredListElement.scrollTo({
 				top: 0,
-				left: this.followsListElement.scrollLeft - 380.2,
+				left: this.featuredListElement.scrollLeft - 380.2,
 				behavior: 'smooth'
 			});
 		},
-		followsRight(): void {
-			this.followsListElement.scrollTo({
+		featuredRight(): void {
+			this.featuredListElement.scrollTo({
 				top: 0,
-				left: this.followsListElement.scrollLeft + 381.2,
+				left: this.featuredListElement.scrollLeft + 381.2,
 				behavior: 'smooth'
 			});
 		},
-		desiresLeft(): void {
-			this.desiresListElement.scrollTo({
+		newLeft(): void {
+			this.newListElement.scrollTo({
 				top: 0,
-				left: this.desiresListElement.scrollLeft - 530,
+				left: this.newListElement.scrollLeft - 380.2,
 				behavior: 'smooth'
 			});
 		},
-		desiresRight(): void {
-			this.desiresListElement.scrollTo({
+		newRight(): void {
+			this.newListElement.scrollTo({
 				top: 0,
-				left: this.desiresListElement.scrollLeft + 530,
+				left: this.newListElement.scrollLeft + 381.2,
 				behavior: 'smooth'
 			});
 		},
@@ -172,8 +166,29 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="scss">
-.follows-scroll-container,
-.desire-scroll-container {
+.profile-picture {
+	border-width: 6px;
+	border-style: solid;
+}
+
+.border-primary {
+	border-color: var(--v-primary-base);
+}
+
+.border-secondary {
+	border-color: var(--v-secondary-base);
+}
+
+.border-tertiary {
+	border-color: var(--v-tertiary-base);
+}
+
+.stat-card {
+	position: relative;
+	width: fit-content;
+}
+
+.follows-scroll-container {
 	pointer-events: none;
 
 	.left-scroll-btn {
@@ -187,191 +202,69 @@ export default Vue.extend({
 	}
 }
 
-.desire-scroll-container,
 .follows-scroll-container {
 	position: relative;
-	top: -55%;
+	top: -300px;
 }
 
-.top-desires-container,
 .follows-container {
 	max-width: 1523px;
 }
 
 .xs {
-	.follows-container,
-	.top-desires-container {
+	.follows-container {
 		max-width: 365px;
 	}
 }
 
 .sm {
-	.follows-container,
-	.top-desires-container {
+	.follows-container {
 		max-width: 450px;
 	}
 }
 
 .md {
-	.follows-container,
-	.top-desires-container {
+	.follows-container {
 		max-width: 850px;
 	}
 }
 
 .lg {
-	.follows-container,
-	.top-desires-container {
+	.follows-container {
 		max-width: 1200px;
 	}
 }
 
-.follows,
-.top-desires {
+.follows {
 	-ms-overflow-style: none; /* Internet Explorer 10+ */
 	scrollbar-width: none; /* Firefox */
 	overflow-x: auto;
 }
-.follows::-webkit-scrollbar,
-.top-desires::-webkit-scrollbar {
+.follows::-webkit-scrollbar {
 	display: none; /* Safari and Chrome */
 }
 
-.intro-section-container {
-	height: 510px;
+.left-15 {
+	left: 15%;
 }
 
-.intro-section {
-	height: 500px;
+.left-20 {
+	left: 20%;
 }
 
-.lg,
-.xl {
-	.intro-section-container {
-		height: 780px;
-	}
-	.intro-section {
-		height: 770px;
-	}
+.left-25 {
+	left: 25%;
 }
 
-.content-section-container {
-	height: 820px;
+.left-45 {
+	left: 45%;
 }
 
-.content-section {
-	height: 805px;
+.left-50 {
+	left: 50%;
 }
 
-.lg,
-.xl {
-	.content-section-container {
-		height: 600px;
-	}
-
-	.content-section {
-		height: 575px;
-	}
-}
-
-.content-description {
-	width: 80%;
-}
-
-.lg,
-.xl {
-	.content-description {
-		width: 30%;
-	}
-}
-
-.lg,
-.xl {
-	.intro-section {
-		clip-path: polygon(
-			0% 0%,
-			0% 90%,
-			5% 91.5%,
-			15% 94.5%,
-			25% 97%,
-			30% 97.8%,
-			40% 98.5%,
-			50% 98.8%,
-			60% 98.5%,
-			70% 97.8%,
-			75% 97%,
-			85% 94.5%,
-			95% 91.5%,
-			100% 90%,
-			100% 0%
-		);
-	}
-}
-.lg,
-.xl {
-	.intro-section-container {
-		clip-path: polygon(
-			0% 0%,
-			0% 89.8%,
-			5% 91.8%,
-			15% 95.2%,
-			25% 97.8%,
-			30% 98.6%,
-			40% 99.5%,
-			50% 99.8%,
-			60% 99.5%,
-			70% 98.6%,
-			75% 97.8%,
-			85% 95.2%,
-			95% 91.8%,
-			100% 89.8%,
-			100% 0%
-		);
-	}
-}
-
-.lg,
-.xl {
-	.content-section {
-		clip-path: polygon(
-			0% 0%,
-			0% 99%,
-			5% 97.5%,
-			15% 94.5%,
-			25% 92.5%,
-			30% 91.8%,
-			40% 90.5%,
-			50% 90.2%,
-			60% 90.5%,
-			70% 91.2%,
-			75% 92%,
-			85% 94.5%,
-			95% 97.5%,
-			100% 99%,
-			100% 0%
-		);
-	}
-}
-.lg,
-.xl {
-	.content-section-container {
-		clip-path: polygon(
-			0% 0%,
-			0% 95.9%,
-			5% 95%,
-			15% 93%,
-			25% 91.2%,
-			30% 90.4%,
-			40% 89.5%,
-			50% 89.2%,
-			60% 89.5%,
-			70% 90.4%,
-			75% 91.2%,
-			85% 93%,
-			95% 95%,
-			100% 95.9%,
-			100% 0%
-		);
-	}
+.left-55 {
+	left: 55%;
 }
 </style>

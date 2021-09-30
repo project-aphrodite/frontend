@@ -21,9 +21,9 @@ export default Vue.extend({
 	computed: {
 		stats(): Array<{ key: string; value: number }> {
 			return [
-				{ key: 'NFTs', value: 0 },
-				{ key: 'Followers', value: this.user.followerCount },
-				{ key: 'Collected', value: 0 }
+				{ key: 'Posts', value: 171 },
+				{ key: 'Subscribers', value: 831 },
+				{ key: 'Followers', value: 1555 }
 			];
 		}
 	}

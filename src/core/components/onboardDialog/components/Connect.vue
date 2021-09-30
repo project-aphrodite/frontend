@@ -72,10 +72,10 @@ export default Vue.extend({
 			return !!this.walletAddress;
 		},
 		walletAddress(): string {
-			return this.$store.getters['getWalletAddress'];
+			return ''; //;this.$store.getters['getWalletAddress'];
 		},
 		walletNetwork(): number {
-			return this.$store.getters['getWalletNetwork'];
+			return 0; //this.$store.getters['getWalletNetwork'];
 		},
 		connectedMetaMask(): boolean {
 			return this.walletNetwork == 1;

@@ -1,0 +1,116 @@
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { linkTo } from '@storybook/addon-links'
+import Feed from '@/pages/user/components/Feed.vue';
+import Post from '@/pages/user/components/Post.vue';
+import { Privacy } from '@/core/models/privacy';
+
+<Meta title="User / Components / Feed" component={Feed} />
+
+# Feed
+
+<ArgsTable of={Feed} />
+
+Shows an example Feed.
+
+<Canvas>
+  <Story name="Feed (multiple posts)">
+    {{
+        components: { Feed },
+        template: `
+          <div style="width:700px;">
+              <feed />
+          </div>
+          `
+    }}
+  </Story>
+</Canvas>
+
+# Post
+
+<ArgsTable of={Post} />
+
+Shows an example Feed.
+
+<Canvas>
+  <Story name="Post for Public (creator)">
+    {{
+        components: { Post },
+        template: `
+          <div style="width:700px;">
+              <post :privacy="1" />
+          </div>
+          `
+    }}
+  </Story>
+  <Story name="Post for Subscriber (creator)">
+    {{
+        components: { Post },
+        template: `
+          <div style="width:700px;">
+              <post :privacy="2" />
+          </div>
+          `
+    }}
+  </Story>
+   <Story name="Post for Purchase (creator)">
+    {{
+        components: { Post },
+        template: `
+          <div style="width:700px;">
+              <post :privacy="3" />
+          </div>
+          `
+    }}
+  </Story>
+  <Story name="Post for Public (not creator)">
+    {{
+        components: { Post },
+        template: `
+          <div style="width:700px;">
+              <post :is-creator="false" :privacy="1" />
+          </div>
+          `
+    }}
+  </Story>
+  <Story name="Post for Subscriber (not creator)">
+    {{
+        components: { Post },
+        template: `
+          <div style="width:700px;">
+              <post :is-creator="false" :privacy="2" />
+          </div>
+          `
+    }}
+  </Story>
+   <Story name="Post for Purchase (not creator)">
+    {{
+        components: { Post },
+        template: `
+          <div style="width:700px;">
+              <post :is-creator="false" :privacy="3" />
+          </div>
+          `
+    }}
+  </Story>
+  <Story name="Post for Purchase (not creator) (not purchased) (multiple images)">
+    {{
+        components: { Post },
+        template: `
+          <div style="width:700px;">
+              <post :is-creator="false" :privacy="3" :count="3" />
+          </div>
+          `
+    }}
+  </Story>
+  <Story name="Post for Purchase (not creator) (purchased) (multiple images)">
+    {{
+        components: { Post },
+        template: `
+          <div style="width:700px;">
+              <post :is-creator="false" is-purchased :privacy="3" :count="3" />
+          </div>
+          `
+    }}
+  </Story>
+</Canvas>

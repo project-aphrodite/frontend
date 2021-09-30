@@ -16,11 +16,11 @@
 
 		<div v-min-height="300" class="d-flex flex-md-row flex-column align-center flex-wrap">
 			<div v-for="user in users" :key="user.id" class="d-flex flex-column align-center">
-				<search-result :user="user" class="mr-6 mt-6" />
+				<user-card :user="user" class="mr-6 mt-6" />
 			</div>
 			<div v-if="!loading && !loadingMore && users.length > 0 && !!nextPageUrl" v-intersect="requestMore" class="transparent--text">load more text</div>
 			<template v-if="loadingMore || loading">
-				<search-result v-for="i in 8" :key="i + 'search-result-skeleton'" loading class="mr-6 mt-6" />
+				<user-card v-for="i in 8" :key="i + 'search-result-skeleton'" loading class="mr-6 mt-6" />
 			</template>
 		</div>
 	</v-container>
@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import SearchResult from './components/SearchResult.vue';
+import UserCard from '@/core/components/cards/search/UserCard.vue';
 
 import HttpRequest from '@/core/models/http/httpRequest';
 import { doGet } from '@/core/services/httpService';
@@ -36,7 +36,7 @@ import User from '@/core/models/user';
 import { toUser } from '@/core/translators/userTranslator';
 
 export default Vue.extend({
-	components: { SearchResult },
+	components: { UserCard },
 	props: {
 		searchTerm: {
 			type: String,
