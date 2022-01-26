@@ -39,13 +39,14 @@
 </template>
 
 <script lang="ts">
-import HttpRequest from '@/core/models/http/httpRequest';
-import { doPost } from '@/core/services/httpService';
+// import HttpRequest from '@/core/models/http/httpRequest';
+// import { doPost } from '@/core/services/httpService';
 import Vue from 'vue';
-import CreatorForm from '../models/creatorForm';
+import CreatorForm from '@/core/models/forms/creatorForm';
 import FileUpload from './verify/FileUpload.vue';
-import User from '@/core/models/user';
-import { toUser } from '@/core/translators/userTranslator';
+import User from '@/core/models/entities/user';
+// import { toUser } from '@/core/translators/userTranslator';
+import ValidationRules from '@/core/models/validationRules';
 
 export default Vue.extend({
 	components: {
@@ -60,14 +61,7 @@ export default Vue.extend({
 	data() {
 		return {
 			valid: false,
-			rules: {
-				required: (value: any): any => !!value || 'Field required',
-				length: (value: any): any => (!!value && value.length <= 20) || 'Max 20 characters',
-				email: (value: any): any => {
-					const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-					return pattern.test(value) || 'E-mail invalid';
-				}
-			},
+			rules: ValidationRules,
 			loading: false
 		};
 	},

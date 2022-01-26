@@ -48,7 +48,8 @@
 <script lang="ts">
 import ValidationRules from '@/core/models/validationRules';
 import Vue from 'vue';
-import CreatorForm from '../models/creatorForm';
+import CreatorForm from '@/core/models/forms/creatorForm';
+
 export default Vue.extend({
 	props: {
 		creatorForm: {

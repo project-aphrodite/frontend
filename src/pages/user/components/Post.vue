@@ -82,7 +82,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import { Privacy } from '@/core/models/privacy';
+import { Privacy } from '@/core/models/entities/privacy';
 import ImageLoader from '@/core/components/loaders/ImageLoader.vue';
 import SmallProfile from '@/core/components/SmallProfile.vue';
 

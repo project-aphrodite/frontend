@@ -36,7 +36,7 @@
 import Vue from 'vue';
 import UserHeader from '@/pages/user/components/UserHeader.vue';
 
-import User from '@/core/models/user';
+import User from '@/core/models/entities/user';
 
 import BioCard from '@/pages/user/components/BioCard.vue';
 import Feed from './components/Feed.vue';

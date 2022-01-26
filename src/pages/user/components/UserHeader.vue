@@ -52,7 +52,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import ImagerLoader from '@/core/components/loaders/ImageLoader.vue';
-import User, { EMPTY_USER } from '@/core/models/user';
+import User, { EMPTY_USER } from '@/core/models/entities/user';
 import FollowBtn from '@/core/components/buttons/FollowBtn.vue';
 import SubscribeBtn from '@/core/components/buttons/SubscribeBtn.vue';
 

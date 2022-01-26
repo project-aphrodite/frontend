@@ -50,7 +50,7 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import User, { EMPTY_USER } from '@/core/models/user';
+import User, { EMPTY_USER } from '@/core/models/entities/user';
 import UserCardStats from './UserCardStats.vue';
 import UserCardHeader from './UserCardHeader.vue';
 import SubscribeBtn from '@/core/components/buttons/SubscribeBtn.vue';

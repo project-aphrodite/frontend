@@ -1,5 +1,5 @@
-import Creator from '../models/creator';
-import User from '../models/user';
+import Creator from '@/core/models/entities/creator';
+import User from '@/core/models/entities/user';
 
 export function toUser(data: { user?: any; creator: any }): User {
 	if (data.user) {

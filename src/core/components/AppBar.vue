@@ -86,7 +86,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import SmallProfilePicture from '@/core/components/SmallProfilePicture.vue';
-import User from '../models/user';
+import User from '@/core/models/entities/user';
 import { getCurrentBreakpoint } from '../utils/breakPointUtil';
 
 export default Vue.extend({

@@ -30,7 +30,7 @@
 import Vue from 'vue';
 
 import ImagerLoader from '@/core/components/loaders/ImageLoader.vue';
-import User from '@/core/models/user';
+import User from '@/core/models/entities/user';
 
 export default Vue.extend({
 	components: {

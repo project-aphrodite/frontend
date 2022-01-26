@@ -5,7 +5,7 @@ import router from './plugins/router';
 
 import { heightDirective, widthDirective, maxWidthDirective, minWidthDirective, minheightDirective, pointerDirective } from '@/directives';
 import '@/css/app.css';
-import store from './core/store/store';
+import store from './plugins/store';
 
 Vue.config.productionTip = false;
 

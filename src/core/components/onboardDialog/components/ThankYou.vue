@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-// import User from '@/core/models/user';
+// import User from '@/core/models/entities/user';
 import Vue from 'vue';
 export default Vue.extend({
 	computed: {

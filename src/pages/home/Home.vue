@@ -107,7 +107,7 @@ import Vue from 'vue';
 import UserCard from '@/core/components/cards/search/UserCard.vue';
 // import { doGet } from '@/core/services/httpService';
 // import HttpRequest from '@/core/models/http/httpRequest';
-import User from '@/core/models/user';
+import User from '@/core/models/entities/user';
 import HomeStatCard from './HomeStatCard.vue';
 
 export default Vue.extend({

@@ -1,4 +1,4 @@
-export default class LoginUserModel {
+export default class LoginForm {
 	password: string;
 	email: string;
 

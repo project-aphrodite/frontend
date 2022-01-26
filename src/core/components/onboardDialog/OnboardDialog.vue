@@ -6,7 +6,7 @@
 			<div class="full-height d-flex flex-column" :class="[activeSlide == 1 ? 'justify-start setup-wrapper' : 'justify-center']">
 				<login v-if="loginScreen" @go-create="loginScreen = false">Login</login>
 				<template v-else>
-					<create v-if="activeSlide == 0" :creator-form="creatorForm" @next="next" @showError="showError" @go-login="loginScreen = true" />
+					<create v-if="activeSlide == 0" @next="next" @showError="showError" @go-login="loginScreen = true" />
 					<personalise v-else-if="activeSlide == 1" :creator-form="creatorForm" @back="back" @next="next" @showError="showError" />
 					<verify v-else-if="activeSlide == 2" :creator-form="creatorForm" @back="back" @next="next" @showError="showError" />
 					<thank-you v-else @close="close" />
@@ -54,7 +54,7 @@ import Personalise from './components/Personalise.vue';
 import Verify from './components/Verify.vue';
 import ThankYou from './components/ThankYou.vue';
 
-import CreatorForm from './models/creatorForm';
+import CreatorForm from '@/core/models/forms/creatorForm';
 import Login from './components/Login.vue';
 
 export default Vue.extend({

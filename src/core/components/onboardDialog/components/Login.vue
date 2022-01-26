@@ -24,12 +24,12 @@
 				<v-img max-height="50" max-width="50" :src="require('@/assets/dialog/email.svg')" />
 			</v-card>
 			<v-form ref="loginRef" v-model="valid" class="login-form d-flex flex-column">
-				<v-text-field v-model="userModel.email" dense :rules="[rules.required, rules.email]" label="Email" outlined class="mb-4">
+				<v-text-field v-model="loginForm.email" dense :rules="[rules.required, rules.email]" label="Email" outlined class="mb-4">
 					<template v-slot:message="{ message }">
 						<div class="text-right">{{ message }}</div>
 					</template>
 				</v-text-field>
-				<v-text-field v-model="userModel.password" dense :rules="[rules.required, rules.length]" label="Password" outlined class="mb-4">
+				<v-text-field v-model="loginForm.password" dense :rules="[rules.required, rules.length]" label="Password" outlined class="mb-4">
 					<template v-slot:message="{ message }">
 						<div class="text-right">{{ message }}</div>
 					</template>
@@ -53,16 +53,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import ValidationRules from '@/core/models/validationRules';
-import LoginUserModel from '../models/loginUserModel';
+import LoginForm from '@/core/models/forms/loginForm';
+
 export default Vue.extend({
-	props: {
-		userModel: {
-			type: LoginUserModel,
-			default: (): LoginUserModel => new LoginUserModel()
-		}
-	},
 	data() {
 		return {
+			loginForm: new LoginForm(),
 			valid: true,
 			rules: ValidationRules
 		};

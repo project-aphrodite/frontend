@@ -26,17 +26,17 @@
 				<v-img v-else max-height="50" max-width="50" :src="require('@/assets/dialog/email_primary.svg')" />
 			</v-card>
 			<v-form v-if="isEmail" ref="loginRef" v-model="valid" class="login-form d-flex flex-column">
-				<v-text-field v-model="creatorForm.email" dense :rules="[rules.required, rules.email]" label="Email" outlined class="mb-4">
+				<v-text-field v-model="registrationForm.email" dense :rules="[rules.required, rules.email]" label="Email" outlined class="mb-4">
 					<template v-slot:message="{ message }">
 						<div class="text-right">{{ message }}</div>
 					</template>
 				</v-text-field>
-				<v-text-field v-model="creatorForm.password" dense :rules="[rules.required, rules.length]" label="Password" outlined class="mb-4">
+				<v-text-field v-model="registrationForm.password" dense :rules="[rules.required, rules.length]" label="Password" outlined class="mb-4">
 					<template v-slot:message="{ message }">
 						<div class="text-right">{{ message }}</div>
 					</template>
 				</v-text-field>
-				<v-text-field v-model="creatorForm.displayName" dense :rules="[rules.required, rules.length]" label="Display Name" outlined class="mb-4">
+				<v-text-field v-model="registrationForm.displayName" dense :rules="[rules.required, rules.length]" label="Display Name" outlined class="mb-4">
 					<template v-slot:message="{ message }">
 						<div class="text-right">{{ message }}</div>
 					</template>
@@ -61,26 +61,16 @@
 <script lang="ts">
 import Vue from 'vue';
 import ValidationRules from '@/core/models/validationRules';
-import CreatorForm from '../models/creatorForm';
+import RegistationForm from '@/core/models/forms/registrationForm';
+
 export default Vue.extend({
-	props: {
-		creatorForm: {
-			type: CreatorForm,
-			default: (): CreatorForm => new CreatorForm()
-		}
-	},
 	data() {
 		return {
+			registrationForm: new RegistationForm(),
 			isEmail: false,
 			valid: true,
 			rules: ValidationRules
 		};
-	},
-	mounted() {
-		console.log('AASD');
-		if (this.creatorForm.email || this.creatorForm.displayName) {
-			this.isEmail = true;
-		}
 	},
 	methods: {
 		registerWithGoogle(): void {

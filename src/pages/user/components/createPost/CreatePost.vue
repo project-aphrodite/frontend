@@ -132,7 +132,7 @@
 
 <script lang="ts">
 import ImageLoader from '@/core/components/loaders/ImageLoader.vue';
-import { Privacy } from '@/core/models/privacy';
+import { Privacy } from '@/core/models/entities/privacy';
 import InputImage from '@/pages/user/models/inputImage';
 
 import Vue from 'vue';

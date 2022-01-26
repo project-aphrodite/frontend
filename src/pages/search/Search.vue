@@ -33,7 +33,7 @@ import UserCard from '@/core/components/cards/search/UserCard.vue';
 
 // import HttpRequest from '@/core/models/http/httpRequest';
 // import { doGet } from '@/core/services/httpService';
-import User from '@/core/models/user';
+import User from '@/core/models/entities/user';
 // import { toUser } from '@/core/translators/userTranslator';
 
 export default Vue.extend({

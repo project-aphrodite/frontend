@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import User from '@/core/models/user';
+import User from '@/core/models/entities/user';
 
 export default Vue.extend({
 	props: {
