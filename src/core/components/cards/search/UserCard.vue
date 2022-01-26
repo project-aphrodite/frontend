@@ -1,11 +1,11 @@
 <template>
-	<v-card max-width="365" height="500" class="d-flex flex-column user-card" @click="go">
+	<v-card :max-width="dense ? 300 : 365" height="500" class="d-flex flex-column user-card" @click="go">
 		<template v-if="!loading">
 			<user-card-header :user="user" />
 
 			<div class="d-flex flex-column justify-center align-center mt-2">
 				<div class="weight-700 f-30 tertiary--text">Meepoksi Ledamna</div>
-				<div class="d-flex justify-center full-width">
+				<div v-if="!dense" class="d-flex justify-center full-width">
 					<v-btn
 						depressed
 						color="secondary"
@@ -32,6 +32,9 @@
 						{{ subscribed ? 'Subscribed' : 'Subscribe' }}
 					</v-btn>
 				</div>
+				<div v-else>
+					<subscribe-btn value alternative />
+				</div>
 			</div>
 		</template>
 		<v-skeleton-loader v-else max-width="365" width="365" height="100%" type="image"></v-skeleton-loader>
@@ -50,11 +53,13 @@ import Vue from 'vue';
 import User, { EMPTY_USER } from '@/core/models/user';
 import UserCardStats from './UserCardStats.vue';
 import UserCardHeader from './UserCardHeader.vue';
+import SubscribeBtn from '@/core/components/buttons/SubscribeBtn.vue';
 
 export default Vue.extend({
 	components: {
 		UserCardHeader,
-		UserCardStats
+		UserCardStats,
+		SubscribeBtn
 	},
 
 	props: {
@@ -63,6 +68,10 @@ export default Vue.extend({
 			default: (): User => EMPTY_USER
 		},
 		loading: {
+			type: Boolean,
+			default: false
+		},
+		dense: {
 			type: Boolean,
 			default: false
 		}

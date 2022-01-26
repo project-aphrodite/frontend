@@ -91,11 +91,11 @@ body{
 }
 
 .f-54 {
-	font-size: 70px !important;
-}
-
-.f-54 {
 	font-size: 54px !important;
+}a
+
+.f-70 {
+	font-size: 70px !important;
 }
 
 
@@ -226,6 +226,23 @@ body{
 	line-height: 16px;
 }
 
+.lh-21 {
+	line-height: 21px;
+}
+
+.lh-22 {
+	line-height: 22px;
+}
+
+.lh-40 {
+	line-height: 40px;
+}
+
+.lh-54 {
+	line-height: 54px;
+}
+
+
 .lh-75 {
 	line-height: 75px;
 }
@@ -241,3 +258,12 @@ body{
 .text-decoration-none {
 	text-transform: none !important;
 }
+
+/* Disabled */
+/* .v-ripple__container {
+    display:none !important;
+} */
+
+.v-card::before {
+	background-color: transparent;
+  }

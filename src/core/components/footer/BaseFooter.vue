@@ -40,9 +40,6 @@
 						<v-btn icon class="elevation-3 ml-4">
 							<v-icon size="25">mdi-youtube</v-icon>
 						</v-btn>
-						<v-btn icon class="elevation-3 ml-4">
-							<v-icon size="25">mdi-telegram</v-icon>
-						</v-btn>
 					</div>
 					<div class="d-flex justify-space-between tertiary--text f-16 weight-500">
 						<div>© Desiary 2021, All rights reserved.</div>

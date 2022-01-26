@@ -1,5 +1,5 @@
 <template>
-	<v-card class="create-post pa-5 pb-3 mx-3 md-md-0" elevation="4" @mouseenter="hovering = true" @mouseleave="hovering = false">
+	<v-card class="create-post pa-5 pb-3 mx-0 md-md-0" elevation="4" @mouseenter="hovering = true" @mouseleave="hovering = false">
 		<div class="d-flex">
 			<v-avatar size="40" class="profile-picture mr-5 ">
 				<v-img
@@ -69,21 +69,20 @@
 				</v-expand-transition>
 				<v-expand-transition>
 					<div v-if="isAnyImageSelected">
-						<!-- <v-img v-for="image in images" :key="image.url" :src="image.url" class="border-radius-5 mr-4" height="100" min-width="100" width="100" max-width="100"> -->
 						<div class="full-width" style="height: 116px;">
 							<div v-height="16"></div>
 							<div ref="imagesListElement" class="mx-0 pb-2 d-flex align-center uploaded-images border-radius-5 ">
-								<div v-for="(url, i) in urls" :key="url + i" class="d-flex">
+								<div v-for="(image, i) in images" :key="image.url + i" class="d-flex">
 									<div v-if="i == 0" v-intersect="mostLeftImageVisible"></div>
-									<v-img :src="url" class="border-radius-5 mr-4" height="100" min-width="100" width="100" max-width="100">
+									<v-img :src="image.url" class="border-radius-5 mr-4" height="100" min-width="100" width="100" max-width="100">
 										<div class="d-flex justify-end pa-1">
-											<v-btn icon color="primary" class="white" x-small @click="removeImage(image)"><v-icon size="20">mdi-close-circle</v-icon></v-btn>
+											<v-btn icon color="primary" class="white" x-small @click="removeImage(image)"><v-icon size="26">mdi-close-circle</v-icon></v-btn>
 										</div>
 										<template v-slot:placeholder>
 											<image-loader />
 										</template>
 									</v-img>
-									<div v-if="i == urls.length - 1" v-intersect="mostRighImageVisible"></div>
+									<div v-if="i == images.length - 1" v-intersect="mostRighImageVisible"></div>
 								</div>
 							</div>
 							<div class="d-flex full-width justify-space-between scroll-button-container">
@@ -149,8 +148,8 @@ export default Vue.extend({
 
 			sellPrice: undefined as undefined | number,
 
-			showScrollLeft: true,
-			showScrollRight: true,
+			showScrollLeft: false,
+			showScrollRight: false,
 
 			rules: [
 				(value: File[]): any => (!!value && !!value.length) || 'Field required',
@@ -161,7 +160,6 @@ export default Vue.extend({
 			urls: [
 				'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80',
 				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmg1o1wBgvA37dWyCR0AWV2R4AtCMWEsuQ_g&usqp=CAU',
-				'https://mocah.org/uploads/posts/531080-cat-4k-large.jpg',
 				'https://persiancatcorner.com/wp-content/uploads/2018/09/Cute-Persian-Kitten-e1537133479384.jpg',
 				'https://dollfacepersiankittens.com/wp-content/uploads/2014/06/1f7a0977EDSM.jpg',
 				'https://wallpaperaccess.com/full/1209274.jpg',
@@ -190,8 +188,9 @@ export default Vue.extend({
 			return this.privacy == Privacy.Purchase;
 		},
 		isAnyImageSelected(): boolean {
-			// TODO return !!this.images.length;
-			return true;
+			// TODO
+			return !!this.images.length;
+			// return true;
 		},
 		imagesListElement(): HTMLElement {
 			return this.$refs.imagesListElement as HTMLElement;

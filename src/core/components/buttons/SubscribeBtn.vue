@@ -1,9 +1,16 @@
 <template>
-	<v-btn :color="value ? 'tertiary' : 'primary'" class="text-capitalize white--text" height="40" :width="value ? 120 : 200" elevation="0" @click="click">
+	<v-btn
+		:color="value && !alternative ? 'tertiary' : 'primary'"
+		class="text-capitalize white--text"
+		height="40"
+		:width="value && !alternative ? 120 : 200"
+		elevation="0"
+		@click="click"
+	>
 		<div v-height="40" v-width="120" class="d-flex justify-center align-center border-left-4">
 			{{ value ? 'Subscribed' : 'Subscribe' }}
 		</div>
-		<div v-if="!value" v-height="40" v-width="80" class="primary darken-1 d-flex justify-center align-center border-right-4">
+		<div v-if="!value || alternative" v-height="40" v-width="80" class="primary darken-1 d-flex justify-center align-center border-right-4">
 			$20
 		</div>
 	</v-btn>
@@ -15,6 +22,10 @@ import Vue from 'vue';
 export default Vue.extend({
 	props: {
 		value: {
+			type: Boolean,
+			default: false
+		},
+		alternative: {
 			type: Boolean,
 			default: false
 		}

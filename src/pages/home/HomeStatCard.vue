@@ -1,5 +1,5 @@
 <template>
-	<div class="d-flex flex-column align-center">
+	<div class="d-flex flex-column align-center pb-6 pb-lg-0">
 		<v-icon v-if="icon" size="30">{{ icon }}</v-icon>
 		<div class="f-38 weight-700 white--text">{{ title }}</div>
 		<div class="f-18 weight-700 primary--text">{{ subtitle }}</div>

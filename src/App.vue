@@ -1,24 +1,21 @@
 <template>
 	<v-app :class="currentBreakpoint">
-		<app-bar @onboard="openOnboardDialog" />
+		<app-bar @sign-in="signInClicked" @register="registerClicked" />
 
 		<v-main>
 			<div v-intersect="onIntersect" style="position: absolute; top: 30vh;"></div>
 			<v-container fluid class="pa-0 ">
 				<router-view style="" @openDialog="openDialog" />
 
-				<base-footer />
+				<base-footer v-if="hasFooter" />
 			</v-container>
 		</v-main>
 
 		<v-btn v-if="!isIntersecting && false" height="60" width="60" icon class="primary white--text elevation-4 scroll-btn" @click="scrollToTop">
 			<v-icon size="38">mdi-arrow-up</v-icon>
 		</v-btn>
-		<v-dialog v-model="showDialog" content-class="naught-dialog" transition="scale-transition">
-			<details-naught-dialog @close="closeDialog" />
-		</v-dialog>
 		<v-dialog v-model="showOnboardDialog" persistent content-class="onboard-dialog" transition="scale-transition">
-			<onboard-dialog v-if="showOnboardDialog" @close="closeOnboardDialog" />
+			<onboard-dialog v-if="showOnboardDialog" :login-screen-prop="signInMode" @close="closeOnboardDialog" />
 		</v-dialog>
 	</v-app>
 </template>
@@ -27,45 +24,46 @@
 import Vue from 'vue';
 
 import AppBar from '@/core/components/AppBar.vue';
-import DetailsNaughtDialog from '@/core/components/naughtDialog/DetailsNaughtDialog.vue';
 import OnboardDialog from '@/core/components/onboardDialog/OnboardDialog.vue';
 
 import BaseFooter from '@/core/components/footer/BaseFooter.vue';
 
 import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
-import { WALLET_ADDRESS_STORAGE_STRING, WALLET_NETWORK_STORAGE_STRING } from './core/store/store';
-import { login } from './core/services/userService';
-import { toUser } from './core/translators/userTranslator';
 
 export default Vue.extend({
-	components: { AppBar, DetailsNaughtDialog, BaseFooter, OnboardDialog },
+	components: { AppBar, BaseFooter, OnboardDialog },
 
 	data: () => ({
 		isIntersecting: false,
 		showDialog: false,
-		showOnboardDialog: false
+		showOnboardDialog: false,
+		signInMode: false
 	}),
 	computed: {
 		currentBreakpoint(): string {
 			return getCurrentBreakpoint(this);
+		},
+		hasFooter(): boolean {
+			return this.$route.name == 'home' || this.$route.name == 'search';
 		}
 	},
 	mounted() {
-		const walletAddress = localStorage.getItem(WALLET_ADDRESS_STORAGE_STRING);
-		const walletNetwork = localStorage.getItem(WALLET_NETWORK_STORAGE_STRING);
-		if (walletAddress && walletNetwork) {
-			login(
-				walletAddress,
-				walletNetwork,
-				r => {
-					this.$store.commit('setAuthToken', r.data.token);
-					this.$store.commit('setUser', toUser(r.data));
-				},
-				() => {
-					// do nothing on error
-				}
-			);
-		}
+		// auth code?
+		// const walletAddress = localStorage.getItem(WALLET_ADDRESS_STORAGE_STRING);
+		// const walletNetwork = localStorage.getItem(WALLET_NETWORK_STORAGE_STRING);
+		// if (walletAddress && walletNetwork) {
+		// 	login(
+		// 		walletAddress,
+		// 		walletNetwork,
+		// 		r => {
+		// 			this.$store.commit('setAuthToken', r.data.token);
+		// 			this.$store.commit('setUser', toUser(r.data));
+		// 		},
+		// 		() => {
+		// 			// do nothing on error
+		// 		}
+		// 	);
+		// }
 	},
 	methods: {
 		openDialog(): void {
@@ -74,8 +72,13 @@ export default Vue.extend({
 		closeDialog(): void {
 			this.showDialog = false;
 		},
-		openOnboardDialog(): void {
+		signInClicked(): void {
 			this.showOnboardDialog = true;
+			this.signInMode = true;
+		},
+		registerClicked(): void {
+			this.showOnboardDialog = true;
+			this.signInMode = false;
 		},
 		closeOnboardDialog(): void {
 			this.showOnboardDialog = false;

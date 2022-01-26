@@ -1,16 +1,16 @@
 <template>
 	<div class="home-background" style="height:100%;">
 		<div class="tertiary">
-			<div class="home-background pb-4 d-flex flex-column flex-lg-row align-center justify-center justify-lg-space-between flex-wrap home-page">
-				<div class="width-45 d-flex flex-column align-center justify-center mt-10 mt-lg-0">
-					<div class="d-flex flex-column align-start">
-						<div class="f-54 weight-700 tertiary--text">Personalised Content</div>
-						<div class="f-20 weight-600 quaternary--text mb-7">By your favourite Creators</div>
+			<div class="width-100 home-background pb-4 d-flex flex-column-reverse flex-lg-row align-center justify-center justify-lg-space-between flex-wrap home-page">
+				<div class="width-45 d-flex flex-column flex-column-reverse align-center justify-center mt-10 mt-lg-0">
+					<div class="d-flex flex-column align-center align-lg-start">
+						<div class="f-54 lh-54 weight-700 tertiary--text text-center">Personalised Content</div>
+						<div class="f-20 weight-600 quaternary--text mb-7 text-center">By your favourite Creators</div>
 						<v-text-field v-width="340" prepend-inner-icon="mdi-magnify" dense placeholder="Search Creators" outlined></v-text-field>
 					</div>
 				</div>
-				<div v-if="bigScreen" v-min-height="755" class="d-flex align-center align-lg-start justify-start width-55 pt-12 pr-12">
-					<v-img src="@/assets/home/profile_banner.svg"></v-img>
+				<div class="d-flex align-center align-lg-start justify-start pt-4 pt-lg-12 pr-0 pr-lg-12" :class="{ 'width-55': !isSmall, 'width-100': isSmall }">
+					<v-img src="@/assets/home/profile_banner.png"></v-img>
 				</div>
 			</div>
 		</div>
@@ -56,42 +56,54 @@
 						</div>
 					</div>
 				</div>
-				<img src="@/assets/wave_small.png" class="full-width" />
-				<div class="full-width d-flex mt-n1">
-					<v-row no-gutters>
-						<v-col cols="6" class="primary d-flex flex-column justify-center">
-							<div class="tertiary">
-								<v-img src="@/assets/test2.png" class="mt-n4" />
-							</div>
-							<v-img src="@/assets/home/home_stance.png" class="ml-12">
-								<div class=" full-width d-flex justify-center pt-8">
-									<div class="f-75 lh-75 weight-700 font-italic white--text width-70 text-left">START YOUR DESIARY!</div>
-								</div>
-							</v-img>
+			</div>
+		</div>
+		<img src="@/assets/wave_small.png" class="full-width" />
+
+		<div class="full-width d-flex mt-n2">
+			<v-row no-gutters>
+				<v-col cols="12" lg="6" class="primary d-flex flex-column justify-center">
+					<div class="tertiary pt-2">
+						<v-img v-if="!isSmall" src="@/assets/test2.png" class="mt-n4" />
+					</div>
+					<v-img src="@/assets/home/home_stance.png" class="ml-0 ml-lg-12" :class="{ 'stance-image-mobile': isSmall }">
+						<div class=" full-width d-flex justify-center pt-8">
+							<div class="f-75 lh-75 weight-700 font-italic white--text width-70 text-left">START YOUR DESIARY!</div>
+						</div>
+					</v-img>
+				</v-col>
+				<v-col cols="12" lg="6" class="tertiary">
+					<v-row class="pt-12" no-gutters>
+						<v-col cols="6" lg="12" class="d-flex justify-center justify-lg-start">
+							<home-stat-card title="2542" subtitle="Creator" icon="$vuetify.icons.home" class="stat-card" :class="{ 'left-20': !isSmall }" />
 						</v-col>
-						<v-col cols="6" class="tertiary">
-							<div class="pt-12">
-								<home-stat-card title="2542" subtitle="Creator" icon="$vuetify.icons.home" class="stat-card left-20" />
-								<home-stat-card title="21322" subtitle="Posts" icon="$vuetify.icons.camera" class="stat-card mt-n2 left-50" />
-								<home-stat-card title="4233" subtitle="Monthly Subscribers" icon="$vuetify.icons.plus" class="stat-card mt-n2 left-25" />
-								<home-stat-card title="$2342" subtitle="Average Income" icon="$vuetify.icons.home" class="stat-card mt-n2 left-55" />
-								<home-stat-card title="234" subtitle="Average Subscribers" icon="$vuetify.icons.camera" class="stat-card mt-n2 left-15" />
-								<home-stat-card title="5%" subtitle="Subscription Fee" icon="$vuetify.icons.plus" class="stat-card mt-n2 left-45" />
-							</div>
-							<div class="d-flex justify-center pt-12 pb-12">
-								<v-btn width="350" elevation="5" height="52" color="primary" class="f-24 weight-700">Become a Creator</v-btn>
-							</div>
+						<v-col cols="6" lg="12" class="d-flex justify-center justify-lg-start">
+							<home-stat-card title="21322" subtitle="Posts" icon="$vuetify.icons.camera" class="stat-card" :class="{ 'mt-n2 left-50': !isSmall }" />
+						</v-col>
+						<v-col cols="6" lg="12" class="d-flex justify-center justify-lg-start">
+							<home-stat-card title="4233" subtitle="Monthly Subscribers" icon="$vuetify.icons.plus" class="stat-card" :class="{ 'mt-n2 left-25': !isSmall }" />
+						</v-col>
+						<v-col cols="6" lg="12" class="d-flex justify-center justify-lg-start">
+							<home-stat-card title="$2342" subtitle="Average Income" icon="$vuetify.icons.home" class="stat-card " :class="{ 'mt-n2 left-55': !isSmall }" />
+						</v-col>
+						<v-col cols="6" lg="12" class="d-flex justify-center justify-lg-start">
+							<home-stat-card title="234" subtitle="Average Subscribers" icon="$vuetify.icons.camera" class="stat-card" :class="{ 'mt-n2 left-15': !isSmall }" />
+						</v-col>
+						<v-col cols="6" lg="12" class="d-flex justify-center justify-lg-start">
+							<home-stat-card title="5%" subtitle="Subscription Fee" icon="$vuetify.icons.plus" class="stat-card" :class="{ 'mt-n2 left-45': !isSmall }" />
 						</v-col>
 					</v-row>
-				</div>
-			</div>
+					<div class="d-flex justify-center pt-12 pb-12">
+						<v-btn width="350" elevation="5" height="52" color="primary" class="f-24 weight-700">Start my Desiary</v-btn>
+					</div>
+				</v-col>
+			</v-row>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { getCurrentBreakpoint } from '@/core/utils/breakPointUtil';
 import UserCard from '@/core/components/cards/search/UserCard.vue';
 // import { doGet } from '@/core/services/httpService';
 // import HttpRequest from '@/core/models/http/httpRequest';
@@ -104,15 +116,14 @@ export default Vue.extend({
 		return { desiresScroll: 0, users: [] as Array<User> };
 	},
 	computed: {
-		bigScreen(): boolean {
-			const breakpoint = getCurrentBreakpoint(this);
-			return ['lg', 'xl'].includes(breakpoint);
-		},
 		featuredListElement(): HTMLElement {
 			return this.$refs.featuredList as HTMLElement;
 		},
 		newListElement(): HTMLElement {
 			return this.$refs.newList as HTMLElement;
+		},
+		isSmall(): boolean {
+			return this.$vuetify.breakpoint.smAndDown;
 		}
 	},
 	mounted() {
@@ -163,12 +174,19 @@ export default Vue.extend({
 	border-style: solid;
 }
 
-.border-primary {
-	border-color: var(--v-primary-base);
+.stance-image-top {
+	height: 60px;
+	width: 100vw;
 }
 
-.border-secondary {
-	border-color: var(--v-secondary-base);
+.stance-image-mobile {
+	height: 300px;
+	width: 90vw;
+
+	.f-75 {
+		font-size: 50px !important;
+		line-height: 50px;
+	}
 }
 
 .border-tertiary {

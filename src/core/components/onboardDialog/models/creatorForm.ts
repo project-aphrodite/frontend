@@ -2,6 +2,8 @@ export default class CreatorForm {
 	name: string;
 	surname: string;
 	email: string;
+	password: string;
+	displayName: string;
 	username: string;
 	explicit: boolean;
 	creatorVerificationId?: File;
@@ -11,6 +13,8 @@ export default class CreatorForm {
 		this.name = '';
 		this.surname = '';
 		this.email = '';
+		this.password = '';
+		this.displayName = '';
 		this.username = '';
 		this.explicit = false;
 	}
@@ -19,6 +23,8 @@ export default class CreatorForm {
 		this.name = 'Sarel';
 		this.surname = 'Kiriakis';
 		this.email = 'meepo@gmail.com';
+		this.password = 'Okay?';
+		this.displayName = 'noo';
 		this.username = 'Meepo';
 	}
 

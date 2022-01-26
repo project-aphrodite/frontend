@@ -11,21 +11,25 @@
 				/>
 			</v-form>
 		</div>
-		<div class="full-width d-flex justify-space-between">
+		<div class="full-width d-flex justify-space-between mt-10">
 			<v-btn :width="$vuetify.breakpoint.smAndDown ? '47%' : 190" height="55" outlined depressed color="primary" class="text-capitalize f-18 weight-700" @click="back">
 				Back
 			</v-btn>
 			<v-btn
 				:width="$vuetify.breakpoint.smAndDown ? '47%' : 190"
 				:loading="loading"
-				:disabled="!valid"
 				height="55"
 				depressed
 				color="primary"
-				class="text-capitalize f-18 weight-700"
+				class="text-decoration-none f-18 weight-700"
 				@click="submit"
 			>
-				Complete
+				<template v-if="valid">
+					Complete
+				</template>
+				<template v-else>
+					Skip for now
+				</template>
 			</v-btn>
 		</div>
 		<div class="quaternary--text f-12 weight-600 text-center px-5 mt-5">
@@ -94,29 +98,28 @@ export default Vue.extend({
 			return !!this.creatorForm.creatorVerificationId || !!this.creatorForm.creatorVerificationPhoto;
 		},
 		submit(): void {
-			if (!this.user) {
-				this.$emit('showError', 'Wallet not connected');
-			}
+			this.next();
+			return;
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			const request = new HttpRequest('/user/' + this.user!.id + '/creator', this.creatorForm.toRequestBody());
-			this.loading = true;
-			doPost(request, this.walletAddress, this.authToken, true).then((r: any): void => {
-				this.loading = false;
+			// const request = new HttpRequest('/user/create', this.creatorForm.toRequestBody());
+			// this.loading = true;
+			// doPost(request, this.walletAddress, this.authToken, true).then((r: any): void => {
+			// 	this.loading = false;
 
-				if (r.success) {
-					this.$store.commit('setUser', toUser(r.data));
-					this.next();
-				} else {
-					const formError = (Object.keys(r.data) as Array<string>).some(k => ['name', 'surname', 'email', 'username', 'explicit'].includes(k));
+			// 	if (r.success) {
+			// 		this.$store.commit('setUser', toUser(r.data));
+			// 		this.next();
+			// 	} else {
+			// 		const formError = (Object.keys(r.data) as Array<string>).some(k => ['name', 'surname', 'email', 'username', 'explicit'].includes(k));
 
-					const errorMessage = Object.values(r.data).join(' <br/>');
-					if (formError) {
-						this.$emit('showError', errorMessage, 1);
-					} else {
-						this.$emit('showError', errorMessage);
-					}
-				}
-			});
+			// 		const errorMessage = Object.values(r.data).join(' <br/>');
+			// 		if (formError) {
+			// 			this.$emit('showError', errorMessage, 1);
+			// 		} else {
+			// 			this.$emit('showError', errorMessage);
+			// 		}
+			// 	}
+			// });
 		}
 	}
 });

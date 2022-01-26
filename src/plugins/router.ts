@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import User from '@/pages/user/User.vue';
 import Search from '@/pages/search/Search.vue';
 import NotFound from '@/pages/notFound/NotFound.vue';
 import Home from '@/pages/home/Home.vue';
+import Settings from '@/pages/settings/Settings.vue';
 
 Vue.use(VueRouter);
 
@@ -28,6 +30,11 @@ const router = new VueRouter({
 			name: 'search',
 			component: Search,
 			props: (route): any => ({ searchTerm: route.query.searchTerm })
+		},
+		{
+			path: '/settings',
+			name: 'settings',
+			component: Settings
 		},
 		{
 			// will match everything

@@ -20,6 +20,7 @@ export default new Vuetify({
 				tertiary: '#454F51',
 				quaternary: '#A2A7B0',
 				quinary: '#4CA0F0',
+				warning: '#FF6049',
 
 				'image-input-background': '#EBEFF3',
 
@@ -27,7 +28,9 @@ export default new Vuetify({
 				text: '#454F51',
 				'input-border-color': '#E6ECF5',
 				'input-border-color-active': '#4CA0F0',
-				'file-upload-border': '#E5E8EB'
+				'file-upload-border': '#E5E8EB',
+
+				'option-card-border': '#EBEFF3'
 			}
 		}
 	},

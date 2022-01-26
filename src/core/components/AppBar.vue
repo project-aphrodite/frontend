@@ -1,18 +1,16 @@
 <template>
 	<v-app-bar
-		hide-on-scroll
-		scroll-threshold="100"
 		app
 		color="white"
 		elevation="1"
-		class="d-flex justify-center align-center"
+		class="app-bar d-flex justify-center align-center"
 		:class="{ 'small-app-bar': $vuetify.breakpoint.smAndDown }"
-		:height="$vuetify.breakpoint.mdAndUp ? 80 : showLinks ? 230 : 170"
+		:height="$vuetify.breakpoint.mdAndUp ? 80 : showLinks ? 180 : 100"
 	>
 		<div class="d-flex flex-column flex-md-row align-center justify-space-between full-width" style="height: 100%">
 			<div class="d-flex flex-column flex-md-row align-center full-width">
 				<div class="d-flex align-center justify-space-between full-width">
-					<v-btn text class="px-0" @click="$router.push({ name: 'home' })">
+					<v-btn text class="px-0" :to="{ name: 'home' }">
 						<v-img src="@/assets/full-logo.svg" height="54" width="111" />
 					</v-btn>
 					<v-btn height="40" width="40" class="d-md-none" icon @click="showLinks = !showLinks"><v-icon>mdi-menu</v-icon></v-btn>
@@ -25,8 +23,9 @@
 						:width="$vuetify.breakpoint.mdAndUp ? 140 : '100%'"
 						tile
 						depressed
+						:to="{ name: 'home' }"
 						color="transparent"
-						@click="$router.push({ name: 'home' })"
+						link
 					>
 						Home
 					</v-btn>
@@ -37,13 +36,14 @@
 						tile
 						depressed
 						color="transparent"
-						@click="$router.push({ name: 'search' })"
+						:to="{ name: 'search' }"
+						link
 					>
 						Creators
 					</v-btn>
 				</div>
 			</div>
-			<div class="d-flex flex-column align-center justify-center full-width">
+			<div v-if="!isSmall" class="d-flex flex-column align-center justify-center full-width">
 				<v-text-field
 					v-model="searchTerm"
 					v-height="40"
@@ -57,11 +57,13 @@
 			</div>
 
 			<div class="d-flex justify-space-between align-center ml-0 ml-md-5 mb-2 mb-md-0 full-width">
-				<v-btn v-if="!user || !user.creator" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="secondary" text @click="onboard">
+				<v-btn v-if="!user || !user.creator" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="secondary" text @click="$emit('sign-in')">
 					Sign in
 				</v-btn>
 				<v-spacer />
-				<v-btn v-if="!user" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" depressed class="ml-5 text-none" color="secondary">Register</v-btn>
+				<v-btn v-if="!user" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" depressed class="ml-5 text-none" color="secondary" @click="$emit('register')"
+					>Register</v-btn
+				>
 
 				<div v-else class="d-flex align-center">
 					<div v-min-width="100" class="d-flex flex-column align-end tertiary--text mr-4 ml-1">
@@ -104,14 +106,14 @@ export default Vue.extend({
 		},
 		currentBreakpoint(): string {
 			return getCurrentBreakpoint(this);
+		},
+		isSmall(): boolean {
+			return this.$vuetify.breakpoint.smAndDown;
 		}
 	},
 	methods: {
 		submit(): void {
 			this.$router.push({ name: 'search', query: { searchTerm: this.searchTerm } });
-		},
-		onboard(): void {
-			this.$emit('onboard');
 		}
 	}
 });
@@ -146,5 +148,9 @@ export default Vue.extend({
 <style>
 .small-app-bar .v-toolbar__content {
 	width: 100%;
+}
+
+.app-bar .v-btn:hover::before {
+	opacity: 0 !important;
 }
 </style>
