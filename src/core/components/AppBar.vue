@@ -87,6 +87,26 @@
 					</v-badge>
 				</div>
 			</div>
+
+			<div class="d-flex justify-space-between align-center ml-0 ml-md-5 mb-2 mb-md-0 full-width">
+				<v-btn v-if="!user || !user.creator" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="primary" @click="onboard">Hein LOGIN</v-btn>
+				<v-spacer />
+				<v-btn v-if="!user" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="ml-5 text-none" color="secondary" outlined>Connect Wallet</v-btn>
+
+				<div v-else class="d-flex align-center">
+					<div v-min-width="100" class="d-flex flex-column align-end tertiary--text mr-4 ml-1">
+						<div class="weight-700 f-16">0.00 ETH</div>
+						<div class="weight-400 f-12">{{ walletAddress }}</div>
+					</div>
+
+					<v-badge color="transparent" offset-x="22" offset-y="18" left>
+						<small-profile-picture />
+						<template v-slot:badge>
+							<v-icon class="status" x-small color="secondary">mdi-circle</v-icon>
+						</template>
+					</v-badge>
+				</div>
+			</div>
 		</div>
 	</v-app-bar>
 </template>

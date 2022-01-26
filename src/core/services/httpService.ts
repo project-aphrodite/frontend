@@ -13,21 +13,10 @@ export function doGet(request: HttpRequest): Promise<{ success: boolean; code: n
 	);
 }
 
-export function doPost(request: HttpRequest, walletAddress = '', authToken = '', fileUpload = false): Promise<PostResponse> {
-	const config = {
-		auth: {
-			username: walletAddress,
-			password: authToken
-		},
-		header: {}
-	};
-	if (fileUpload) {
-		config.header = { 'Content-Type': 'multipart/form-data' };
-	}
-
+export function doPost(request: HttpRequest): Promise<PostResponse> {
 	const formData = new FormData();
 	request.queryParams.forEach((value, key) => {
 		formData.append(key, value);
 	});
-	return new Promise(resolve => axios.post(BASE_URL + request.endpoint, formData, config).then(response => resolve(response.data)));
+	return new Promise(resolve => axios.post(BASE_URL + request.endpoint, formData).then(response => resolve({ data: response.data, success: response.status == 200 })));
 }

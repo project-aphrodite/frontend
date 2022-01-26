@@ -1,10 +1,10 @@
 export default class PostResponse {
 	success: boolean;
-	code: number;
+	// code: number;
 	data: any;
 
 	constructor() {
 		this.success = false;
-		this.code = 0;
+		// this.code = 0;
 	}
 }
