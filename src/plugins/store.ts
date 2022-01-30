@@ -1,7 +1,7 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
 
-import { NAMESPACE as USER_NAMESPACE, store as userStore } from '@/core/store/user';
+import { NAMESPACE as AUTH_NAMESPACE, store as authStore } from '@/core/store/auth';
 
 Vue.use(Vuex);
 
@@ -9,6 +9,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	modules: {
-		[USER_NAMESPACE]: userStore
+		[AUTH_NAMESPACE]: authStore
 	}
 });

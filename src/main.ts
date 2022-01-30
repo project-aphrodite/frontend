@@ -22,3 +22,5 @@ new Vue({
 	store,
 	render: (h: any): any => h(App)
 }).$mount('#app');
+
+// axios.defaults.withCredentials = true;

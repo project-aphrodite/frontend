@@ -17,7 +17,6 @@ export default class User {
 	creator?: Creator;
 
 	constructor(data: any) {
-		console.log(data);
 		this.id = data.id;
 		this.username = data.username;
 

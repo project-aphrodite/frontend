@@ -6,11 +6,14 @@ export const COOKIE_URL = 'https://project-aphrodite.herokuapp.com/sanctum/csrf-
 export const BASE_URL = 'https://project-aphrodite.herokuapp.com/api';
 
 export function doGet(request: HttpRequest): Promise<{ success: boolean; code: number; data: { data: any; next_page_url: string; total: number } }> {
-	return new Promise(resolve =>
-		axios
-			.get(BASE_URL + request.generateQueryUrl())
-			.then(response => resolve(response.data))
-			.catch(() => resolve({ success: false } as any))
+	return new Promise(
+		() =>
+			axios
+				.get(BASE_URL + request.generateQueryUrl(), { withCredentials: true })
+				.then(r => console.log(r))
+				.catch(e => console.log(e))
+		// .then(response => resolve(response.data))
+		// .catch(() => resolve({ success: false } as any))
 	);
 }
 
@@ -25,5 +28,10 @@ export function doPost(request: HttpRequest, _fileUpload = false): Promise<PostR
 		formData.append(key, value);
 	});
 	// return new Promise(resolve => axios.post(BASE_URL + request.endpoint, formData, config).then(response => resolve(response.data)));
-	return new Promise(resolve => axios.post(BASE_URL + request.endpoint, formData).then(response => resolve({ data: response.data, success: response.status == 200 })));
+	return new Promise(resolve =>
+		axios
+			.post(BASE_URL + request.endpoint, formData)
+			.then(response => resolve({ data: response.data, success: response.status == 200 }))
+			.catch(e => resolve({ data: e.response.data, success: false }))
+	);
 }

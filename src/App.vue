@@ -48,22 +48,8 @@ export default Vue.extend({
 		}
 	},
 	mounted() {
-		// auth code?
-		// const walletAddress = localStorage.getItem(WALLET_ADDRESS_STORAGE_STRING);
-		// const walletNetwork = localStorage.getItem(WALLET_NETWORK_STORAGE_STRING);
-		// if (walletAddress && walletNetwork) {
-		// 	login(
-		// 		walletAddress,
-		// 		walletNetwork,
-		// 		r => {
-		// 			this.$store.commit('setAuthToken', r.data.token);
-		// 			this.$store.commit('setUser', toUser(r.data));
-		// 		},
-		// 		() => {
-		// 			// do nothing on error
-		// 		}
-		// 	);
-		// }
+		// TODO CL: Figure out auth persistance with sanctum
+		// authService.loadSessionUser();
 	},
 	methods: {
 		openDialog(): void {

@@ -4,9 +4,9 @@
 			<onboard-progress-indicator v-if="activeSlide != 0" :value="activeSlide" :slides="slides.length" />
 
 			<div class="full-height d-flex flex-column" :class="[activeSlide == 1 ? 'justify-start setup-wrapper' : 'justify-center']">
-				<login v-if="loginScreen" @go-create="loginScreen = false">Login</login>
+				<login v-if="loginScreen" @go-create="loginScreen = false" @close="close">Login</login>
 				<template v-else>
-					<create v-if="activeSlide == 0" @next="next" @showError="showError" @go-login="loginScreen = true" />
+					<create v-if="activeSlide == 0" @showError="showError" @go-login="loginScreen = true" @close="close" />
 					<personalise v-else-if="activeSlide == 1" :creator-form="creatorForm" @back="back" @next="next" @showError="showError" />
 					<verify v-else-if="activeSlide == 2" :creator-form="creatorForm" @back="back" @next="next" @showError="showError" />
 					<thank-you v-else @close="close" />

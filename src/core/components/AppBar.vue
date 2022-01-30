@@ -57,18 +57,29 @@
 			</div>
 
 			<div class="d-flex justify-space-between align-center ml-0 ml-md-5 mb-2 mb-md-0 full-width">
-				<v-btn v-if="!user || !user.creator" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="secondary" text @click="$emit('sign-in')">
+				<v-btn v-if="!isAuth" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" class="text-none" color="secondary" text @click="$emit('sign-in')">
 					Sign in
 				</v-btn>
+				<!-- TODO CL: Click callback -->
+				<v-btn
+					v-if="isAuth && !authUser.creator"
+					:width="$vuetify.breakpoint.smAndDown ? '47%' : 160"
+					class="text-none"
+					color="secondary"
+					outlined
+					@click="$emit('become-creator')"
+				>
+					Become a creator
+				</v-btn>
 				<v-spacer />
-				<v-btn v-if="!user" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" depressed class="ml-5 text-none" color="secondary" @click="$emit('register')"
+				<v-btn v-if="!isAuth" :width="$vuetify.breakpoint.smAndDown ? '47%' : 160" depressed class="ml-5 text-none" color="secondary" @click="$emit('register')"
 					>Register</v-btn
 				>
 
 				<div v-else class="d-flex align-center">
+					<div></div>
 					<div v-min-width="100" class="d-flex flex-column align-end tertiary--text mr-4 ml-1">
-						<div class="weight-700 f-16">0.00 ETH</div>
-						<div class="weight-400 f-12">{{ walletAddress }}</div>
+						{{ authUser.username }}
 					</div>
 
 					<v-badge color="transparent" offset-x="22" offset-y="18" left>
@@ -88,6 +99,7 @@ import Vue from 'vue';
 import SmallProfilePicture from '@/core/components/SmallProfilePicture.vue';
 import User from '@/core/models/entities/user';
 import { getCurrentBreakpoint } from '../utils/breakPointUtil';
+import { GET_AUTH_USER, IS_AUTH } from '../store/auth';
 
 export default Vue.extend({
 	components: { SmallProfilePicture },
@@ -103,6 +115,12 @@ export default Vue.extend({
 		},
 		authToken(): string {
 			return this.$store.getters['getAuthToken'];
+		},
+		isAuth(): boolean {
+			return this.$store.getters[IS_AUTH];
+		},
+		authUser(): boolean {
+			return this.$store.getters[GET_AUTH_USER];
 		},
 		currentBreakpoint(): string {
 			return getCurrentBreakpoint(this);
